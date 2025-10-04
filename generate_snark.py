@@ -38,7 +38,11 @@ from datetime import UTC, datetime, date, time, timedelta
 from math import ceil
 from pathlib import Path
 
-from snark_messages import pick_snarky_message
+from snark_messages import (
+    pick_snarky_blame_tag,
+    pick_snarky_extra_emoji,
+    pick_snarky_message,
+)
 
 # -------------------------
 # CONFIG: EXTREME SNARKY MESSAGES (space-pirate + BDSM-adjacent + silly)
@@ -79,42 +83,7 @@ FUNC_PREFIXES = [
     "summon",
     "pirate",
 ]
-BLAME_TAGS = [
-    "@legacy",
-    "@backend",
-    "@frontend",
-    "@ops",
-    "@infra",
-    "@ghost",
-    "@intern",
-    "@QA",
-    "@deploy",
-    "@unknown",
-    "@gremlin",
-    "@capn",
-]
-
-EXTRA_EMOJI = [
-    "🧪",
-    "🛠️",
-    "🐛",
-    "🤡",
-    "🔥",
-    "🐹",
-    "🪠",
-    "🔧",
-    "🏴‍☠️",
-    "🍑",
-    "🪢",
-    "💫",
-    "🌈",
-    "✨",
-    "🎭",
-    "🎺",
-    "☕️",
-    "🍪",
-    "🕯️",
-]
+# Legacy arrays kept for compatibility with templating but now sourced externally
 
 DEFAULT_TARGET_FILE = ".generated_commits.txt"
 
@@ -143,7 +112,7 @@ def random_funcname():
 
 def random_blametag():
     """Return a random blame tag (who to blame/playfully tag)."""
-    return random.choice(BLAME_TAGS)
+    return pick_snarky_blame_tag()
 
 
 def make_commit_message(idx, total, author_dt):
@@ -152,7 +121,7 @@ def make_commit_message(idx, total, author_dt):
     file = random_filename()
     func = random_funcname()
     blame = random_blametag()
-    emoji = random.choice(EXTRA_EMOJI)
+    emoji = pick_snarky_extra_emoji()
     return f"{emoji} Test: {core} ({file}::{func}) {blame} — commit {idx}/{total} ({author_dt.date().isoformat()})"
 
 

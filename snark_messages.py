@@ -1,4 +1,4 @@
-"""Gloriously excessive snark message generator (1,000 variants)."""
+"""Gloriously excessive snark message generator and accessories."""
 
 from __future__ import annotations
 
@@ -213,6 +213,21 @@ def _build_messages() -> List[str]:
 
 
 SNARKY_MESSAGES = _build_messages()
+SNARKY_EXTRA_EMOJI = list(dict.fromkeys(_EMOJI_SWIRL))
+SNARKY_BLAME_TAGS = [
+    "@legacy",
+    "@backend",
+    "@frontend",
+    "@ops",
+    "@infra",
+    "@ghost",
+    "@intern",
+    "@QA",
+    "@deploy",
+    "@unknown",
+    "@gremlin",
+    "@capn",
+]
 
 
 def pick_snarky_message(rng: random.Random | None = None) -> str:
@@ -222,4 +237,21 @@ def pick_snarky_message(rng: random.Random | None = None) -> str:
     return chooser.choice(SNARKY_MESSAGES)
 
 
-__all__ = ["SNARKY_MESSAGES", "pick_snarky_message"]
+def pick_snarky_extra_emoji(rng: random.Random | None = None) -> str:
+    chooser = rng or random
+    return chooser.choice(SNARKY_EXTRA_EMOJI)
+
+
+def pick_snarky_blame_tag(rng: random.Random | None = None) -> str:
+    chooser = rng or random
+    return chooser.choice(SNARKY_BLAME_TAGS)
+
+
+__all__ = [
+    "SNARKY_MESSAGES",
+    "SNARKY_EXTRA_EMOJI",
+    "SNARKY_BLAME_TAGS",
+    "pick_snarky_message",
+    "pick_snarky_extra_emoji",
+    "pick_snarky_blame_tag",
+]
