@@ -29,6 +29,7 @@ rust_snark/target/
 dist/
 build/
 *.egg-info/
+uv.lock
 
 # Ruff cache
 .ruff_cache/
@@ -101,3 +102,25 @@ profiler.log
 
 # Husky internal shim
 .husky/_/
+
+# TypeScript spectral residue
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Linting dominatrix cache
+.eslintcache
+
+# Storybook ephemeral theatrics
+storybook-static/
+.storybook-out/
+
+# Coverage directory (already capturing files, add folder) ⚔️
+coverage/
+
+# Yarn Plug'n'Play ghost files (just in case)
+.pnp.cjs
+.pnp.loader.mjs
+
+# Lockfile backups cast overboard
+package-lock.backup*.json
+yarn.lock.backup*
