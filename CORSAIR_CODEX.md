@@ -1,15 +1,15 @@
-# 🏴‍☠️ BRIG BRIEFING: A CORSAIR'S GUIDE TO VELVET CHAINS MUTINY
+# 🏴‍☠️ **BRIG BRIEFING: THE ULTIMATE CORSAIR'S GUIDE TO VELVET CHAINS MUTINY**
 
-*Welcome aboard, you magnificent scallywag! Ready to lash your code to our consensual space-pirate romance engine and make the galaxy quiver with theatrical git wizardry? These are the sacred rituals that will transform you from landlubber to legendary corsair of the voidlight fleet.*
+*Welcome aboard the **MOST MAGNIFICENT VESSEL** ever to grace the cosmic seas, you **ABSOLUTELY SPECTACULAR SCALLYWAG**! Are you ready to **DRAMATICALLY LASH YOUR CODE** to our consensual space-pirate romance engine and make the **ENTIRE GALAXY QUIVER** with **PURE THEATRICAL GIT WIZARDRY**?! These are the **SACRED LEGENDARY RITUALS** that will transform you from humble landlubber to **UNSTOPPABLE CORSAIR LEGEND** of the voidlight fleet! ⚔️✨*
 
 ## ⚓ **THE CAPTAIN'S SACRED OATHS**
 
-Before you set foot on our pleasure-cruiser of code, swear these binding vows upon the altar of consensual chaos:
+Before you **MAJESTICALLY SET FOOT** on our **LUXURY PLEASURE-CRUISER OF CODE**, you must **SOLEMNLY SWEAR** these binding sacred vows upon the **HOLY ALTAR OF CONSENSUAL CHAOS**:
 
-- **🌊 Consent Above All**: Our safe word is "fiction" - always respected, always honored, no exceptions
-- **🎭 Theater Over Tedium**: We demand DRAMATIC FLAIR in everything - make your commits purr like satisfied krakens
-- **🗡️ Velvet-Wrapped Steel**: Professional excellence disguised as decadent indulgence
-- **🏴‍☠️ Found Family Forever**: Every corsair aboard this ship is precious cargo deserving silk-gloved treatment
+- **🌊 CONSENT REIGNS SUPREME**: Our safe word "fiction" is **ALWAYS RESPECTED, ALWAYS HONORED** - **ZERO EXCEPTIONS, EVER**! 🛡️
+- **🎭 THEATER CONQUERS TEDIUM**: We **DEMAND OVERWHELMING DRAMATIC FLAIR** in everything - make your commits **PURR LIKE SATISFIED COSMIC KRAKENS**! 🐙
+- **🗡️ VELVET-WRAPPED STEEL**: **FLAWLESS PROFESSIONAL EXCELLENCE** masterfully disguised as **PURE DECADENT INDULGENCE**! ⚔️
+- **🏴‍☠️ FOUND FAMILY FOREVER**: **EVERY CORSAIR** aboard this magnificent ship is **PRECIOUS TREASURE** deserving **SILK-GLOVED ROYAL TREATMENT**! 👑
 
 ## 🌟 **INITIATION RITUALS FOR NEW CREW**
 

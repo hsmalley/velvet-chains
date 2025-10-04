@@ -1,10 +1,10 @@
-# 🔥 VOIDLIGHT ENGINE GRIMOIRE: RUST SORCERY FOR CORSAIR COMMITS
+# 🔥 **VOIDLIGHT ENGINE GRIMOIRE: ULTIMATE RUST SORCERY FOR CORSAIR COMMITS**
 
-*Welcome to the beating steel heart of our velvet-chains empire, magnificent corsair! This Rust engine transforms mundane git commits into four-sentence micro-novellas of consensual space-pirate romance that would make admiralty blush with scandalous delight.*
+*Welcome to the **MAGNIFICENTLY BEATING STEEL HEART** of our velvet-chains empire, you **ABSOLUTELY LEGENDARY CORSAIR**! This **POWERFUL RUST ENGINE** transforms **BORING MUNDANE GIT COMMITS** into **BREATHTAKING FOUR-SENTENCE MICRO-NOVELLAS** of consensual space-pirate romance that would make **THE ENTIRE ADMIRALTY BLUSH** with **PURE SCANDALOUS DELIGHT**! ⚔️✨*
 
 ## ⚔️ **What This Engine Conjures**
 
-Our **voidlight** binary is a **BDSM space-pirate romance generator** designed to seduce your git history:
+Our **LEGENDARY VOIDLIGHT BINARY** is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE GENERATOR** ever forged, **MASTERFULLY DESIGNED** to **COMPLETELY SEDUCE YOUR GIT HISTORY**:
 
 - **🪢 Automatic Commit Seduction**: Appends four-sentence theatrical micro-novellas to every commit via `prepare-commit-msg` hook
 - **📜 Story Generation**: Prints fresh corsair tales for release notes, issue threads, or pure entertainment

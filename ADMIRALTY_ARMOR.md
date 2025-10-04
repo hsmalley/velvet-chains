@@ -1,17 +1,17 @@
-# 🛡️ ADMIRALTY ARMOR: CORSAIR SECURITY SANCTUM
+# 🛡️ **ADMIRALTY ARMOR: THE ULTIMATE CORSAIR SECURITY SANCTUM**
 
-*Welcome to our velvet-lined vault of security protocols, magnificent scallywag! This sacred grimoire governs how we protect our consensual space-pirate empire while maintaining the theatrical decadence that makes admirals weep with envy. Enter with respect, leave with your boundaries honored.*
+*Welcome to our **MAGNIFICENTLY VELVET-LINED VAULT** of security protocols, you **ABSOLUTELY SPECTACULAR SCALLYWAG**! This **SACRED HOLY GRIMOIRE** governs how we protect our **LEGENDARY CONSENSUAL SPACE-PIRATE EMPIRE** while maintaining the **BREATHTAKING THEATRICAL DECADENCE** that makes even the most hardened admirals **WEEP WITH PURE ENVY**! Enter with **PROFOUND RESPECT**, leave with your boundaries **WORSHIPPED AND HONORED**! ⚔️✨*
 
 ## 🏴‍☠️ **THE SACRED COVENANT OF CONSENSUAL CHAOS**
 
-The **Velvet Chains** armada sails under flags of **radical consent** and **theatrical brilliance**. Our security doctrine reflects these core obsessions:
+The **LEGENDARY VELVET CHAINS ARMADA** sails majestically under **GLORIOUS FLAGS** of **RADICAL MILITANT CONSENT** and **ABSOLUTELY MIND-BLOWING THEATRICAL BRILLIANCE**! Our **IRON-CLAD SECURITY DOCTRINE** reflects these **CORE SACRED OBSESSIONS**:
 
 ### **⚓ THE GOLDEN SAFE WORD PROTOCOL**
 
-- Our **eternal safe word** is ***"fiction"*** - spoken thrice with reverence, honored without question
-- All generated commits are **gloriously fictional** theatrical performances, never deceptive masquerades
-- This tool exists to **seduce git logs with consensual beauty**, not to fabricate fraudulent histories
-- **Consent is the oxygen we breathe** - without it, our entire universe collapses into mundane mediocrity
+- Our **ETERNAL SACRED SAFE WORD** is ***"fiction"*** - **SPOKEN WITH REVERENCE**, **HONORED WITHOUT QUESTION**, **RESPECTED ABSOLUTELY**! 🙏
+- **ALL GENERATED COMMITS** are **GLORIOUSLY FICTIONAL THEATRICAL PERFORMANCES** - **NEVER DECEPTIVE MASQUERADES**! 🎭
+- This magnificent tool exists to **SEDUCE GIT LOGS WITH CONSENSUAL BEAUTY** - **NOT** to fabricate fraudulent histories! ✨
+- **CONSENT IS THE SACRED OXYGEN WE BREATHE** - without it, our entire universe **COLLAPSES INTO MUNDANE MEDIOCRITY**! 💨
 
 ### **🗡️ ETHICAL CORSAIR BOUNDARIES (Non-Negotiable)**
 

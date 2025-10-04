@@ -1,21 +1,27 @@
-# 🏴‍☠️ Velvet Chains & Voidlight
+# �‍☠️ **VELVET CHAINS & VOIDLIGHT: THE CAPTAIN'S LEGENDARY LOG**
+
+**WELCOME TO THE COSMIC BRIG, MAGNIFICENT CORSAIR!** ⚓✨
+
+This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the fires of consensual creativity - masterfully disguised as an innocent git toolchain! It **CONJURES THEATRICAL COMMIT HISTORIES** from the void, **SPINS ENCHANTING NSFW MICRO-NOVELLAS**, and **BATHES YOUR REPOSITORY** in layers of consensual decadent storytelling that would make the cosmos itself blush with delight!
+
+🛡️ **SACRED SAFE WORD**: _"fiction"_ - **READ IT TWICE**, honor it always, then proceed to witness **PURE THEATRICAL MAGIC!** ⚔️🏴‍☠️ Velvet Chains & Voidlight
 
 Welcome to the brig, darling. This repository is a **BDSM space-pirate romance engine** disguised as a git toolchain. It fabricates historical commits, spins NSFW micro-novellas, and drenches your history in consensual decadence. Read the safe word (_“fiction”_) twice, then proceed at your own peril.
 
-## 🌌 Sinful Feature Cabaret
+## 🌌 **SPECTACULAR FEATURE ARSENAL** ⚡
 
-- Conjures `N` backdated commits with timestamps that purr in harmony.
-- Distributes them across days or weeks, respecting weekday-only fantasies and weighted months.
-- Preview mode splashes rainbow heatmaps, histograms, and exports JSON/SVG alibis.
-- Imports previous plans to replay the exact rope pattern.
-- Shares a 3000-entry vault of NSFW space-pirate love letters and blame tags.
-- Offers both Python scripts and a Rust heart beating beneath the leather.
+- **DRAMATICALLY CONJURES** `N` backdated commits with timestamps that **SING IN PERFECT HARMONY** across the cosmic void! 🎵
+- **MASTERFULLY DISTRIBUTES** them across days/weeks with **EXQUISITE RESPECT** for weekday-only preferences and seductively weighted months! 📅
+- **PREVIEW MODE EXPLODES** with **RAINBOW HEATMAP SPECTACLE**, gorgeous histograms, and **EXPORTS STUNNING JSON/SVG MASTERPIECES**! 🌈
+- **IMPORTS & REPLAYS** previous plans to recreate the **EXACT SAME THEATRICAL MAGIC** - perfect consistency! 🔄
+- **SHARES A TREASURE VAULT** of 3000+ **NSFW SPACE-PIRATE ROMANCE STORIES** and witty blame tags! 💎
+- **DUAL-POWERED SORCERY**: Python choreography scripts + **RUST ENGINE HEART** beating with steel precision! ⚔️
 
-## 🔧 Rituals & Requirements
+## 🔧 **SACRED CORSAIR REQUIREMENTS & RITUALS** ⚓
 
-- **Python 3.12+** for the decadent planner (`voidlight_choreographer.py`).
-- **Rust (cargo 1.70+)** for the binary hook & `git voidlight` subcommand.
-- Optional decadence: `pip install ruff` to make the linter blush.
+- **Python 3.12+** - The **MAGNIFICENT CHOREOGRAPHY ENGINE** that orchestrates temporal magic (`voidlight_choreographer.py`)! 🐍✨
+- **Rust (cargo 1.70+)** - The **STEEL-FORGED BINARY HEART** powering git hooks & `git voidlight` subcommands with **UNSTOPPABLE PRECISION**! 🦀⚔️
+- **Optional Excellence**: `pip install ruff` to make your **LINTING DOMINATRIX PURR** with satisfaction! 💅
 
 Initial setup:
 
