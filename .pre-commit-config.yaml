@@ -1,0 +1,103 @@
+# 🏴‍☠️ Velvet Chains Pre-Commit Corsair Guard Configuration
+# Ensures all code meets theatrical excellence before entering sacred git history
+
+repos:
+  # 🐍 Python Choreographer Quality Assurance
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      # Format Python with corsair precision
+      - id: ruff-format
+        name: 🎭 Format Python with velvet precision
+        files: ^voidlight_.*\.py$
+
+      # Lint Python to dominatrix standards
+      - id: ruff
+        name: 🔍 Submit Python to linting dominatrix
+        args: [--fix, --unsafe-fixes]
+        files: ^voidlight_.*\.py$
+
+  # 🦀 Rust Engine Quality Forging
+  - repo: local
+    hooks:
+      # Ensure Rust compiles without errors
+      - id: rust-check
+        name: ⚔️ Forge Rust engine without flaws
+        entry: cargo
+        args: [check, --manifest-path, voidlight_engine/Cargo.toml]
+        language: system
+        files: ^voidlight_engine/.*\.rs$
+        pass_filenames: false
+
+      # Format Rust to aesthetic perfection
+      - id: rust-fmt
+        name: 💎 Polish Rust to mirror finish
+        entry: cargo
+        args: [fmt, --manifest-path, voidlight_engine/Cargo.toml, --check]
+        language: system
+        files: ^voidlight_engine/.*\.rs$
+        pass_filenames: false
+
+      # Submit to clippy's merciless judgment
+      - id: rust-clippy
+        name: 🔨 Submit engine to clippy dominatrix
+        entry: cargo
+        args: [clippy, --manifest-path, voidlight_engine/Cargo.toml, --all-targets, --, -D, warnings]
+        language: system
+        files: ^voidlight_engine/.*\.rs$
+        pass_filenames: false
+
+  # 📝 General Code Quality Rituals
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      # Ensure files end with corsair elegance
+      - id: end-of-file-fixer
+        name: 🎯 Ensure files end with proper flourish
+        exclude: ^\.github/.*\.md$
+
+      # Trim trailing whitespace with precision
+      - id: trailing-whitespace
+        name: ✂️ Trim excess whitespace with velvet touch
+        exclude: ^\.github/.*\.md$
+
+      # Validate JSON configuration files
+      - id: check-json
+        name: 🔍 Validate JSON corsair configurations
+
+      # Validate YAML configuration files
+      - id: check-yaml
+        name: 🔍 Validate YAML fleet manifests
+        exclude: ^\.github/workflows/.*\.yml$  # GitHub Actions may use custom syntax
+
+      # Prevent accidental large file commits
+      - id: check-added-large-files
+        name: 🚫 Block oversized treasure chests
+        args: ['--maxkb=1024']  # 1MB limit
+
+      # Ensure shell scripts are executable
+      - id: check-executables-have-shebangs
+        name: 🔧 Ensure executable scripts have proper incantations
+
+      # Validate Python syntax
+      - id: check-ast
+        name: 🐍 Validate Python syntax integrity
+        files: ^voidlight_.*\.py$
+
+  # 🎪 Markdown Documentation Quality
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.42.0
+    hooks:
+      - id: markdownlint
+        name: 📚 Polish markdown documentation to perfection
+        args: [--fix, --disable, MD013, MD022, MD032, MD031]  # Allow long lines and spacing flexibility for theatrical content
+        files: ^.*\.md$
+        exclude: ^\.github/.*\.md$  # Skip symlinked GitHub files
+
+# 🎯 Pre-commit execution configuration
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+
+# 🛡️ Safety protocols for corsair development
+fail_fast: false  # Run all checks even if early ones fail
+minimum_pre_commit_version: 3.0.0

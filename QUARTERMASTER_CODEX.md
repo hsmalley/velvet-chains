@@ -40,11 +40,11 @@
 ```python
 def summon_commit_storm(count: int, *, preview_only: bool = True) -> List[CommitPlan]:
     """Conjure a tempest of theatrical commits with consensual timestamps.
-    
+
     Args:
         count: Number of commits to choreograph into existence
         preview_only: Safety protocol - preview without mutating git history
-        
+
     Returns:
         List of planned commits ready for theatrical deployment
     """
@@ -88,7 +88,7 @@ ruff check voidlight_choreographer.py voidlight_whispers.py
 # Ensure bytecode compiles without choking
 PYTHONPYCACHEPREFIX=./.pycache python3 -m compileall voidlight_*.py
 
-# Hammer Rust into perfect aesthetic form  
+# Hammer Rust into perfect aesthetic form
 cargo fmt --manifest-path voidlight_engine/Cargo.toml
 
 # Submit engine to clippy's merciless judgment
@@ -214,6 +214,6 @@ When providing code or configuration help:
 
 ---
 
-**📋 PROTOCOL VERSION**: 2.0 Theatrical Excellence Edition  
-**⚓ LAST UPDATED**: October 2025 | **🎯 SCOPE**: All Velvet Chains Copilot Interactions  
+**📋 PROTOCOL VERSION**: 2.0 Theatrical Excellence Edition
+**⚓ LAST UPDATED**: October 2025 | **🎯 SCOPE**: All Velvet Chains Copilot Interactions
 **🏴‍☠️ AUTHORITY**: Velvet Chains Admiralty Council | **🔄 REVIEW CYCLE**: Quarterly Enhancement

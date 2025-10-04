@@ -9,7 +9,7 @@ Welcome to our treasure trove of voidlight demonstrations, darling. These exampl
 # Rainbow preview with 50 commits - no git history touched
 python3.12 voidlight_choreographer.py -n 50 --preview-only
 
-# Generate SVG heatmap for sharing the spectacle  
+# Generate SVG heatmap for sharing the spectacle
 python3.12 voidlight_choreographer.py -n 100 --preview-only --svg-out demo_heatmap.svg
 
 # Preview with specific date range
@@ -48,7 +48,7 @@ python3.12 voidlight_choreographer.py \
   --month-weights 3,3,1,0.5,0.5,0.5,0.5,0.5,0.5,1,2,3 \
   --preview-only
 
-# Summer lull pattern (Jun-Aug minimal)  
+# Summer lull pattern (Jun-Aug minimal)
 python3.12 voidlight_choreographer.py \
   -n 150 \
   --month-weights 2,2,2,1.5,1,0.3,0.3,0.3,1,1.5,2,2 \
@@ -77,7 +77,7 @@ git-voidlight
 git-voidlight --seed 1337
 
 # Stage, commit, and flourish in one command
-git-voidlight --commit -a -m "Refactor plasma conduits" 
+git-voidlight --commit -a -m "Refactor plasma conduits"
 ```
 
 ### **Hook Installation**
@@ -169,16 +169,16 @@ Sun ░░░░░░░░░░░░░░░░░░░░░░░░░�
 
 ### **Sample Generated Messages**
 ```
-🏴‍☠️ Captain Velvet, corseted corsair caught me against the trembling 
-bulkhead, breath hot with rum-drenched sin. Silk ropes braided the 
-safe word around my pulse. I traded the treasure map inked beneath 
-my ribs for another strike. Until the void shuddered and moaned 
+🏴‍☠️ Captain Velvet, corseted corsair caught me against the trembling
+bulkhead, breath hot with rum-drenched sin. Silk ropes braided the
+safe word around my pulse. I traded the treasure map inked beneath
+my ribs for another strike. Until the void shuddered and moaned
 like a satiated kraken. 🪢🔥
 
-✨ Mistress Nebula, whip-smart navigator sealed me to the figurehead 
-with starlit chains and a smile sharper than a cutlass. Chains sang 
-hymns of desire against the bulkhead. We rewrote the Articles of 
-Plunder line by sweating line. While the Jolly Roger fluttered 
+✨ Mistress Nebula, whip-smart navigator sealed me to the figurehead
+with starlit chains and a smile sharper than a cutlass. Chains sang
+hymns of desire against the bulkhead. We rewrote the Articles of
+Plunder line by sweating line. While the Jolly Roger fluttered
 like a lover's gasp. 🛸🍑
 ```
 
@@ -189,7 +189,7 @@ like a lover's gasp. 🛸🍑
 # If commits seem too clustered
 --spread-mode week  # Use week-based distribution
 
-# If dates are outside expected range  
+# If dates are outside expected range
 --start-date 2024-01-01 --end-date 2024-12-31  # Explicit bounds
 
 # If you want reproducible results
@@ -202,7 +202,7 @@ like a lover's gasp. 🛸🍑
 ### **Safety Reminders**
 - Always start with `--preview-only`
 - Use demo branches for real commit generation
-- Clean up afterward with `git reset --hard` 
+- Clean up afterward with `git reset --hard`
 - Never run on main/master without team consent
 
 ## 📝 **Integration Examples**
@@ -211,12 +211,12 @@ like a lover's gasp. 🛸🍑
 ```yaml
 # .github/workflows/demo-generation.yml
 name: Generate Demo Commits
-on: 
+on:
   workflow_dispatch:
     inputs:
       commit_count:
         default: 50
-        
+
 jobs:
   demo:
     runs-on: ubuntu-latest
@@ -252,6 +252,6 @@ repos:
 
 ---
 
-*Remember: These examples are for demonstration, education, and consensual chaos. Always respect git history, announce your intentions, and clean up afterward. The safe word is "fiction"!* 
+*Remember: These examples are for demonstration, education, and consensual chaos. Always respect git history, announce your intentions, and clean up afterward. The safe word is "fiction"!*
 
 🏴‍☠️ **Happy sailing, corsair!** ⚓

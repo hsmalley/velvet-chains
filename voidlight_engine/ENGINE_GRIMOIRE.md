@@ -7,7 +7,7 @@
 Our **voidlight** binary is a **BDSM space-pirate romance generator** designed to seduce your git history:
 
 - **🪢 Automatic Commit Seduction**: Appends four-sentence theatrical micro-novellas to every commit via `prepare-commit-msg` hook
-- **📜 Story Generation**: Prints fresh corsair tales for release notes, issue threads, or pure entertainment  
+- **📜 Story Generation**: Prints fresh corsair tales for release notes, issue threads, or pure entertainment
 - **⚡ One-Command Mastery**: Execute `git voidlight --commit ...` to stage, commit, and flourish in one breath of pure theatrical magic
 - **🎭 Consensual Creativity**: Every generated story celebrates consent, theatrical flair, and space-pirate romance
 
@@ -122,7 +122,7 @@ The hook automatically:
 - `--seed <NUMBER>` - Deterministic randomness for reproducible theatrical output
 - `--hook <FILE>` - Hook mode for git integration (used internally)
 
-### **Commit Enhancement Flags**  
+### **Commit Enhancement Flags**
 - `--commit` - Execute git commit with automatic story appendage
 - `-m, --message <TEXT>` - Base commit message (enhanced with corsair flair)
 - `-a, --all` - Stage modified and deleted files before committing
@@ -139,9 +139,9 @@ The hook automatically:
 
 ### **Sample Generated Romance**
 ```
-✨ Captain Velvet, corseted corsair caught me against the trembling bulkhead, 
-breath hot with rum-drenched sin. Silk ropes braided the safe word around my pulse. 
-I traded the treasure map inked beneath my ribs for another strike. Until the void 
+✨ Captain Velvet, corseted corsair caught me against the trembling bulkhead,
+breath hot with rum-drenched sin. Silk ropes braided the safe word around my pulse.
+I traded the treasure map inked beneath my ribs for another strike. Until the void
 shuddered and moaned like a satiated kraken. 🪢🔥
 ```
 
@@ -153,9 +153,9 @@ Date:   Fri Oct 4 15:30:42 2025 +0000
 
     Refactor quantum entanglement protocols for stability
 
-    ✨ Mistress Nebula, whip-smart navigator sealed me to the figurehead with 
-    starlit chains and a smile sharper than a cutlass. Chains sang hymns of 
-    desire against the bulkhead. We rewrote the Articles of Plunder line by 
+    ✨ Mistress Nebula, whip-smart navigator sealed me to the figurehead with
+    starlit chains and a smile sharper than a cutlass. Chains sang hymns of
+    desire against the bulkhead. We rewrote the Articles of Plunder line by
     sweating line. While the Jolly Roger fluttered like a lover's gasp. 🛸🍑
 ```
 
@@ -170,7 +170,7 @@ Date:   Fri Oct 4 15:30:42 2025 +0000
 
 ### **Dependencies**
 - **Rust Edition**: 2021+ for maximum modern sorcery
-- **clap**: Command-line argument parsing with dramatic flair  
+- **clap**: Command-line argument parsing with dramatic flair
 - **rand**: Cryptographically secure randomness for story generation
 
 ### **Platform Support**

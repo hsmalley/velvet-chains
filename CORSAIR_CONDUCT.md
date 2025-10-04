@@ -7,7 +7,7 @@
 We, the **Velvet Chains** crew, pledge to maintain a **consensual, inclusive, and theatrically delightful** community where all corsairs can contribute safely and authentically. Our development space celebrates:
 
 - **Consensual Collaboration**: All interactions respect boundaries and prioritize enthusiastic participation
-- **Theatrical Professionalism**: We embrace dramatic flair while maintaining technical excellence  
+- **Theatrical Professionalism**: We embrace dramatic flair while maintaining technical excellence
 - **Found Family Values**: Every contributor is a valued crew member deserving respect and support
 - **Creative Courage**: We encourage bold ideas, theatrical expression, and innovative solutions
 
@@ -33,7 +33,7 @@ We, the **Velvet Chains** crew, pledge to maintain a **consensual, inclusive, an
 ### **In Community Interactions:**
 
 - **Safe Word Protocol**: Respect when someone uses "fiction" to indicate they need space or a topic change
-- **Assume Positive Intent**: Give fellow corsairs the benefit of the doubt while maintaining healthy boundaries  
+- **Assume Positive Intent**: Give fellow corsairs the benefit of the doubt while maintaining healthy boundaries
 - **Step Forward, Step Back**: Amplify quieter voices and create space for others to contribute
 - **Credit Generously**: Acknowledge contributions, inspirations, and collaborative efforts explicitly
 
@@ -75,7 +75,7 @@ If you experience or witness behavior that violates this manifesto:
 
 ### **Our Response Process**
 
-**⚖️ Investigation**: 
+**⚖️ Investigation**:
 - Acknowledge receipt within 48 hours
 - Review all available information fairly and thoroughly
 - May involve discussions with all parties involved
@@ -83,11 +83,11 @@ If you experience or witness behavior that violates this manifesto:
 
 **🎭 Resolution Options**:
 - **Educational Conversation**: Clarify expectations and provide guidance for improvement
-- **Formal Warning**: Document the issue and set clear expectations for future behavior  
+- **Formal Warning**: Document the issue and set clear expectations for future behavior
 - **Temporary Restrictions**: Limited access to community spaces while behavior improves
 - **Permanent Banishment**: For severe violations or repeated unacceptable behavior
 
-**📢 Transparency**: 
+**📢 Transparency**:
 - Keep reporters informed of investigation progress
 - Respect privacy while ensuring community safety
 - Document patterns to prevent future incidents
@@ -112,7 +112,7 @@ If you believe enforcement action was unfair:
 ### **Community Rituals**
 
 - **Welcome New Crew**: Greet new contributors with warmth and helpful orientation
-- **Share Learning**: Celebrate both successes and educational failures with equal enthusiasm  
+- **Share Learning**: Celebrate both successes and educational failures with equal enthusiasm
 - **Creative Collaboration**: Encourage projects that blend technical excellence with theatrical flair
 - **Feedback Festivals**: Regular opportunities for community input on culture and direction
 

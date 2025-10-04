@@ -225,7 +225,7 @@ fn build_story(seed: Option<u64>) -> String {
         None => {
             let mut thread_rng = rand::rng();
             StdRng::from_rng(&mut thread_rng)
-        },
+        }
     };
 
     let subject = pick(&mut rng, SUBJECTS);

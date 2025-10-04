@@ -8,7 +8,7 @@ Before you set foot on our pleasure-cruiser of code, swear these binding vows up
 
 - **🌊 Consent Above All**: Our safe word is "fiction" - always respected, always honored, no exceptions
 - **🎭 Theater Over Tedium**: We demand DRAMATIC FLAIR in everything - make your commits purr like satisfied krakens
-- **🗡️ Velvet-Wrapped Steel**: Professional excellence disguised as decadent indulgence  
+- **🗡️ Velvet-Wrapped Steel**: Professional excellence disguised as decadent indulgence
 - **🏴‍☠️ Found Family Forever**: Every corsair aboard this ship is precious cargo deserving silk-gloved treatment
 
 ## 🌟 **INITIATION RITUALS FOR NEW CREW**
@@ -49,7 +49,7 @@ Your Python must sparkle like stardust on silk sheets:
 # Polish your Python until it gleams
 ruff format voidlight_choreographer.py voidlight_whispers.py
 
-# Make the linter moan with approval  
+# Make the linter moan with approval
 ruff check voidlight_choreographer.py voidlight_whispers.py
 
 # Ensure your bytecode compiles without choking
@@ -91,7 +91,7 @@ cargo check --manifest-path voidlight_engine/Cargo.toml
 # Always taste before swallowing (preview mode)
 python3.12 voidlight_choreographer.py -n 10 --preview-only --svg-out preview_feast.svg
 
-# Test the Rust engine without igniting the powder magazine  
+# Test the Rust engine without igniting the powder magazine
 cargo test --manifest-path voidlight_engine/Cargo.toml --no-run
 
 # Generate sample theatrical output for inspection
@@ -105,7 +105,7 @@ Your commit messages must seduce the git log like a corsair seduces admiralty:
 ```bash
 # ✨ EXQUISITE EXAMPLES ✨
 git commit -m "Bind voidlight hooks with fresh silken symlinks ⛓️"
-git commit -m "Caress Rust engine errors with velvet-gloved handling 🖤"  
+git commit -m "Caress Rust engine errors with velvet-gloved handling 🖤"
 git commit -m "Weave consent protocols into choreographer's preview ballet 💃"
 git commit -m "Polish Python formatting until it gleams like moonlit steel ✨"
 
@@ -120,14 +120,14 @@ git commit -m "change things"     # Absolutely beneath our standards
 ### **🔒 The Golden Rules of Engagement**
 
 - **Historical Fiction Warning**: Always flag when demo commands mutate git history
-- **Consent-First Development**: Ask before major changes, respect "no" completely  
+- **Consent-First Development**: Ask before major changes, respect "no" completely
 - **Preview-Only Alternatives**: Offer safe harbor before unleashing commit storms
 - **Safe Word Sanctity**: "fiction" means pause, breathe, recalibrate - always honored
 
 ### **⚖️ Ethical Corsair Standards**
 
 - Keep adult themes **consensual and theatrical**, never crude or exploitative
-- Use space-pirate and BDSM aesthetics **tastefully** - we're artists, not shock merchants  
+- Use space-pirate and BDSM aesthetics **tastefully** - we're artists, not shock merchants
 - Maintain **professional technical standards** beneath the velvet curtain
 - Include **appropriate warnings** for any history-altering sorcery
 
@@ -138,7 +138,7 @@ git commit -m "change things"     # Absolutely beneath our standards
 Before you bare your code to our crew's hungry eyes:
 
 - **✅ Formatting Blessing**: All code polished to mirror perfection
-- **✅ Linting Confession**: No warnings or errors left unpurged  
+- **✅ Linting Confession**: No warnings or errors left unpurged
 - **✅ Preview Ceremony**: Extensive testing with `--preview-only` flag
 - **✅ Documentation Updates**: Any new features properly announced in our theatrical style
 - **✅ History Safety**: Verify no real git mutation in examples or demos
@@ -153,7 +153,7 @@ Describe your modifications with sufficient velvet-chains theatrical flair to ma
 
 ### 🧪 **Ritual Testing Performed**
 - [ ] Python formatting (`ruff format`) - code now gleams
-- [ ] Python linting (`ruff check`) - linter purrs with satisfaction  
+- [ ] Python linting (`ruff check`) - linter purrs with satisfaction
 - [ ] Rust formatting (`cargo fmt`) - steel polished to mirror brightness
 - [ ] Rust linting (`cargo clippy`) - clippy dominatrix pleased
 - [ ] Preview mode extensively tested - no git history harmed
@@ -175,7 +175,7 @@ Describe your modifications with sufficient velvet-chains theatrical flair to ma
 Fresh meat... *ahem*... new contributors are the lifeblood of our fleet! Perfect first missions:
 
 - **🖋️ Documentation Embellishment**: Fix typos with theatrical flair additions
-- **💬 Message Expansion**: Add new snarky space-pirate romance snippets to our collection  
+- **💬 Message Expansion**: Add new snarky space-pirate romance snippets to our collection
 - **⚠️ Error Message Seduction**: Transform bland errors into corsair-worthy warnings
 - **🌈 Preview Enhancement**: Make our rainbow output even more retina-searingly beautiful
 - **📝 Example Crafting**: Create new demonstration scripts that showcase our aesthetic
@@ -203,7 +203,7 @@ Essential reading for aspiring voidlight corsairs:
 ### **🎯 Targeting Your Contributions**
 
 - **Core Engine**: Rust improvements that make the binary purr more efficiently
-- **Python Choreographer**: New features for the commit generation ballet  
+- **Python Choreographer**: New features for the commit generation ballet
 - **Documentation**: More theatrical flair, better examples, clearer warnings
 - **Tooling**: Development workflow improvements that maintain our aesthetic
 - **Community**: Initiatives that strengthen our found-family bonds
@@ -212,7 +212,7 @@ Essential reading for aspiring voidlight corsairs:
 
 Exceptional corsairs receive:
 - **Prominent attribution** in our sacred documents
-- **Special mentions** in release notes written with suitable drama  
+- **Special mentions** in release notes written with suitable drama
 - **Invitation to exclusive** maintainer circles of trust
 - **Eternal gratitude** expressed through appropriately theatrical channels
 
