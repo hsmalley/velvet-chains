@@ -46,8 +46,6 @@ jobs:
       - name: "⚔️ Forge the Spectacle - Build the Site"
         run: npm run build
 
-      - name: "🧭 Forge Static Constellation - Export Site"
-        run: npm run export
 
       - name: "📜 Archive the Bounty - Upload Pages Artifact"
         uses: actions/upload-pages-artifact@v3
