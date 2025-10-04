@@ -36,6 +36,12 @@ jobs:
       - name: "💎 Gather the Treasure - Install Dependencies"
         run: npm ci
 
+      - name: "🧪 Validate Lore Codex Integrity"
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyyaml
+          npm run validate:lore || (echo "Lore validation failed" && exit 1)
+
       - name: "⚔️ Forge the Spectacle - Build the Site"
         run: npm run build
 

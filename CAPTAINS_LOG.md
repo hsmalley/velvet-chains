@@ -165,3 +165,46 @@ Override `--repo` or `--file` if you want to lash the flourish onto a new projec
 - When the show ends: `git reset --hard`, delete demo branches, remove `.generated_commits.txt`.
 
 Hydrate. Breathe. Then fire the rainbow cannon. 🏳️‍🌈
+
+## 📜 Lore Data Artifact (lore.json)
+
+⚔️ To empower future search, filtering, or client-side spectacle without reparsing every fragment, we forge a static index:
+
+```bash
+npm run build:lore
+```
+
+This ritual emits `public/lore.json` containing NON-DRAFT fragments (skips any with `draft: true`). Each entry includes:
+
+- `filename` – Original lore file
+- `index` – Numeric ordering token from filename prefix
+- `title` – From frontmatter or first markdown heading
+- `tags` – Array of frontmatter tags (empty if absent)
+- `order` – Optional explicit frontmatter ordering
+- `excerpt` – First ~200 chars of body (sans frontmatter)
+
+Use this artifact for future enhancements (search UI, filters, tag clouds) without loading raw markdown at runtime.
+
+## 🪝 Pre-Commit Lore Validation Hook
+
+Every commit passes through a velvet gate of integrity. The Husky-driven pre-commit script runs:
+
+```bash
+npm run validate:lore
+```
+
+Installation incantation (one time after cloning):
+
+```bash
+npx husky install
+```
+
+If validation fails (missing frontmatter, duplicate indices, unsafe ordering), the commit is BLOCKED with consensual sternness. Correct the issues and retry.
+
+Ensure `pyyaml` is installed locally if you invoke the validator directly:
+
+```bash
+python3 -m pip install pyyaml
+```
+
+Captain Velvet purrs approvingly when your lore sails clean. ✨

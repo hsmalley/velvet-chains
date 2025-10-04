@@ -82,3 +82,22 @@ pids
 # Temporary files
 *.tmp
 *.temp
+
+# Lore build artifact (generated index) ⚔️
+public/lore.json
+
+# Python build / distribution relics
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Rust target (already ignoring engine targets, add generic) 🦀
+target/
+
+# Coverage & profiling extras
+coverage.xml
+profiler.log
+
+# Husky internal shim
+.husky/_/
