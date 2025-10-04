@@ -1,5 +1,5 @@
 use clap::{ArgAction, Parser, Subcommand};
-use rand::rngs::StdRng;
+use rand::rngs::{OsRng, StdRng};
 use rand::seq::SliceRandom;
 use rand::SeedableRng;
 use std::env;
@@ -222,7 +222,7 @@ fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
 fn build_story(seed: Option<u64>) -> String {
     let mut rng = match seed {
         Some(value) => StdRng::seed_from_u64(value),
-        None => StdRng::from_entropy(),
+        None => StdRng::from_rng(OsRng).expect("OS entropy should be available"),
     };
 
     let subject = pick(&mut rng, SUBJECTS);
