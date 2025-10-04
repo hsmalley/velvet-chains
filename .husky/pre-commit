@@ -1,0 +1,10 @@
+#!/bin/sh
+# ⚔️ Pre-commit corsair ritual: validate lore before allowing commit
+. "$(dirname "$0")/_/husky.sh" 2>/dev/null || true
+
+echo "🏴‍☠️ Running lore validation ritual..."
+if ! npm run validate:lore; then
+  echo "❌ Lore validation failed. Commit aborted." >&2
+  exit 1
+fi
+echo "✨ Lore validation passed. Proceeding with commit."
