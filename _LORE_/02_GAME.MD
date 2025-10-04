@@ -1,8 +1,8 @@
 ---
-- title: Velvet Chains & Voidlight THE GAME! kinda
-- order: 100
-- tags: [setting, document]
-- draft: false
+title: Velvet Chains & Voidlight THE GAME! kinda
+order: 100
+tags: [setting, document]
+draft: false
 ---
 
 # **Velvet Chains & Voidlight** THE GAME! kinda

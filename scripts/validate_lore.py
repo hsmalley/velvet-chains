@@ -58,9 +58,19 @@ def main() -> int:
         meta = {}
         if fm_raw:
             try:
-                meta = yaml.safe_load(fm_raw) or {}
+                meta_loaded = yaml.safe_load(fm_raw)
             except Exception as e:  # noqa: BLE001
                 errors.append(f"YAML parse error in {path.name}: {e}")
+                continue
+            if meta_loaded is None:
+                meta = {}
+            elif isinstance(meta_loaded, dict):
+                meta = meta_loaded
+            else:
+                errors.append(
+                    f"Frontmatter must be a mapping (key: value) in {path.name}; got {type(meta_loaded).__name__}. Example:\n"
+                    "---\n" "title: Example Title\n" "order: 10\n" "tags: [setting]\n" "draft: false\n" "---"
+                )
                 continue
             unknown = set(meta.keys()) - ALLOWED_KEYS
             if unknown:

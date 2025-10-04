@@ -1,8 +1,8 @@
 ---
-- title: Velvet Chains & Voidlight Campaign Template
-- order: 100
-- tags: [setting, document]
-- draft: true
+title: Velvet Chains & Voidlight Campaign Template
+order: 100
+tags: [setting, document]
+draft: true
 ---
 
 # ⚙️ Velvet Chains & Voidlight Campaign Template
