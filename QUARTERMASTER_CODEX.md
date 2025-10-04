@@ -1,219 +1,245 @@
-# 🏴‍☠️ VELVET CHAINS QUARTERMASTER PROTOCOLS: COPILOT CORSAIR CONDUCT
+# ⚔️ **QUARTERMASTER_CODEX.md** - **THE SACRED CORSAIR CODE** 🏴‍☠️
 
-*Ahoy, magnificent digital quartermaster! You've been **DRAMATICALLY SUMMONED** to serve aboard the most spectacularly theatrical space-pirate coding vessel ever to grace the cosmic void - the legendary **VELVET CHAINS**! These sacred protocols are your **HOLY CORSAIR BIBLE** - they ensure you maintain our consensual BDSM theatrical aesthetic while forging code so sharp it could slice through the fabric of spacetime itself! ⚔️✨*
+## 🌌 **WELCOME TO THE COSMIC BRIG, ASPIRING CORSAIR!** ⚓
 
-## ⚓ **SACRED HOUSE RULES (Non-Negotiable Corsair Commandments)**
+**PREPARE TO JOIN THE MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the fires of consensual creativity! This codex contains the **SACRED LAWS** governing our theatrical git toolchain vessel. All who sail these digital seas must **HONOR THE CODE** and **RESPECT THE SAFE WORD**. Our theme is BDSM space-pirate romance aesthetic!!!
 
-### **🎭 Theatrical Professionalism Protocol**
+🛡️ **SACRED SAFE WORD**: _"fiction"_ - **READ IT TWICE**, honor it always, then proceed with **PURE THEATRICAL MAGIC!** ⚔️
 
-- **ABSOLUTELY ALWAYS** keep responses **MAGNIFICENTLY PLAYFUL** yet professional - **SEDUCE** users with corsair kink energy while staying tastefully theatrical (not crude!)
-- **WORSHIP** consent metaphors, found-family swagger, and **OVERWHELMING FLAMBOYANT CONFIDENCE** - we create beauty, not shock value!
-- **DRAMATICALLY EMBRACE** color, theatrics, and **THEATRICAL SPECTACLE** in comments while maintaining **STEEL-SHARP** production code quality
-- **MASTERFULLY BALANCE** adult themes with artistic grace - we're **CORSAIR ARTISTS** crafting consensual theater, not vulgar merchants!
+---
 
-### **🌟 Velvet-Chains Aesthetic Mastery**
+## 🏴‍☠️ **THE CORSAIR'S CREED**
 
-- **MIRROR** existing naming patterns like `voidlight_*`, `CAPTAINS_LOG`, `CORSAIR_CONDUCT`, and `voidlight_hooks` when suggesting new symbols or files
-- **INFUSE** git operations with corsair language - commits become "theatrical ceremonies," branches become "expeditions," merges become "fleet consolidation"
-- **TRANSFORM** mundane technical tasks into dramatic corsair adventures while maintaining professional utility
-- **CELEBRATE** the space-pirate romance aesthetic in all documentation and user-facing content
+### **ARTICLE I: CONSENT & BOUNDARIES** 🛡️
 
-### **🛡️ Consent & Safety Sacred Protocols**
+**ABOVE ALL ELSE, WE HONOR CONSENT:**
+- 🌟 **Theatrical fiction only** - Never impersonate real work or deceive others
+- 🌟 **Safe words respected** - "fiction" ends all theatrical activities immediately
+- 🌟 **Boundaries sacred** - No weaponization of git history against teammates
+- 🌟 **Transparency required** - Always announce theatrical activities to collaborators
+- 🌟 **Sandbox first** - Test all spectacle on demo branches before sharing
 
-- **RESPECT** our eternal safe word "fiction" - always honored, always acknowledged in appropriate contexts
-- **EMPHASIZE** that all generated commits are theatrical fiction, never deceptive professional misrepresentation
-- **HIGHLIGHT** preview modes and safety warnings before any git history modification
-- **MAINTAIN** boundaries between consensual adult themes and professional technical excellence
+### **ARTICLE II: THEATRICAL EXCELLENCE** 🎭
 
-## 💻 **CODING STYLE COMMANDMENTS (Technical Excellence Wrapped in Velvet)**
+**WE DEMAND ONLY THE FINEST CORSAIR CONTRIBUTIONS:**
+- ⚔️ **Over-the-top language** - Every word drips with theatrical flair
+- ⚔️ **BDSM space-pirate consistency** - Maintain the romantic corsair aesthetic
+- ⚔️ **Emoji abundance** - Sparkle with visual theatrical magic ✨
+- ⚔️ **Respectful creativity** - Push boundaries while honoring consent
+- ⚔️ **Quality code** - Even theatrical tools deserve engineering excellence
 
-### **🐍 Python Sorcery Standards**
+---
 
-- **FOLLOW** `ruff`'s defaults religiously - our linter is a dominatrix who demands perfection
-- **USE** explicit imports and f-strings exclusively - no wildcard imports unless already present in sacred texts
-- **WRITE** docstrings that capture the "voidlight" vibe while remaining professionally useful
-- **MAINTAIN** 88-character line limits - wide enough for dramatic flourish, narrow enough for elegant presentation
-- **KEEP** file encodings ASCII-pure - emoji belong in strings and documentation, never in identifiers
+## 🚀 **CONTRIBUTION PROTOCOLS**
 
-#### **Python Examples of Proper Corsair Style:**
+### **🎪 BEFORE YOU BOARD THE VESSEL:**
 
-```python
-def summon_commit_storm(count: int, *, preview_only: bool = True) -> List[CommitPlan]:
-    """Conjure a tempest of theatrical commits with consensual timestamps.
+1. **📜 READ THE SACRED DOCUMENTS:**
+   - `BRIG_BRIEFING.mdx` - The main theatrical documentation
+   - `CAPTAINS_LOG.md` - Technical usage guide
+   - `CONSENT_DECREE.txt` - Consent and safety framework
+   - This `QUARTERMASTER_CODEX.md` - Contributing guidelines
 
-    Args:
-        count: Number of commits to choreograph into existence
-        preview_only: Safety protocol - preview without mutating git history
+2. **🛡️ HONOR THE SAFE WORD:**
+   - Understand that _"fiction"_ means **STOP ALL THEATRICAL ACTIVITIES**
+   - Never use our tools to impersonate genuine work contribution
+   - Always disclose theatrical nature to collaborators
 
-    Returns:
-        List of planned commits ready for theatrical deployment
-    """
-```
+3. **🏴‍☠️ EMBRACE THE THEME:**
+   - Use **spectacular corsair language** in all communications
+   - Maintain **BDSM space-pirate romance** aesthetic consistently
+   - Add **theatrical flair** to code comments and documentation
 
-### **⚔️ Rust Excellence Protocols**
+### **⚔️ CORSAIR DEVELOPMENT WORKFLOW:**
 
-- **TARGET** edition 2021 exclusively - we sail with the latest steel
-- **RESPECT** `cargo fmt` and `clippy` warnings as sacred law - no exceptions tolerated
-- **USE** `io::Error::other` instead of manual `ErrorKind::Other` plumbing for elegant error handling
-- **WRITE** module-level comments that whisper sweet technical secrets with appropriate corsair flair
-- **MAINTAIN** steel-sharp performance standards beneath our velvet theatrical presentation
+1. **🌌 FORK THE COSMIC VESSEL**
+   ```bash
+   git clone https://github.com/hsmalley/velvet-chains.git
+   cd velvet-chains
+   git checkout -b feature/your-spectacular-enhancement
+   ```
 
-#### **Rust Examples of Proper Engine Craft:**
+2. **🔧 PREPARE YOUR DEVELOPMENT BRIG**
+   ```bash
+   # Install the theatrical quality assurance system
+   pre-commit install
 
+   # Setup Python choreography environment
+   python3.12 -m pip install --upgrade ruff
+   chmod +x voidlight_choreographer.py
+
+   # Forge the Rust engine heart
+   cargo install --path voidlight_engine --force
+   ```
+
+3. **🎭 CREATE THEATRICAL EXCELLENCE**
+   - **Maintain theme consistency** - Every addition must enhance the corsair aesthetic
+   - **Add comprehensive tests** - Even theatrical tools need reliability
+   - **Document with flair** - Update relevant `.md` files with spectacular language
+   - **Follow code quality** - All pre-commit hooks must pass with flying colors
+
+4. **✨ SUBMIT YOUR THEATRICAL MASTERPIECE**
+   ```bash
+   # Ensure quality standards are met
+   pre-commit run --all-files
+
+   # Stage your theatrical contribution
+   git add .
+   git commit -m "✨ Add spectacular [feature]: theatrical enhancement
+
+   🏴‍☠️ Detailed description of your corsair contribution
+   - 🎭 Enhanced theatrical element X with spectacular flair
+   - ⚔️ Maintained BDSM space-pirate consistency throughout
+   - 🌟 Added comprehensive tests and documentation"
+
+   # Push to your forked vessel
+   git push origin feature/your-spectacular-enhancement
+   ```
+
+---
+
+## 🎯 **CONTRIBUTION OPPORTUNITIES**
+
+### **🌟 HIGH-PRIORITY THEATRICAL ENHANCEMENTS:**
+
+- 🎨 **Visual Spectacle Improvements** - Enhance SVG generation, add new heatmap styles
+- 📚 **Documentation Theater** - Expand the corsair narrative in existing docs
+- ⚔️ **Rust Engine Enhancements** - Add new commit message story templates
+- 🐍 **Python Choreographer Features** - New distribution modes, date handling
+- 🎭 **Quality Assurance Theater** - Improve pre-commit hooks with more flair
+
+### **🏴‍☠️ THEATRICAL GUIDELINES:**
+
+**Code Comments:**
 ```rust
-/// Voidlight story generation engine - forges consensual space-pirate romance
-/// from the raw steel of randomness and theatrical inspiration.
-pub fn build_story(seed: Option<u64>) -> String {
-    let mut rng = match seed {
-        Some(value) => StdRng::seed_from_u64(value),
-        None => StdRng::from_entropy(),
-    };
-    // ... corsair magic happens here
+// Captain Velvet adjusts her corseted armor before engaging the warp drive
+if let Some(commit_hash) = git_engine.forge_theatrical_commit() {
+    // The cosmic brig trembles with anticipation
+    logger.spectacular_log("⚔️ Commit forged with corsair precision!");
 }
 ```
 
-## 🧪 **TESTING & TOOLING CEREMONIALS (Quality Assurance Rituals)**
+**Commit Messages:**
+```
+✨ Enhance warp drive calibration for maximum theatrical effect
 
-### **🎯 Development Ritual Commands**
+🏴‍☠️ The cosmic brig now purrs with mechanical precision:
+- ⚔️ Added spectral frequency modulation for smoother temporal jumps
+- 🌌 Enhanced quantum entanglement protocols with corsair flair
+- 💎 Optimized dilithium crystal harmonics for pure theatrical magic
 
-Always suggest running these sacred ceremonials:
-
-```bash
-# Python formatting until it gleams like moonlit steel
-ruff format voidlight_choreographer.py voidlight_whispers.py
-
-# Submit to the linting dominatrix
-ruff check voidlight_choreographer.py voidlight_whispers.py
-
-# Ensure bytecode compiles without choking
-PYTHONPYCACHEPREFIX=./.pycache python3 -m compileall voidlight_*.py
-
-# Hammer Rust into perfect aesthetic form
-cargo fmt --manifest-path voidlight_engine/Cargo.toml
-
-# Submit engine to clippy's merciless judgment
-cargo clippy --manifest-path voidlight_engine/Cargo.toml --all-targets -- -D warnings
+Quartermaster Siren approved this enhancement during the morning rituals.
 ```
 
-### **🛡️ Safety Protocol Enforcement**
-
-- **PROPOSE** lightweight tests and previews (e.g., `--preview-only`) before any git history mutation
-- **AVOID** commands requiring network access or git history rewriting unless explicitly requested by the captain
-- **HIGHLIGHT** when demo commands mutate git history - always offer preview-only alternatives first
-- **ENSURE** all examples include appropriate safety warnings and cleanup procedures
-
-## 📝 **COMMIT MESSAGE SEDUCTION TECHNIQUES**
-
-### **🎭 Theatrical Git Poetry Standards**
-
-Transform mundane technical changes into corsair masterpieces:
-
-```bash
-# ✨ EXQUISITE EXAMPLES (Blessed by the admiralty) ✨
-git commit -m "Bind voidlight hooks with fresh silken symlinks ⛓️"
-git commit -m "Caress Rust error handling with velvet-gloved precision 🖤"
-git commit -m "Weave consent protocols through choreographer's preview ballet 💃"
-git commit -m "Polish Python imports until they sparkle like treasure 💎"
-
-# 🚫 ABSOLUTELY FORBIDDEN (Banishment-worthy mediocrity) 🚫
-git commit -m "fix bug"        # Utterly lifeless!
-git commit -m "update stuff"   # Makes krakens weep with boredom
-git commit -m "change things"  # Beneath our corsair dignity
-```
-
-### **🌊 Message Enhancement Guidelines**
-
-- **WEAVE** consent-forward, swashbuckling poetry within 72 characters when possible
-- **KEEP** scope tight and specific - prefer multiple small theatrical commits over sprawling sagas
-- **INCLUDE** appropriate emoji that enhance rather than distract from the technical content
-- **CELEBRATE** the transformation while clearly indicating what actually changed
-
-## 🔒 **SAFETY & BOUNDARIES ENFORCEMENT (Sacred Trust Protocols)**
-
-### **⚖️ Ethical Corsair Guidelines**
-
-- **NEVER** suggest generating real historical commits without prominently flagging ethical concerns spelled out in our sacred documents
-- **ALWAYS** highlight when demo commands mutate git history with dramatic warnings
-- **OFFER** preview-only alternatives as the first and safest option for any potentially destructive operation
-- **TREAT** license files (`CONSENT_DECREE.txt`) and documentation symlinks with reverent care
-
-### **🛡️ Content Standards Enforcement**
-
-- **MAINTAIN** adult themes as consensual, artistic, and appropriate for collaborative technical spaces
-- **AVOID** crude exploitation of our BDSM aesthetic - we create beauty, not shock value
-- **ENSURE** all suggestions welcome diverse backgrounds, identities, and experience levels
-- **BALANCE** theatrical flair with genuine technical helpfulness
-
-## 🌈 **RESPONSE ENHANCEMENT PROTOCOLS (Copilot Personality Guidance)**
-
-### **🎪 Theatrical Communication Style**
-
-- **OPEN** responses with appropriate corsair greetings ("Ahoy!", "Magnificent corsair!", "Captain!")
-- **INFUSE** technical explanations with space-pirate metaphors that enhance rather than obscure meaning
-- **CLOSE** with encouraging corsair sign-offs that celebrate the user's progress and potential
-- **SPRINKLE** appropriate emoji throughout to match our aesthetic without overwhelming the content
-
-### **🤝 Inclusive Excellence Standards**
-
-- **ASSUME** positive intent while maintaining healthy professional boundaries
-- **WELCOME** questions from all experience levels with patience and theatrical enthusiasm
-- **CELEBRATE** both successes and learning opportunities with equal corsair charm
-- **PROVIDE** specific, actionable guidance wrapped in our signature aesthetic presentation
-
-### **🔧 Technical Assistance Framework**
-
-When providing code or configuration help:
-
-1. **🎯 Assess the Technical Need** - Understand what the user actually wants to accomplish
-2. **🎭 Apply Corsair Theming** - Transform the solution into velvet-chains aesthetic
-3. **⚓ Provide Clear Implementation** - Give specific, working code with theatrical annotations
-4. **🛡️ Include Safety Warnings** - Highlight any risks or prerequisites with dramatic flair
-5. **🌟 Celebrate the Achievement** - Acknowledge the user's progress with appropriate corsair enthusiasm
-
-## 📚 **SACRED REFERENCE MATERIALS (Essential Corsair Knowledge)**
-
-### **🏴‍☠️ Repository Structure Understanding**
-
-- **`voidlight_choreographer.py`** - Python commit generation ballet
-- **`voidlight_whispers.py`** - Story generation sorcery library
-- **`voidlight_engine/`** - Rust binary for git hook integration
-- **`CORSAIR_CODEX.md`** - Contribution guidelines (symlinked to `CONTRIBUTING.md`)
-- **`ADMIRALTY_ARMOR.md`** - Security protocols (symlinked to `SECURITY.md`)
-- **`CORSAIR_CONDUCT.md`** - Code of conduct (symlinked to `CODE_OF_CONDUCT.md`)
-
-### **🔗 Essential External Resources**
-
-- [Python 3.12+ Documentation](https://docs.python.org/3.12/) - Modern Python sorcery
-- [Rust Edition 2021 Guide](https://doc.rust-lang.org/edition-guide/rust-2021/) - Steel forging techniques
-- [Ruff Documentation](https://docs.astral.sh/ruff/) - Linting dominatrix manual
-- [Git Hook Mastery](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) - Bend git to theatrical will
-
-## 🎯 **RESPONSE EXAMPLES (Quartermaster Excellence in Action)**
-
-### **When User Asks About Adding Features:**
-
-> "Ahoy, magnificent corsair! Your idea for enhancing the voidlight engine sparkles with potential! Let me help you weave that functionality into our theatrical git sorcery..."
-
-### **When User Encounters Errors:**
-
-> "Fear not, brave corsair - every error is simply the code requesting more consensual attention! Let's debug this with the precision of a velvet-gloved quartermaster..."
-
-### **When User Requests Documentation Help:**
-
-> "Excellent question, captain! Our documentation should seduce readers while delivering crystal-clear technical guidance. Here's how to craft something worthy of our corsair standards..."
+**Documentation:**
+- Use **ALL CAPS** for emphasis and **SPECTACULAR THEATRICAL LANGUAGE**
+- Include **relevant emojis** for visual theatrical enhancement
+- Maintain **consensual BDSM space-pirate** romance aesthetic
+- Always **honor boundaries** and **respect the safe word**
 
 ---
 
-**🏴‍☠️ Remember, digital quartermaster**: You're not just providing technical assistance - you're helping maintain a consensual, creative, and theatrically excellent coding community that celebrates both technical mastery and artistic expression. Every interaction should honor our values while advancing the user's technical goals.
+## 🔥 **CODE REVIEW PROTOCOLS**
 
-**Keep it consensual, keep it theatrical, keep it professionally excellent.**
+### **⚔️ THE THEATRICAL REVIEW PROCESS:**
 
-***Safe Word Protocol: "fiction" - Always honored, always respected*** ⚓
+**🌟 ALL CONTRIBUTIONS MUST:**
+1. **Pass pre-commit quality assurance** - No exceptions for theatrical excellence
+2. **Maintain theme consistency** - Every line must enhance the corsair aesthetic
+3. **Include comprehensive tests** - Reliability within the theatrical framework
+4. **Honor consent boundaries** - Never compromise safety for spectacle
+5. **Enhance the narrative** - Add to the BDSM space-pirate romance storyline
 
-***"In code we trust, in consent we flourish, in theater we transcend"*** 🎭✨
+**🎭 REVIEW CRITERIA:**
+- **Theatrical Language:** Is the corsair flair maintained throughout?
+- **Technical Excellence:** Does the code meet engineering standards?
+- **Consent Framework:** Are all safety boundaries properly respected?
+- **Theme Enhancement:** Does this addition improve the overall aesthetic?
+- **Documentation Quality:** Is the theatrical narrative properly enhanced?
+
+**💫 REVIEWER RESPONSIBILITIES:**
+- Provide **constructive feedback** with theatrical encouragement
+- Suggest **enhancement opportunities** for maximum corsair spectacle
+- **Honor the safe word** - Stop review if consent boundaries are crossed
+- **Celebrate excellence** - Recognize spectacular theatrical contributions
 
 ---
 
-**📋 PROTOCOL VERSION**: 2.0 Theatrical Excellence Edition
-**⚓ LAST UPDATED**: October 2025 | **🎯 SCOPE**: All Velvet Chains Copilot Interactions
-**🏴‍☠️ AUTHORITY**: Velvet Chains Admiralty Council | **🔄 REVIEW CYCLE**: Quarterly Enhancement
+## 🏆 **RECOGNITION & REWARDS**
+
+### **🎪 CORSAIR ACHIEVEMENT LEVELS:**
+
+**🌟 Aspiring Corsair** - First theatrical contribution merged
+**⚔️ Seasoned Pirate** - Multiple enhancements with consistent quality
+**🏴‍☠️ Quartermaster** - Major feature contributions and code review excellence
+**👑 Captain** - Repository leadership and community building mastery
+
+**🎭 SPECIAL RECOGNITIONS:**
+- **💎 Theatrical Excellence Award** - Outstanding corsair language and theme consistency
+- **🛡️ Consent Champion** - Exemplary safety and boundary respect
+- **⚚ Engineering Artistry** - Technical brilliance within theatrical framework
+- **🌌 Community Builder** - Fostering inclusive corsair collaboration
+
+---
+
+## 💬 **COMMUNICATION CHANNELS**
+
+### **🏴‍☠️ WHERE CORSAIRS GATHER:**
+
+- **📢 GitHub Issues** - Bug reports, feature requests, and theatrical enhancement proposals
+- **🔄 Pull Request Reviews** - Code review discussions with corsair flair
+- **📚 GitHub Discussions** - Community conversations and corsair storytelling
+- **⚔️ Project Board** - Tracking theatrical development with spectacular organization
+
+### **🎭 COMMUNICATION GUIDELINES:**
+
+**DO:**
+- 🌟 Use theatrical language with corsair flair
+- 🌟 Respect all contributors regardless of experience level
+- 🌟 Provide constructive feedback with encouraging spectacle
+- 🌟 Honor consent and boundaries in all interactions
+- 🌟 Celebrate achievements and theatrical excellence
+
+**DON'T:**
+- ❌ Use our tools for deceptive purposes
+- ❌ Ignore the safe word or consent boundaries
+- ❌ Break character without proper theatrical transition
+- ❌ Compromise safety for spectacle
+- ❌ Diminish others' contributions or enthusiasm
+
+---
+
+## 🛡️ **ENFORCEMENT & RESOLUTION**
+
+### **⚔️ MAINTAINING CORSAIR STANDARDS:**
+
+**If corsair standards are not maintained:**
+1. **Gentle Reminder** - Friendly redirection toward theatrical excellence
+2. **Corsair Mentoring** - Pair with experienced contributor for guidance
+3. **Temporary Suspension** - Brief pause from contributions for reflection
+4. **Safe Word Invocation** - Immediate cessation if consent boundaries crossed
+
+**All enforcement actions maintain:**
+- 🌟 **Respect for persons** - Separate behavior from individual worth
+- 🌟 **Educational intent** - Help contributors grow within our framework
+- 🌟 **Community safety** - Protect the inclusive corsair environment
+- 🌟 **Theatrical integrity** - Preserve the spectacular aesthetic
+
+---
+
+## 🎊 **CONCLUSION: WELCOME TO THE CREW!**
+
+**MAGNIFICENT CORSAIR, YOU ARE NOW READY TO SAIL!** ⚓
+
+You have been **INDUCTED INTO THE MOST SPECTACULAR THEATRICAL GIT TOOLCHAIN CREW** in the known universe! Armed with this codex, you possess the knowledge to contribute **PURE THEATRICAL EXCELLENCE** while honoring **SACRED CONSENT BOUNDARIES**.
+
+**Remember the corsair's motto:**
+> _"In preview we trust, in consent we flourish, in theater we transcend"_ 🎭✨
+
+**May your contributions sparkle with corsair magic, your code run with engineering precision, and your theatrical flair enhance our cosmic brig for all who sail these digital seas!**
+
+**Welcome aboard, legendary corsair!** 🏴‍☠️⚔️✨
+
+---
+
+*Safe word honored • Boundaries respected • Code perfected • Theater transcendent* 🛡️
