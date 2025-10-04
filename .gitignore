@@ -32,3 +32,6 @@ build/
 
 # Ruff cache
 .ruff_cache/
+
+# Keel Hauled Flotsom
+*preview*
