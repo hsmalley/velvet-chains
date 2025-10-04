@@ -62,6 +62,15 @@ chmod +x .git/hooks/prepare-commit-msg
 
 Voilà—commit messages now pull from the 1000+ kink-positive snark vault.
 
+Prefer version-controlled hooks? Point Git at the fancy ones without copying:
+
+```bash
+chmod +x hooks/prepare-commit-msg
+git config core.hooksPath hooks
+```
+
+Git will happily execute the repo’s `hooks/` directory on every commit.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History

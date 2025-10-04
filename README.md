@@ -46,6 +46,15 @@ chmod +x .git/hooks/prepare-commit-msg
 
 Now every commit message gets a consensual flourish pulled from the 1000+ entry snark bestiary.
 
+Prefer to keep hooks under version control? Set the repo’s hook path instead:
+
+```bash
+chmod +x hooks/prepare-commit-msg
+git config core.hooksPath hooks
+```
+
+Git will now execute the shipped hook (and any future glitter weapons) without extra copying.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History
