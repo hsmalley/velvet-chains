@@ -27,10 +27,6 @@ _SUBJECTS = [
     "Matron Nebulon, chains-and-roses quartermaster",
     "Corsair Lumen, pleasure-shocked surgeon",
     "Marshal Abyss, tinsel-fanged executioner",
-    "Captain Ballast, rope-burnished rigger",
-    "Harbormistress Thorn, strobe-lit strategist",
-    "Enchantress Maelstrom, safe-word oracle",
-    "Barbarossa Bliss, chandelier-spiked marauder",
     "Countess Chainstorm, flogger-forged navigator",
     "High Inquisitor Tether, ball-gagged buccaneer",
     "Mistress Nebulace, latex-veiled raider",
@@ -40,102 +36,65 @@ _SUBJECTS = [
     "Dominator Starbane, dungeon-scented corsair",
     "Oracle Ironveil, safe-word sorceress",
     "Bosun Emberbite, whip-stitched taskmaster",
+    "Seeress Darkwake, velvet-veiled oracle",
+    "Matriarch Voidbloom, stiletto-bruised quartermaster",
 ]
 
-_VERBS = [
-    "chain-kissed",
-    "tar-and-silk lashed",
-    "electro-flogged",
-    "velvet-gag sealed",
-    "firmly corseted",
-    "neon-brined",
-    "astral-handcuffed",
-    "bloodwine-baptised",
-    "paddle-charmed",
-    "tether-twirled",
-    "lace-lassoed",
-    "spice-dripped",
-    "starlight-branded",
-    "rum-splashed",
-    "comet-bound",
-    "satin-strapped",
-    "meteor-whipped",
-    "moonbeam-shackled",
-    "void-collared",
-    "galaxy-hogtied",
-    "nebula-branded",
-    "satellite-seared",
-    "starline-choked",
-    "thruster-nuzzled",
-    "mutiny-muzzled",
-    "corsair-caressed",
-    "kraken-nipped",
-    "pegleg-pinched",
-    "plasma-bound",
+_OPENERS = [
+    "caught me against the trembling bulkhead",
+    "sealed me to the figurehead with starlit chains",
+    "swept me into the chart room's velvet shadow",
+    "pressed me over the humming warp drive",
+    "pinned me across the brig's obedient rail",
+    "tethered me to the captain's oathstone",
+    "dragged me below deck where planets spin",
+    "kissed a rope-brand along my throat",
+    "buckled me into the cryo-cradle of sinners",
+    "hoisted me above the deck in shimmering rigging",
+    "clasped cold cuffs around my fevered wrists",
+    "cinched my waist with comet-lit corsetry",
+    "slid a hook beneath my spine and laughed",
+    "locked my ankles to the mast with nebulae",
+    "braced me on the hull as meteors whispered",
 ]
 
-_TARGETS = [
-    "the warp drive's aching core",
-    "the reactor bay's trembling idol",
-    "the brig's obedient mutineers",
-    "the captain's log of taboo secrets",
-    "the chart room's throbbing holo-reef",
-    "the galley stove purring for punishment",
-    "the AI's blushing command nexus",
-    "the cryo-pod of recalcitrant admirals",
-    "the cloaking veil's fevered glyphs",
-    "the cannon deck's quivering rails",
-    "the navigation rune, eager for orders",
-    "the plasma rig's submissive throttles",
-    "the data shrine of contraband fantasies",
-    "the lash locker of legendary safe words",
-    "the cargo net of restrained starmaps",
-    "the quantum sail's needy folds",
-    "the brigantine's scandalous figurehead",
-    "the forecastle's cowering deckhands",
-    "the helm's sapphire manacles",
-    "the rumor mill of kink-soaked admirals",
-    "the brig's velvet-cloaked confessional",
-    "the powder room's trembling cannonballs",
-    "the captain's chair begging for ballast",
-    "the plank slick with brine and honey",
-    "the crow's nest of breathless lookouts",
-    "the bowline of feverish star-whales",
-    "the quarterdeck's chained figurehead",
-    "the treasure hold's purring chest",
-    "the aft thrusters aching for discipline",
+_TIDES = [
+    "while their voice dripped obsidian promises",
+    "as silk lashes mapped constellations on my skin",
+    "with a cat-o'-nine tail singing in slow, wicked arcs",
+    "while irons steamed the scent of rum and salt",
+    "as their gloved fingers traced consent sigils",
+    "while hot candlewax spelled out forbidden tides",
+    "with breathless murmurs of mutiny and surrender",
+    "as pearls of sweat jeweled the leather straps",
+    "while the ship AI begged to record every moan",
+    "as the crew knelt, reciting the safe word in chorus",
 ]
 
-_TAILS = [
-    "while the crew chanted the safe word in pirate cant",
-    "as the moonlit riggings hummed consent in octaves",
-    "right before the bosun poured stardust over bruised hull plating",
-    "with compliance officers fanning themselves on velvet loungers",
-    "until the mutiny tribunal begged for another lash",
-    "while parrots in latex hoods kept lookout",
-    "as the flag of surrender fluttered like a corset ribbon",
-    "while the engine room signed marriage contracts in bloodwine",
-    "with the lookout tracing consent sigils across the mast",
-    "while the galley served rum-glazed restraint bars",
-    "as the nebula seduced the hull with ultraviolet moans",
-    "while cannon smoke spelled out the safe word 'plunder'",
-    "as the tide charts confessed their dirtiest currents",
-    "with the helmsman kneeling on a throne of coiled chains",
-    "while the ship's AI begged for another firmware flogging",
-    "as the brig's restraints squealed in blissful harmony",
-    "while the riggers braided silk tethers into the Jolly Roger",
-    "as treasure maps inked themselves in suggestive constellations",
-    "while ghostly admirals applauded from padded cells",
-    "as the void outside purred like a satiated kraken",
-    "while the mast ropes squealed for tighter knots",
-    "as the powder monkeys begged for aftercare",
-    "while the grog fountains overflowed with desire",
-    "as constellations spelled out 'consent' in Morse",
-    "while the bosun flogged the stars for rhythm",
-    "as the cabin boy tuned sea-shanty safewords",
-    "while the moon chained the tides to our keel",
-    "as the galley simmered aphrodisiac stew",
-    "while captured admirals inked apologies in glitter",
+_PLEDGES = [
+    "I offered the map to my tidal heartbeat",
+    "my pulse thrummed like rigging in a storm",
+    "our hips marked time with the cannons' thunder",
+    "I tasted plasma and paradise on their tongue",
+    "we bartered oxygen for wicked devotion",
+    "I promised them the treasure locked under my ribs",
+    "the keel groaned in rhythm with our hunger",
+    "their teeth signed the captain's log on my shoulder",
+    "we rewrote the Articles of Plunder in sweat",
+    "desire bloomed like a red sun over the horizon",
+]
+
+_FINALES = [
+    "until the void itself shuddered and sighed",
+    "while the figurehead wept jewels into the sea",
+    "as star-whales crooned lullabies of aftercare",
+    "until the brig applauded with rattling chains",
+    "while the moon carved our names in phosphor",
+    "as the crew toasted our ruin with black rum",
+    "until the nebula outside painted us in auroras",
+    "while cursed admirals begged for a turn",
+    "until the mast surrendered its final knot",
+    "as the Jolly Roger fluttered like a lover's gasp",
 ]
 
 _EMOJI_SWIRL = [
@@ -162,11 +121,14 @@ def _build_messages() -> List[str]:
     combos: List[str] = []
     for idx in range(1000):
         subject = _SUBJECTS[(idx * 5) % len(_SUBJECTS)]
-        verb = _VERBS[(idx * 7) % len(_VERBS)]
-        target = _TARGETS[(idx * 11) % len(_TARGETS)]
-        tail = _TAILS[(idx * 13) % len(_TAILS)]
+        opener = _OPENERS[(idx * 7) % len(_OPENERS)]
+        tide = _TIDES[(idx * 11) % len(_TIDES)]
+        pledge = _PLEDGES[(idx * 13) % len(_PLEDGES)]
+        finale = _FINALES[(idx * 17) % len(_FINALES)]
         emoji = _EMOJI_SWIRL[idx % len(_EMOJI_SWIRL)]
-        combos.append(f"{subject} {verb} {target}, {tail}. {emoji}")
+        combos.append(
+            f"{subject} {opener}, {tide}; {pledge}, {finale}. {emoji}"
+        )
     return combos
 
 
