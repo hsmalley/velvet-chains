@@ -1,7 +1,43 @@
-import { Tabs, Tab } from 'nextra-theme-docs'
-import { Callout } from 'nextra-theme-docs'
-import { Steps } from 'nextra-theme-docs'
-import { Cards, Card } from 'nextra-theme-docs'
+export const Callout = ({ type, emoji, children }) => (
+  <div style={{
+    padding: '1rem',
+    borderRadius: '0.5rem',
+    border: '2px solid',
+    borderColor: type === 'warning' ? '#f59e0b' : type === 'info' ? '#3b82f6' : '#10b981',
+    backgroundColor: type === 'warning' ? '#fef3c7' : type === 'info' ? '#dbeafe' : '#d1fae5',
+    marginBottom: '1rem'
+  }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
+      {emoji} {children}
+    </div>
+  </div>
+);
+
+export const Card = ({ icon, title, children }) => (
+  <div style={{
+    border: '1px solid #e5e7eb',
+    borderRadius: '0.5rem',
+    padding: '1.5rem',
+    backgroundColor: 'white',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+  }}>
+    <h3 style={{ margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      <span>{icon}</span> {title}
+    </h3>
+    <div>{children}</div>
+  </div>
+);
+
+export const Cards = ({ children }) => (
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '1.5rem',
+    marginBottom: '2rem'
+  }}>
+    {children}
+  </div>
+);
 
 # 🏴‍☠️ **VELVET CHAINS & VOIDLIGHT: THE LEGENDARY CAPTAIN'S COSMIC BRIG** ⚔️✨
 
@@ -49,185 +85,174 @@ This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** eve
 - 🦀 **RUST ENGINE HEART** ⚔️ - **Rust (cargo 1.70+)** - The **STEEL-FORGED BINARY HEART** powering git hooks with **UNSTOPPABLE PRECISION**!
 - 💅 **LINTING DOMINATRIX** 💅 - **Optional Excellence**: `pip install ruff` to make your linting dominatrix **PURR WITH SATISFACTION**!
 
-## �� **INSTALLATION SPECTACULAR**
+## 🚀 **INSTALLATION SPECTACULAR**
 
-<Tabs items={["🎭 Basic Setup", "⚔️ Advanced Corsair", "🌈 Rainbow Mode"]}>
-  <Tab>
-    <Steps>
-      ### **CLAIM YOUR CORSAIR VESSEL** 🏴‍☠️
+### 🎭 **Basic Setup**
 
-      ```bash
-      git clone https://github.com/hsmalley/velvet-chains.git
-      cd velvet-chains
-      ```
+#### **CLAIM YOUR CORSAIR VESSEL** 🏴‍☠️
 
-      ### **FORGE YOUR PYTHON SORCERY** 🐍✨
+```bash
+git clone https://github.com/hsmalley/velvet-chains.git
+cd velvet-chains
+```
 
-      ```bash
-      python3.12 -m pip install --upgrade ruff
-      chmod +x voidlight_choreographer.py
-      ```
+#### **FORGE YOUR PYTHON SORCERY** 🐍✨
 
-      ### **SUMMON THE RUST ENGINE** 🦀⚔️
+```bash
+python3.12 -m pip install --upgrade ruff
+chmod +x voidlight_choreographer.py
+```
 
-      ```bash
-      cargo install --path voidlight_engine --force
-      ```
-    </Steps>
-  </Tab>
+#### **SUMMON THE RUST ENGINE** 🦀⚔️
 
-  <Tab>
-    <Callout type="info" emoji="⚔️">
-      **FOR LEGENDARY CORSAIRS ONLY** - Advanced installation with full theatrical power!
-    </Callout>
+```bash
+cargo install --path voidlight_engine --force
+```
 
-    ```bash
-    # Install from crates.io (recommended for maximum power)
-    cargo install voidlight
+### ⚔️ **Advanced Corsair Setup**
 
-    # Verify your weapon responds to commands
-    git-voidlight --version
+<Callout type="info" emoji="⚔️">
+**FOR LEGENDARY CORSAIRS ONLY** - Advanced installation with full theatrical power!
+</Callout>
 
-    # Install hook for automatic theatrical enhancement
-    git-voidlight install-hook
+```bash
+# Install from crates.io (recommended for maximum power)
+cargo install voidlight
 
-    # Test the magic
-    echo "test" > test_file.txt
-    git add test_file.txt
-    git commit -m "Test theatrical enhancement"
-    git log -1 --format="%B"
-    ```
-  </Tab>
+# Verify your weapon responds to commands
+git-voidlight --version
 
-  <Tab>
-    ## 🌈 **MAXIMUM RAINBOW VOMIT MODE ACTIVATED** 🌈
+# Install hook for automatic theatrical enhancement
+git-voidlight install-hook
 
-    ```bash
-    # Generate 365 days of PURE RAINBOW SPECTACLE
-    python3.12 voidlight_choreographer.py \
-      -n 365 \
-      --preview-only \
-      --svg-out MAXIMUM_RAINBOW_VOMIT.svg \
-      --color
+# Test the magic
+echo "test" > test_file.txt
+git add test_file.txt
+git commit -m "Test theatrical enhancement"
+git log -1 --format="%B"
+```
 
-    # Create the most theatrical commit history ever witnessed
-    python3.12 voidlight_choreographer.py \
-      -n 1000 \
-      --spread-mode day \
-      --start-days-ago 365 \
-      --preview-only
-    ```
+### 🌈 **MAXIMUM RAINBOW VOMIT MODE ACTIVATED** 🌈
 
-    <Callout type="warning" emoji="🌈">
-      **WARNING**: This mode may cause **PURE AESTHETIC OVERLOAD** and spontaneous corsair transformation!
-    </Callout>
-  </Tab>
-</Tabs>
+```bash
+# Generate 365 days of PURE RAINBOW SPECTACLE
+python3.12 voidlight_choreographer.py \
+  -n 365 \
+  --preview-only \
+  --svg-out MAXIMUM_RAINBOW_VOMIT.svg \
+  --color
+
+# Create the most theatrical commit history ever witnessed
+python3.12 voidlight_choreographer.py \
+  -n 1000 \
+  --spread-mode day \
+  --start-days-ago 365 \
+  --preview-only
+```
+
+<Callout type="warning" emoji="🌈">
+**WARNING**: This mode may cause **PURE AESTHETIC OVERLOAD** and spontaneous corsair transformation!
+</Callout>
 
 ## ⛓️ **AUTO-HOOK: THEATRICAL SNARK AT COMMIT TIME** 🎭
 
-<Tabs items={["🔗 Symlink Magic", "📋 Copy Method", "🧪 Test Hook"]}>
-  <Tab>
-    ```bash
-    # The MAGNIFICENT symlink method (recommended)
-    cargo install --path voidlight_engine --force
-    rm -f .git/hooks/prepare-commit-msg
-    ln -s "$(pwd)/voidlight_hooks/voidlight-commit-ritual" .git/hooks/prepare-commit-msg
-    ```
+### 🔗 **Symlink Magic** (Recommended)
 
-    <Callout type="info" emoji="⚡">
-      **SYMLINK MAGIC**: Changes to the hook automatically apply! **PURE SORCERY!**
-    </Callout>
-  </Tab>
+```bash
+# The MAGNIFICENT symlink method (recommended)
+cargo install --path voidlight_engine --force
+rm -f .git/hooks/prepare-commit-msg
+ln -s "$(pwd)/voidlight_hooks/voidlight-commit-ritual" .git/hooks/prepare-commit-msg
+```
 
-  <Tab>
-    ```bash
-    # For corporate shackles that hate symlinks
-    cargo install --path voidlight_engine --force
-    cp voidlight_hooks/voidlight-commit-ritual .git/hooks/prepare-commit-msg
-    chmod +x .git/hooks/prepare-commit-msg
-    ```
+<Callout type="info" emoji="⚡">
+**SYMLINK MAGIC**: Changes to the hook automatically apply! **PURE SORCERY!**
+</Callout>
 
-    <Callout type="warning" emoji="��">
-      **CORPORATE MODE**: Less magical, but still **THEATRICALLY FUNCTIONAL**!
-    </Callout>
-  </Tab>
+### 📋 **Copy Method**
 
-  <Tab>
-    ```bash
-    # Test your theatrical enhancement powers
-    echo "# Testing corsair magic" > test_enhancement.md
-    git add test_enhancement.md
-    git commit -m "Test theatrical git hook enhancement"
+```bash
+# For corporate shackles that hate symlinks
+cargo install --path voidlight_engine --force
+cp voidlight_hooks/voidlight-commit-ritual .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+```
 
-    # Witness the magic in your commit message!
-    git log -1 --format="%B"
-    ```
+<Callout type="warning" emoji="🏢">
+**CORPORATE MODE**: Less magical, but still **THEATRICALLY FUNCTIONAL**!
+</Callout>
 
-    💫 **Expected Result**: Your commit message now includes **4 SENTENCES OF PURE CORSAIR ROMANCE**!
-  </Tab>
-</Tabs>
+### 🧪 **Test Hook**
+
+```bash
+# Test your theatrical enhancement powers
+echo "# Testing corsair magic" > test_enhancement.md
+git add test_enhancement.md
+git commit -m "Test theatrical git hook enhancement"
+
+# Witness the magic in your commit message!
+git log -1 --format="%B"
+```
+
+💫 **Expected Result**: Your commit message now includes **4 SENTENCES OF PURE CORSAIR ROMANCE**!
 
 ## 🎨 **PREVIEW MODE RAINBOW SPECTACLE** 🌈
 
 ### ✨ **WITNESS THE RAINBOW VOMIT SPECTACULAR** ✨
+
 Generate **STUNNING VISUALIZATIONS** without touching your sacred git history!
 
-<Tabs items={["🌈 Basic Rainbow", "📊 Advanced Analytics", "🎪 Maximum Chaos"]}>
-  <Tab>
-    ```bash
-    # Basic rainbow spectacle (50 commits)
-    python3.12 voidlight_choreographer.py -n 50 --preview-only
+#### 🌈 **Basic Rainbow**
 
-    # Generate SVG masterpiece for sharing
-    python3.12 voidlight_choreographer.py \
-      -n 100 \
-      --preview-only \
-      --svg-out corsair_contribution_heatmap.svg
-    ```
+```bash
+# Basic rainbow spectacle (50 commits)
+python3.12 voidlight_choreographer.py -n 50 --preview-only
 
-    <Callout type="info" emoji="🎨">
-      **SAFE SPECTACLE**: Preview mode **NEVER** touches your git history - **PURE VISUAL MAGIC**!
-    </Callout>
-  </Tab>
+# Generate SVG masterpiece for sharing
+python3.12 voidlight_choreographer.py \
+  -n 100 \
+  --preview-only \
+  --svg-out corsair_contribution_heatmap.svg
+```
 
-  <Tab>
-    ```bash
-    # Seasonal coding surge pattern
-    python3.12 voidlight_choreographer.py \
-      -n 200 \
-      --month-weights 3,3,1,0.5,0.5,0.5,0.5,0.5,0.5,1,2,3 \
-      --preview-only \
-      --svg-out winter_coding_surge.svg
+<Callout type="info" emoji="🎨">
+**SAFE SPECTACLE**: Preview mode **NEVER** touches your git history - **PURE VISUAL MAGIC**!
+</Callout>
 
-    # Weekend warrior pattern
-    python3.12 voidlight_choreographer.py \
-      -n 150 \
-      --weekdays-only \
-      --preview-only \
-      --svg-out weekend_warrior.svg
-    ```
-  </Tab>
+#### 📊 **Advanced Analytics**
 
-  <Tab>
-    ## 🌪️ **CHAOS MODE** 🌪️
+```bash
+# Seasonal coding surge pattern
+python3.12 voidlight_choreographer.py \
+  -n 200 \
+  --month-weights 3,3,1,0.5,0.5,0.5,0.5,0.5,0.5,1,2,3 \
+  --preview-only \
+  --svg-out winter_coding_surge.svg
 
-    ```bash
-    # UNLEASH MAXIMUM THEATRICAL CHAOS
-    python3.12 voidlight_choreographer.py \
-      -n 1000 \
-      --spread-mode day \
-      --start-days-ago 730 \
-      --preview-only \
-      --color \
-      --svg-out MAXIMUM_THEATRICAL_CHAOS.svg
-    ```
+# Weekend warrior pattern
+python3.12 voidlight_choreographer.py \
+  -n 150 \
+  --weekdays-only \
+  --preview-only \
+  --svg-out weekend_warrior.svg
+```
 
-    <Callout type="warning" emoji="⚠️">
-      **DANGER**: This level of theatrical spectacle may cause **SPONTANEOUS CORSAIR TRANSFORMATION**!
-    </Callout>
-  </Tab>
-</Tabs>
+#### 🌪️ **CHAOS MODE** 🌪️
+
+```bash
+# UNLEASH MAXIMUM THEATRICAL CHAOS
+python3.12 voidlight_choreographer.py \
+  -n 1000 \
+  --spread-mode day \
+  --start-days-ago 730 \
+  --preview-only \
+  --color \
+  --svg-out MAXIMUM_THEATRICAL_CHAOS.svg
+```
+
+<Callout type="warning" emoji="⚠️">
+**DANGER**: This level of theatrical spectacle may cause **SPONTANEOUS CORSAIR TRANSFORMATION**!
+</Callout>
 
 ## 🎯 **LIVE DEMO SCENARIOS** 🎪
 
