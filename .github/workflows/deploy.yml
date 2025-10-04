@@ -47,6 +47,12 @@ jobs:
         run: npm run build
 
 
+
+      - name: "🔍 Inspect Export Payload"
+        run: |
+          echo "Listing ./out directory contents:"
+          ls -lR ./out || echo "No ./out directory found!"
+
       - name: "📜 Archive the Bounty - Upload Pages Artifact"
         uses: actions/upload-pages-artifact@v3
         with:
