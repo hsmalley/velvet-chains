@@ -21,7 +21,7 @@ def main() -> None:
 
 
     hook_path = Path(__file__).resolve()
-    repo_root = hook_path
+    repo_root = hook_path.parent
     # Walk upward until we find the repository root (the directory containing our code).
     for _ in range(6):
         if (repo_root / "snark_messages.py").exists():
