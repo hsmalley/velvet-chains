@@ -1,7 +1,7 @@
 use clap::{ArgAction, Parser, Subcommand};
 use rand::prelude::IndexedRandom;
-use rand::rngs::{OsRng, StdRng};
-use rand::SeedableRng;
+use rand::rngs::StdRng;
+use rand::{thread_rng, SeedableRng};
 use std::env;
 use std::fs::{self, OpenOptions};
 use std::io::{self, ErrorKind, Write};
@@ -223,8 +223,8 @@ fn build_story(seed: Option<u64>) -> String {
     let mut rng = match seed {
         Some(value) => StdRng::seed_from_u64(value),
         None => {
-            let mut os_rng = OsRng;
-            StdRng::from_rng(&mut os_rng).expect("OS entropy should be available")
+            let mut thread = thread_rng();
+            StdRng::from_rng(&mut thread).expect("thread RNG should be available")
         }
     };
 
