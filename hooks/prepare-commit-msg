@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import os
 import random
 import sys
 from pathlib import Path
@@ -20,7 +19,19 @@ def main() -> None:
     if commit_source in {"merge", "squash", "commit"}:
         return
 
-    repo_root = Path(__file__).resolve().parents[1]
+
+    hook_path = Path(__file__).resolve()
+    repo_root = hook_path
+    # Walk upward until we find the repository root (the directory containing our code).
+    for _ in range(6):
+        if (repo_root / "snark_messages.py").exists():
+            break
+        if repo_root.parent == repo_root:
+            break
+        repo_root = repo_root.parent
+    else:  # pragma: no cover - extremely unlikely fall-through.
+        raise SystemExit("Unable to locate snark_messages.py relative to hook position.")
+
     sys.path.insert(0, str(repo_root))
 
     try:
