@@ -35,3 +35,50 @@ build/
 
 # Keel Hauled Flotsom
 *preview*
+
+# Node.js & Next.js Treasure Vault Secrets
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Next.js Phantom Ship Manifest
+.next/
+out/
+.swc/
+
+# Vercel Deployment Scrolls
+.vercel
+
+# Environment Incantations
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs from the Ship's Journal
+*.log
+
+# Runtime data from the Captain's Quarters
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# MacOS Shadow Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp

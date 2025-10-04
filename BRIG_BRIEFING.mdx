@@ -1,39 +1,71 @@
 export const Callout = ({ type, emoji, children }) => (
   <div style={{
-    padding: '1rem',
-    borderRadius: '0.5rem',
+    padding: '2rem',
+    borderRadius: '15px',
     border: '2px solid',
-    borderColor: type === 'warning' ? '#f59e0b' : type === 'info' ? '#3b82f6' : '#10b981',
-    backgroundColor: type === 'warning' ? '#fef3c7' : type === 'info' ? '#dbeafe' : '#d1fae5',
-    marginBottom: '1rem'
+    borderColor: type === 'warning' ? '#d946ef' : type === 'info' ? '#9333ea' : '#be123c',
+    background: type === 'warning' ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))' :
+                type === 'info' ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 1, 0.99))' :
+                'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))',
+    marginBottom: '2rem',
+    color: '#e8d5e8',
+    boxShadow: type === 'warning' ? '0 6px 20px rgba(217, 70, 239, 0.3)' :
+               type === 'info' ? '0 6px 20px rgba(147, 51, 234, 0.3)' :
+               '0 6px 20px rgba(190, 18, 60, 0.3)',
+    backdropFilter: 'blur(10px)'
   }}>
-    <div style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
-      {emoji} {children}
+    <div style={{
+      fontWeight: 'bold',
+      marginBottom: '0.5rem',
+      fontSize: '1.1rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      textAlign: 'left'
+    }}>
+      <span style={{ fontSize: '1.2rem' }}>{emoji}</span>
+      <span>{children}</span>
     </div>
   </div>
 );
 
-export const Card = ({ icon, title, children }) => (
+export const Card = ({ title, children }) => (
   <div style={{
-    border: '1px solid #e5e7eb',
-    borderRadius: '0.5rem',
-    padding: '1.5rem',
-    backgroundColor: 'white',
-    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+    background: 'rgba(0, 0, 0, 0.95)',
+    border: '2px solid #be123c',
+    borderRadius: '12px',
+    padding: '2rem',
+    boxShadow: '0 8px 32px rgba(190, 18, 60, 0.3)',
+    transition: 'all 0.3s ease',
+    backdropFilter: 'blur(10px)',
+    minHeight: '300px'
   }}>
-    <h3 style={{ margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-      <span>{icon}</span> {title}
+    <h3 style={{
+      color: '#d946ef',
+      marginBottom: '1rem',
+      fontWeight: 'bold',
+      textShadow: '0 2px 8px rgba(217, 70, 239, 0.5)'
+    }}>
+      {title}
     </h3>
-    <div>{children}</div>
+    <div style={{
+      color: '#fbbf24',
+      fontSize: '0.95rem',
+      lineHeight: '1.7',
+      overflowWrap: 'break-word',
+      wordBreak: 'break-word'
+    }}>
+      {children}
+    </div>
   </div>
 );
 
 export const Cards = ({ children }) => (
   <div style={{
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '1.5rem',
-    marginBottom: '2rem'
+    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+    gap: '2rem',
+    marginBottom: '3rem'
   }}>
     {children}
   </div>
