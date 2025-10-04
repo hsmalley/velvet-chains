@@ -1,0 +1,119 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# 🏴‍☠️ generate_snark.py — Neon-Slick Snark Cannon
+
+<blockquote>
+  <strong>Absolutely gaudy, NSFW, emoji-saturated, rainbow-vomiting snark-commit generator.</strong>
+  <br />
+  Fabricate historical commits drenched in pirate sass, consensual rope-play metaphors, and retina-melting ANSI colors. Use it only for demos, art, and consenting glitter goblins — never to impersonate real work.
+</blockquote>
+
+<Callout type="warning" emoji="⚠️">
+Safe word reminder: <em>“fiction.”</em> Never weaponize fabricated history without consent.
+</Callout>
+
+## 🌈 Feature Striptease
+
+- Generates `N` commits with randomized messages, timestamps, and blame tags.
+- Supports day-by-day or week-wise spreading, weekday-only planning, and weighted months.
+- Preview mode prints a rainbow heatmap + histogram, exports JSON, and optional SVG.
+- Import a preview JSON later to replay the exact choreographed commit queue.
+- Fully colorized output with `--no-color` grayscale aftercare available.
+- Slots-powered dataclasses and other Python 3.12+ delights for maximum sheen.
+
+## 🛠️ Requirements & Setup
+
+- **Python 3.12+** (the script slurps up `datetime.UTC`, `argparse.BooleanOptionalAction`, and other modern toys).
+- An existing git repository with a branch you’re comfortable desecrating.
+- Optional but spicy: `ruff` for formatting.
+
+<Tabs items={["Setup", "Upgrade"]}>
+  <Tab>
+    ```bash
+    python3.12 -m pip install --upgrade ruff
+    chmod +x generate_snark.py
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    # Use your package manager of choice to install Python 3.12+
+    pyenv install 3.12.4
+    pyenv local 3.12.4
+    ```
+  </Tab>
+</Tabs>
+
+## 🚀 Quick Start Fantasia
+
+### Preview Without Touching Git History
+
+```bash
+python3.12 generate_snark.py -n 50 --preview-only --svg-out preview.svg
+```
+
+Expect:
+
+- Summary stats
+- Rainbow heatmap + histogram
+- Top 20 planned commits
+- JSON export (`planned_commits_preview_<timestamp>.json`)
+- Optional SVG heatmap if `--svg-out` joined the party
+
+### Commit For Real (Demo Branch Only, darling)
+
+```bash
+python3.12 generate_snark.py \
+  -n 120 \
+  --repo . \
+  --file .generated_commits.txt \
+  --spread-mode week \
+  --start-date 2024-01-01 \
+  --end-date 2024-12-31
+```
+
+The script appends log entries to `.generated_commits.txt`, stages them, and creates commits with historical timestamps spaced within ±8 hours.
+
+## 🔄 Importing A Previously Exported Plan
+
+Preview JSONs are reusable choreographies. To replay one exactly:
+
+```bash
+python3.12 generate_snark.py \
+  --import-json planned_commits_preview_20251004T123059Z.json
+```
+
+Override `--repo` or `--file` if you want to aim the glitter cannon elsewhere.
+
+## 🎛️ CLI Cheat Sheet
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `-n / --num` | required | Commit count to fabricate. |
+| `--repo` | `.` | Path to an existing git repo. |
+| `--file` | `.generated_commits.txt` | File to append commit log entries. |
+| `--seed` | `None` | Random seed for reproducible chaos. |
+| `--start-date` / `--end-date` | None | Explicit date window (inclusive). |
+| `--start-days-ago` | `365` | If no explicit start, backfill this many days. |
+| `--spread-mode` | `day` | `day` or `week` distribution. |
+| `--month-weights` | `1,1,...` | Comma-separated 12-tuple of relative weights. |
+| `--weekdays-only` | off | Skip weekends entirely. |
+| `--color` / `--no-color` | on | Toggle the rainbow vomit in terminal output. |
+| `--svg-out` | None | Write an SVG heatmap when previewing. |
+| `--max-attempts-offset` | `20` | Retry budget for finding committer timestamps. |
+| `--preview-only` | off | Produce previews/export JSON without committing. |
+| `--import-json` | None | Load a preview JSON and replay its plan. |
+
+## 🧪 Development & Safety Rituals
+
+- Format: `ruff format generate_snark.py`
+- Byte-compile sanity: `PYTHONPYCACHEPREFIX=./.pycache python3.12 -m compileall generate_snark.py`
+- Dry runs first: always start with `--preview-only` before touching history.
+- Keep commits quarantined on a demo branch; never merge glitter into production without consent.
+
+## 🔥 Consent Clause
+
+<Callout type="danger" emoji="💥">
+These commits are fiction. Don’t use them to falsify work, harass teams, or break trust. Always inform collaborators before pushing the glitter avalanche upstream. Clean up when you’re done (`git reset --hard`, delete branches, remove `.generated_commits.txt`).
+</Callout>
+
+Grab your shiniest eyepatch, hydrate, and let the rainbow cannon roar. 🏳️‍🌈
