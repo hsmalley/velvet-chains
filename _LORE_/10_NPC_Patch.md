@@ -1,5 +1,5 @@
 ---
-title: ⚔️ Adventure: *Echoes of the Neon Codex* - Patch
+title: ⚔️ *Echoes of the Neon Codex* - Patch
 order: 11
 tags: [setting, adventure, npc]
 draft: false

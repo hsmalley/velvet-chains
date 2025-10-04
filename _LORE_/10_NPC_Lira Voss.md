@@ -1,5 +1,5 @@
 ---
-title: ⚔️ Adventure: *Echoes of the Neon Codex* - Lira Voss
+title: ⚔️ *Echoes of the Neon Codex* - Lira Voss
 order: 11
 tags: [setting, adventure, npc]
 draft: false

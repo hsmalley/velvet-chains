@@ -1,11 +1,11 @@
 ---
-title: ⚔️ Adventure: *Echoes of the Neon Codex*
+title: ⚔️ *Echoes of the Neon Codex*
 order: 10
 tags: [setting, adventure]
 draft: false
 ---
 
-# ⚔️ Adventure: *Echoes of the Neon Codex*
+# ⚔️ Adventure - *Echoes of the Neon Codex*
 
 **Setting:** Velvet Chains & Voidlight — Neon Bazaar of New Zanshin, orbiting the rimworld Kestrel-Nine.
 **Level Range:** Tier: 3–5 (adjust DCs/HP for your system).

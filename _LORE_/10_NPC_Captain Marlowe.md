@@ -1,5 +1,5 @@
 ---
-title: ⚔️ Adventure: *Echoes of the Neon Codex* - Captain Marlowe
+title: ⚔️ *Echoes of the Neon Codex* - Captain Marlowe
 order: 11
 tags: [setting, adventure, npc]
 draft: false
