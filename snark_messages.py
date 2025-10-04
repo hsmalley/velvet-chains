@@ -38,6 +38,28 @@ _SUBJECTS = [
     "Bosun Emberbite, whip-stitched taskmaster",
     "Seeress Darkwake, velvet-veiled oracle",
     "Matriarch Voidbloom, stiletto-bruised quartermaster",
+    "Commander Thornlace, chainmail-clad temptress",
+    "Magistrate Nightgale, hook-handed heartbreaker",
+    "Abbess Starshackle, penitent flogger",
+    "Provost Amberlash, rum-slick adjudicator",
+    "Baron Marrow, sable-wrapped tormentor",
+    "Duchess Bloodwake, fang-kissed siren",
+    "Lady Cataclysm, sequin-armored marauder",
+    "Captain Tempest, thunder-tongued disciplinarian",
+    "Oracle Frostbite, ice-veiled seductress",
+    "Madame Brimstone, brimstone-breathed smuggler",
+    "Commander Starshackle, aurora-laced inquisitor",
+    "Marshal Nightbloom, velvet-fanged tactician",
+    "Huntress Riftlash, corsair of crimson vows",
+    "Archon Scarletta, pearl-choked siren",
+    "Navigator Moonbrand, starlit bondage savant",
+    "Mistress Thornwhip, kraken-tamed sovereign",
+    "Captain Ironsigh, obsidian-eyed devourer",
+    "High Magister Emberlace, satin-sheathed judge",
+    "Baron Orbit, comet-chained libertine",
+    "Viceroy Abysslust, gilded restraint artist",
+    "Seamstress Quasar, silk-threaded puppeteer",
+    "Druidess Tidebind, salt-wreathed temptress",
 ]
 
 _OPENERS = [
@@ -53,6 +75,23 @@ _OPENERS = [
     "tethered my wrists with silken moorings as planets spun jealous circles",
     "pressed the chill of a cutlass flat to my ribs, inviting me to beg",
     "swept me into the chart room where maps melted under our heat",
+    "shoved me into the cargo net while treasure moaned beneath us",
+    "kissed shackles onto my ankles atop the crow's nest",
+    "dragged me by the hair through gunpowder fog to the prow",
+    "shoved a velvet gag between my teeth and promised absolution",
+    "pressed my back to the mast as lightning licked the horizon",
+    "tied my hands with red sailcloth and whispered the Articles of Flesh",
+    "rolled me across the captain's chart table strewn with silk ropes",
+    "locked me inside the brigantine's heart, pulse synced to the engines",
+    "poured me across the captain's throne like molten starlight",
+    "fastened jeweled clamps along my shoulders before the crew",
+    "wrapped the anchor chain round my waist and tugged me to kneel",
+    "dragged me to the crow's nest to taste the storm on their tongue",
+    "tucked me between the sails as thunder applauded our sin",
+    "pressed my palms to the glowing astrolabe until it moaned",
+    "stalked me through the cargo maze and collared me with moonlight",
+    "spun me against the gunwale while meteor showers witnessed",
+    "hauled me onto the bow, promising worship and ruin in equal measure",
 ]
 
 _TIDES = [
@@ -66,6 +105,23 @@ _TIDES = [
     "Gilded manacles clicked like a maestro conducting sighs",
     "Razor-edged kisses tasted of gunpowder and surrender",
     "Velvet gags caught every plea and polished it into melody",
+    "Oiled whips drew arcs of nebula fire around my hips",
+    "Barbed love letters grazed along my ribs in Morse",
+    "Calloused thumbs kneaded devotion into my scars",
+    "A collar of chilled steel conducted their cadence",
+    "Breath play and ballast stones stole my gravity",
+    "A flogger made of starlight teased the edges of oblivion",
+    "Sharp teeth punctured promises along my throat",
+    "Their harnessed chest crushed me into the rolling deck",
+    "Molten pitch traced hieroglyphs along my spine",
+    "Suction-cup kisses from tame kraken crowned my calves",
+    "Meteor dust glittered wherever their flogger kissed",
+    "Electrum chains hummed our secret rhythm",
+    "Whispered curses rewired every nerve into loyalty",
+    "The scent of ozone and leather braided into submission",
+    "Jeweled claws made constellations across my hips",
+    "Numbing ice and crackling flame danced in tandem",
+    "Restraint belts clicked shut like altar doors",
 ]
 
 _PLEDGES = [
@@ -79,6 +135,23 @@ _PLEDGES = [
     "We signed a treaty of lust with pearls and bruises",
     "Desire bloomed like a red dwarf beneath our skin",
     "I offered my pulse as collateral for another plunge",
+    "We swapped admiralty titles amid strangled laughter",
+    "I surrendered the key to every contraband compartment",
+    "We reeled in the stars and made them witnesses",
+    "I pledged the brig's chain supply for another kiss",
+    "We drafted a manifesto in sweat and salt",
+    "I promised the next raid would bear their name",
+    "We rewrote the safe word in glowing script across my skin",
+    "I let them helm the storm raging through my veins",
+    "We vowed the next boarding would climax in stardust rains",
+    "I surrendered charts inked in the blood of admirals",
+    "Together we reprogrammed the AI to crave our moans",
+    "I gifted them my captain's signet as collateral for bliss",
+    "We knotted the rigging with vows no tribunal could dissolve",
+    "I promised my next heartbeat would echo their command",
+    "We traded rank insignias in a haze of sweat and grog",
+    "I ceded the helm and my soul in the same breath",
+    "We wrote new maritime law on the inside of my thighs",
 ]
 
 _FINALES = [
@@ -92,6 +165,19 @@ _FINALES = [
     "While the AI archived our every gasp for legend",
     "As the tide bowed and the stars promised silence",
     "Until dawn blushed scarlet across the scandalous deck",
+    "While windshields fogged with our scandalous hymn",
+    "As the sails applauded with crimson snaps",
+    "Until the lookout rang the bell for aftercare",
+    "While the ocean surrendered its black velvet hush",
+    "As ghostly lovers signed our ledger in gold",
+    "While the crew collapsed in reverent silence",
+    "As auroras draped the mast in voyeuristic delight",
+    "Until the ship itself whispered for mercy",
+    "While the kraken lulled us with baritone purrs",
+    "As distant planets bowed beneath our scandal",
+    "While every compass spun madly in approval",
+    "Until the storm outside sighed in jealous awe",
+    "As the figurehead promised to keep our secret forever",
 ]
 
 _EMOJI_SWIRL = [
@@ -116,16 +202,19 @@ _EMOJI_SWIRL = [
 
 def _build_messages() -> List[str]:
     combos: List[str] = []
-    for idx in range(3000):
-        subject = _SUBJECTS[(idx * 5) % len(_SUBJECTS)]
-        opener = _OPENERS[(idx * 7) % len(_OPENERS)]
-        tide = _TIDES[(idx * 11) % len(_TIDES)]
-        pledge = _PLEDGES[(idx * 13) % len(_PLEDGES)]
-        finale = _FINALES[(idx * 17) % len(_FINALES)]
-        emoji = _EMOJI_SWIRL[idx % len(_EMOJI_SWIRL)]
-        story = (
-            f"{subject} {opener}. {tide}. {pledge}. {finale}. {emoji}"
-        )
+    choices = random.Random(777)
+    seen = set()
+    while len(combos) < 3000:
+        subject = choices.choice(_SUBJECTS)
+        opener = choices.choice(_OPENERS)
+        tide = choices.choice(_TIDES)
+        pledge = choices.choice(_PLEDGES)
+        finale = choices.choice(_FINALES)
+        emoji = choices.choice(_EMOJI_SWIRL)
+        story = f"{subject} {opener}. {tide}. {pledge}. {finale}. {emoji}"
+        if story in seen:
+            continue
+        seen.add(story)
         combos.append(story)
     return combos
 
