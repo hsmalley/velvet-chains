@@ -1,5 +1,5 @@
 [package]
-name = "snarkgit"
+name = "voidlight"
 version = "0.1.0"
 edition = "2021"
 description = "BDSM space-pirate romance engine for git commit flourishes"
@@ -12,7 +12,7 @@ categories = ["development-tools", "command-line-utilities"]
 authors = ["Velvet Chains Maintainers <snark@voidlight.dev>"]
 
 [[bin]]
-name = "git-snark"
+name = "git-voidlight"
 path = "src/main.rs"
 
 [dependencies]

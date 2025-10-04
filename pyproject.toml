@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "snark-plan"
+name = "voidlight-plan"
 version = "0.1.0"
 description = "BDSM space-pirate commit planner and preview engine"
 readme = "README.md"
@@ -26,7 +26,7 @@ Homepage = "https://github.com/velvet-chains/snark_tester"
 Repository = "https://github.com/velvet-chains/snark_tester"
 
 [project.scripts]
-snark-plan = "generate_snark:main"
+voidlight-plan = "generate_snark:main"
 
 [tool.setuptools]
 py-modules = ["generate_snark"]

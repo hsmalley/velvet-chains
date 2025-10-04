@@ -1,4 +1,4 @@
-# 🏴‍☠️ generate_snark.py — Velvet Chains & Voidlight
+# 🏴‍☠️ Velvet Chains & Voidlight
 
 Welcome to the brig, darling. This repository is a **BDSM space-pirate romance engine** disguised as a git toolchain. It fabricates historical commits, spins NSFW micro-novellas, and drenches your history in consensual decadence. Read the safe word (_“fiction”_) twice, then proceed at your own peril.
 
@@ -14,7 +14,7 @@ Welcome to the brig, darling. This repository is a **BDSM space-pirate romance e
 ## 🔧 Rituals & Requirements
 
 - **Python 3.12+** for the decadent planner (`generate_snark.py`).
-- **Rust (cargo 1.70+)** for the binary hook & `git snark` subcommand.
+- **Rust (cargo 1.70+)** for the binary hook & `git voidlight` subcommand.
 - Optional decadence: `pip install ruff` to make the linter blush.
 
 Initial setup:
@@ -34,6 +34,8 @@ rm -f .git/hooks/prepare-commit-msg
 ln -s "$(pwd)/hooks/prepare-commit-msg" .git/hooks/prepare-commit-msg
 ```
 
+> Already published to crates.io? Swap the first line for `cargo install voidlight`.
+
 Corporate shackles hate symlinks? Copy instead:
 
 ```bash
@@ -48,9 +50,9 @@ git config core.hooksPath hooks
 
 The hook rebuilds the Rust binary when needed and then laces a 4-sentence kink novella into every commit.
 
-Shortcut: once `git-snark` is on your `$PATH`, simply run `git snark install-hook` (add `--force` to overwrite an existing hook).
+Shortcut: once `git-voidlight` is on your `$PATH`, simply run `git voidlight install-hook` (add `--force` to overwrite an existing hook).
 
-### 🚀 `git snark` — Subcommand of Desire
+### 🚀 `git voidlight` — Subcommand of Desire
 
 Promote the binary into a first-class git command:
 
@@ -61,24 +63,24 @@ cargo install --path rust_snark --force
 Then either call it directly or wrap an alias:
 
 ```bash
-git config alias.snark '!git-snark'
+git config alias.voidlight '!git-voidlight'
 ```
 
 Usage that stages, commits, and appends a flourish in one breath:
 
 ```bash
-git snark --commit -a -m "Refactor the warp-drive leash" -- -- path/to/file
+git voidlight --commit -a -m "Refactor the warp-drive leash" -- -- path/to/file
 ```
 
 Skip `--commit` to simply print a fresh tale to stdout—perfect for README lore or issue comment theatrics.
 
-### 🐍 Python Package (`snark-plan`)
+### 🐍 Python Package (`voidlight-plan`)
 
 Prefer the Python planner? Package it as a CLI:
 
 ```bash
 pip install .
-snark-plan --help
+voidlight-plan --help
 ```
 
 Or pull straight from the repo:
@@ -87,7 +89,7 @@ Or pull straight from the repo:
 pip install git+https://github.com/velvet-chains/snark_tester.git
 ```
 
-Use `snark-plan` exactly like `generate_snark.py`—all flags carry over, now globally available on your path.
+Use `voidlight-plan` exactly like `generate_snark.py`—all flags carry over, now globally available on your path.
 
 ## 🚀 Quick Start Fantasia
 

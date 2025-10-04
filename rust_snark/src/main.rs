@@ -207,12 +207,12 @@ const EMOJIS: &[&str] = &[
 const HOOK_TEMPLATE: &str = r"#!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v git-snark >/dev/null 2>&1; then
-  echo '[snark] git-snark not found on PATH. Install with "cargo install snarkgit".' >&2
+if ! command -v git-voidlight >/dev/null 2>&1; then
+  echo '[voidlight] git-voidlight not found on PATH. Install with "cargo install voidlight".' >&2
   exit 0
 fi
 
-git-snark --hook "$@"
+git-voidlight --hook "$@"
 ";
 
 fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
@@ -362,13 +362,13 @@ fn install_hook(path: Option<PathBuf>, force: bool) -> io::Result<PathBuf> {
         fs::set_permissions(&target, perms)?;
     }
 
-    if Command::new("git-snark")
+    if Command::new("git-voidlight")
         .arg("--version")
         .status()
         .map_or(true, |status| !status.success())
     {
         eprintln!(
-            "[snark] hook installed, but git-snark is not on PATH. Run 'cargo install snarkgit'."
+            "[voidlight] hook installed, but git-voidlight is not on PATH. Run 'cargo install voidlight'."
         );
     }
 
@@ -407,7 +407,7 @@ fn run_commit(cli: &Cli, story: &str) -> io::Result<i32> {
     }
 
     if cli.dry_run {
-        eprintln!("[snark] dry run: {:?}", cmd);
+        eprintln!("[voidlight] dry run: {:?}", cmd);
         return Ok(0);
     }
 
@@ -423,13 +423,13 @@ fn main() -> i32 {
             Commands::InstallHook { path, force } => match install_hook(path, force) {
                 Ok(path) => {
                     println!(
-                        "[snark] prepare-commit-msg hook installed at {}",
+                        "[voidlight] prepare-commit-msg hook installed at {}",
                         path.display()
                     );
                     return 0;
                 }
                 Err(err) => {
-                    eprintln!("[snark] failed to install hook: {err}");
+                    eprintln!("[voidlight] failed to install hook: {err}");
                     return 1;
                 }
             },
@@ -440,7 +440,7 @@ fn main() -> i32 {
 
     if let Some(path) = cli.hook.as_ref() {
         if let Err(err) = handle_hook(path, cli.source.as_deref(), &story) {
-            eprintln!("[snark] failed to append flourish: {err}");
+            eprintln!("[voidlight] failed to append flourish: {err}");
             return 1;
         }
         return 0;
@@ -450,7 +450,7 @@ fn main() -> i32 {
         match run_commit(&cli, &story) {
             Ok(code) => return code,
             Err(err) => {
-                eprintln!("[snark] git commit failed: {err}");
+                eprintln!("[voidlight] git commit failed: {err}");
                 return 1;
             }
         }
@@ -459,7 +459,7 @@ fn main() -> i32 {
     println!("✨ {story}");
     if !cli.extra.is_empty() {
         eprintln!(
-            "[snark] warning: trailing arguments ignored outside --commit mode: {:?}",
+            "[voidlight] warning: trailing arguments ignored outside --commit mode: {:?}",
             cli.extra
         );
     }

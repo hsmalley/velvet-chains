@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v git-snark >/dev/null 2>&1; then
-  echo "[snark] git-snark not found on PATH. Install with 'cargo install snarkgit'." >&2
+if ! command -v git-voidlight >/dev/null 2>&1; then
+  echo "[voidlight] git-voidlight not found on PATH. Install with 'cargo install voidlight'." >&2
   exit 0
 fi
 
-git-snark --hook "$@"
+git-voidlight --hook "$@"

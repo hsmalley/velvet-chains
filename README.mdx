@@ -1,6 +1,6 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-# 🏴‍☠️ generate_snark.py — Velvet Chains & Voidlight
+# 🏴‍☠️ Velvet Chains & Voidlight
 
 <blockquote>
   <strong>A BDSM space-pirate romance engine masquerading as a git toolchain.</strong>
@@ -54,6 +54,8 @@ rm -f .git/hooks/prepare-commit-msg
 ln -s "$(pwd)/hooks/prepare-commit-msg" .git/hooks/prepare-commit-msg
 ```
 
+> Already published? Swap the first line for `cargo install voidlight`.
+
 If symlinks make security blush, copy instead:
 
 ```bash
@@ -70,9 +72,9 @@ git config core.hooksPath hooks
 
 Git will happily execute the repo’s `hooks/` directory on every commit.
 
-Already installed the binary? One-liner: `git snark install-hook` (add `--force` to overwrite).
+Already installed the binary? One-liner: `git voidlight install-hook` (add `--force` to overwrite).
 
-### Optional: `git snark` Plugin
+### Optional: `git voidlight` Plugin
 
 Install the Rust binary as a full-fledged subcommand:
 
@@ -83,24 +85,24 @@ cargo install --path rust_snark --force
 Alias lovers can stay in Git-land:
 
 ```bash
-git config alias.snark '!git-snark'
+git config alias.voidlight '!git-voidlight'
 ```
 
 Then simply:
 
 ```bash
-git snark --commit -a -m "Refactor release valve" -- -- path/to/file
+git voidlight --commit -a -m "Refactor release valve" -- -- path/to/file
 ```
 
 It stages (if asked), commits, and auto-appends a random flourish—all consensually outrageous. Run without `--commit` to print a fresh story.
 
-### 🐍 Python Package (`snark-plan`)
+### 🐍 Python Package (`voidlight-plan`)
 
 Prefer the Python planner? Package it as a CLI:
 
 ```bash
 pip install .
-snark-plan --help
+voidlight-plan --help
 ```
 
 Or fetch the latest from the brig:
