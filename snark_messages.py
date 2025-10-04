@@ -116,7 +116,7 @@ _EMOJI_SWIRL = [
 
 def _build_messages() -> List[str]:
     combos: List[str] = []
-    for idx in range(1000):
+    for idx in range(3000):
         subject = _SUBJECTS[(idx * 5) % len(_SUBJECTS)]
         opener = _OPENERS[(idx * 7) % len(_OPENERS)]
         tide = _TIDES[(idx * 11) % len(_TIDES)]
