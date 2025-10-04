@@ -1,6 +1,6 @@
 ---
 title: ⚔️ Adventure: *Echoes of the Neon Codex*
-order: 100
+order: 10
 tags: [setting, adventure]
 draft: false
 ---
