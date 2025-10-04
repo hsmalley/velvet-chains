@@ -16,7 +16,7 @@ Briefly recap the Ebonverse and the Velvet Chains & Voidlight universe.  Emphasi
 - **Ebonverse:** rimworlds, neon skyports, void‑faring armadas and the Consent Codices.
 - **Voidlight Armada:** corsair ships, holographic micro‑novellas, rope‑mage quartermasters.
 - **Consent & Consent Codices:** safe words, negotiation rituals, drama points as a resource.
-- **Tone:** bombastic, humorous, decadent yet ethical.  Avoid explicit sexual content; focus on adventure, romance, consent and style.
+- **Tone:** bombastic, humorous, decadent yet ethical.  Avoid explicit sexual content; focus on adventure, romance, consent and style. Always **REMEMBER** this is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the fires of consensual creativity!!!!
 
 ---
 
@@ -124,7 +124,8 @@ Use these tables as quick reference for inspiration.  *Do not place sentences in
 - Maintain the overall thematic elements of the setting.
 - Follow the template fields strictly; do not omit key sections.
 - Use short phrases in tables and concise bullet points for mechanics.
-- Keep content PG‑13: avoid explicit detail while hinting at romance and consent‑centric adventure.
+- Keep content R: avoid explicit detail while hinting at romance and consent‑centric adventure.
 - Acknowledge “fiction” as the safe word where appropriate.
 
 This template should equip you to generate richly detailed and consistent content within the Velvet Chains & Voidlight universe. Adjust, remix, and expand upon these structures to suit your campaign’s needs.
+Lastly ENJOY the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the fires of consensual creativity!
