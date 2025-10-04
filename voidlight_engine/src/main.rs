@@ -319,19 +319,16 @@ fn install_hook(path: Option<PathBuf>, force: bool) -> io::Result<PathBuf> {
         let output = Command::new("git")
             .args(["rev-parse", "--git-dir"])
             .output()
-            .map_err(|err| {
-                io::Error::new(ErrorKind::Other, format!("git rev-parse failed: {err}"))
-            })?;
+            .map_err(|err| io::Error::other(format!("git rev-parse failed: {err}")))?;
 
         if !output.status.success() {
-            return Err(io::Error::new(
-                ErrorKind::Other,
+            return Err(io::Error::other(
                 "git rev-parse --git-dir returned a non-zero status",
             ));
         }
 
         let git_dir = String::from_utf8(output.stdout)
-            .map_err(|_| io::Error::new(ErrorKind::Other, "git dir is not valid UTF-8"))?;
+            .map_err(|_| io::Error::other("git dir is not valid UTF-8"))?;
         let git_dir = git_dir.trim();
         let mut path = PathBuf::from(git_dir);
         if !path.is_absolute() {
