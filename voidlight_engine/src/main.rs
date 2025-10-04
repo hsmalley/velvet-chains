@@ -204,7 +204,7 @@ const EMOJIS: &[&str] = &[
     "🧴🦂",
 ];
 
-const HOOK_TEMPLATE: &str = r"#!/usr/bin/env bash
+const HOOK_TEMPLATE: &str = r#"#!/usr/bin/env bash
 set -euo pipefail
 
 if ! command -v git-voidlight >/dev/null 2>&1; then
@@ -213,7 +213,7 @@ if ! command -v git-voidlight >/dev/null 2>&1; then
 fi
 
 git-voidlight --hook "$@"
-";
+"#;
 
 fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
     pool.choose(rng).expect("pool not empty")
