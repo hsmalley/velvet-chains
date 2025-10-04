@@ -1,6 +1,6 @@
 use clap::{ArgAction, Parser, Subcommand};
+use rand::prelude::*;
 use rand::rngs::StdRng;
-use rand::seq::SliceRandom;
 use rand::SeedableRng;
 use std::env;
 use std::fs::{self, OpenOptions};
@@ -222,7 +222,10 @@ fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
 fn build_story(seed: Option<u64>) -> String {
     let mut rng = match seed {
         Some(value) => StdRng::seed_from_u64(value),
-        None => StdRng::from_entropy(),
+        None => {
+            let mut thread_rng = rand::rng();
+            StdRng::from_rng(&mut thread_rng)
+        },
     };
 
     let subject = pick(&mut rng, SUBJECTS);
