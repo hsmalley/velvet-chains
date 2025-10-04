@@ -38,86 +38,12 @@ from datetime import UTC, datetime, date, time, timedelta
 from math import ceil
 from pathlib import Path
 
+from snark_messages import pick_snarky_message
+
 # -------------------------
 # CONFIG: EXTREME SNARKY MESSAGES (space-pirate + BDSM-adjacent + silly)
 # -------------------------
 # A big pool of silly, snarky commits - space pirate & mild BDSM flavor (consensual, non-explicit).
-SNARKY_CORE = [
-    "Shaved the starboard deck; it still smells of cache. 🏴‍☠️✨",
-    "Tied the feature down with polite rope (consensual). 🪢😉",
-    "Executed a daring boarding action against flaky tests. ⚓️🐛",
-    "Adjusted the whip of CI; it purred. 🐈‍⬛🔧",
-    "Plundered logs for treasure; found only warnings. 💰📜",
-    "Set sail on the seas of tech debt; lowered the sarcasm flag. ⛵️🧭",
-    "Gave the bug a safe word and a stern talking-to. 🗣️🔒",
-    "Installed a tiny anchor to stop the regression drift. ⚓️",
-    "Reprimanded the function with a glittery paddle. 🎀🪵",
-    "Space pirate handshake: 'it compiles'. 🖖🚀",
-    "Added a velvet rope around the hotpath. 🧵🚫",
-    "Swabbed the test deck; found smug lints. 🧹🧼",
-    "Broke the moon with optimism then bandaged it. 🌝💥🩹",
-    "Adjusted the throttle, yelled 'YO HO' at the compiler. 🎺🛠️",
-    "Rewrote in pirate-speak; tests mutinied. ☠️📜",
-    "Bound by consent: this is a temporary hack. 🤝🩶",
-    "Applied charm: replaced panic with wink emojis. 😉🔥",
-    "Raised the black flag of 'works on my machine'. 🏴‍☠️🖥️",
-    "Gave the exception a spanking; it behaved. 🍑💥",
-    "Smuggled unit tests into the brig; they told tales. 🧭📚",
-    "Calibrated the cat-o'-nine-logs. 🐱‍👤📈",
-    "Refitted the code hull with duct-tape couture. 🎩🩹",
-    "Issued a parley with the linter; offered biscuits. 🍪🤝",
-    "Hung a 'Do Not Touch' sign in a loving tone. 🪧❤️",
-    "Swapped the captain's hat for a debugger. 🧢🔍",
-    "Swapped curses for comments — slightly better. ✨💬",
-    "Added a 'safe word' check before risky ops. 🔐🗝️",
-    "Reprimanded the race condition with a stern log. 🏁🗣️",
-    "Gifted the function a collar of tests. 🐾✅",
-    "Pinned dependency, whispered promises to CI. 🤫🔁",
-    "Moved the bomb to a quieter room (temporarily). 💣➡️🛌",
-    "Applied consent-driven refactor: everyone agreed. 👍🛠️",
-    "Added ceremonial trumpet before critical code. 🎺👑",
-    "Renamed things for dramatic effect. 🎭📛",
-    "Took the code on a romantic date; it responded with bugs. 💌🐞",
-    "Hidden feature: space-parrot mode. 🦜🚀",
-    "Optimized for swagger, not correctness. 😎⚙️",
-    "Ate an edge-case for breakfast. 🥣🪓",
-    "Sewn leather and README into a glorious patch. 🪡📘",
-    "Made the tests slightly scandalous and more reliable. 😏✅",
-    "Declared feature 'emotionally compatible'. 💞🔧",
-    "Swapped the bug for a charming bug with manners. 🎩🐛",
-    "Made a dramatic sacrifice to the test suite. 🕯️📉",
-    "Pinned hopes to a single unit test. 🧷🎯",
-    "Refactored with pirate grace. Arr! 🏴‍☠️🧭",
-    "Tied loose ends together with glitter. ✨🔗",
-    "Added a submissive fallback function called 'please'. 🙇‍♂️🔁",
-    "Placed a tiny flag: 'here there be hacks'. 🚩🧰",
-    "Rearranged deck chairs, discovered a race condition. 🪑🏃",
-    "Temporarily disciplined the callback. 📏🔁",
-    "Made the function blush and return politely. 😊↩️",
-    "Gave the module a stern bedtime story. 📖🌙",
-    "Added a private lounge for deprecated APIs. 🛋️🚪",
-    "Smoothed rough edges with pirate polish. 🪞🏴",
-    "Added playful chains of green tests. ⛓️✅",
-    "Tightened the harness on the critical path. 🦺⚙️",
-    "Blessed by space-coffee; compilation accepted. ☕️🛸",
-    "Implemented a consensual handoff to staging. 🤝📦",
-    "Added a 'no surprises' clause to the function. 📜✒️",
-    "Bribed the scheduler with cookies. 🍪🕰️",
-    "Raised the colors and suppressed the screaming. 🏳️‍🌈🔕",
-    "Installed a portcullis around the API. 🏰🔐",
-    "Made a new friend: an assert with manners. 🎩🧾",
-    "Applied gentle coercion to flaky tests. 🫶🔁",
-    "Built a hammock for background workers. 🏖️🧵",
-    "Hooked the function into the brig for questioning. 🪝❓",
-    "Patted the bug gently and sent it to QA. 🐞📤",
-    "Ordered a treasure map for debugging steps. 🗺️🧭",
-    "Swapped error smoke for festive confetti. 🎉💨",
-    "Renamed secrets to 'mysterious variables'. 🕵️‍♀️🔐",
-    "Made code sing sea shanties on build. 🎶🏗️",
-    "Added dramatic monologue to the README. 🎭📘",
-    "Gave the CI a beret; now it feels cultured. 🧢⚙️",
-    "Bound by mutual consent: this is a feature. 🤝🌟",
-]
 
 # -------------------------
 # TEMPLATING: filenames, funcs, blame tags, extra emoji pool
@@ -222,7 +148,7 @@ def random_blametag():
 
 def make_commit_message(idx, total, author_dt):
     """Create a templated commit message with emoji, pirate/BDSM themes, and snark."""
-    core = random.choice(SNARKY_CORE)
+    core = pick_snarky_message()
     file = random_filename()
     func = random_funcname()
     blame = random_blametag()
