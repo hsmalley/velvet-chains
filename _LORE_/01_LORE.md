@@ -1,6 +1,6 @@
 ---
 title: Velvet Chains & Voidlight Campaign Template
-order: 100
+order: 1
 tags: [setting, document]
 draft: false
 ---

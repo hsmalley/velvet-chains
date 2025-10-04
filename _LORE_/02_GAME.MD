@@ -1,6 +1,6 @@
 ---
 title: Velvet Chains & Voidlight THE GAME! kinda
-order: 100
+order: 2
 tags: [setting, document]
 draft: false
 ---
