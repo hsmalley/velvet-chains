@@ -1,3 +1,5 @@
+# 🏴‍☠️ Velvet Chains Corsair Ceremonials
+# Automated rituals to ensure our space-pirate empire maintains theatrical excellence
 name: Voidlight Rituals
 
 on:
@@ -8,50 +10,115 @@ on:
 
 jobs:
   lint-and-test:
-    name: Python Planner Rituals
+    name: 🐍 Python Choreographer Ceremonies
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: 📦 Summon repository from the void
         uses: actions/checkout@v5
 
-      - name: Set up Python 3.12
+      - name: 🔥 Forge Python 3.12 environment
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: ⚓ Provision corsair development arsenal
         run: |
           python -m pip install --upgrade pip
           pip install ruff
 
-      - name: Ruff format check
+      - name: ✨ Polish Python formatting until it gleams
         run: ruff format --check voidlight_choreographer.py voidlight_whispers.py
 
-      - name: Ruff lint
+      - name: 🎭 Submit to the linting dominatrix
         run: ruff check voidlight_choreographer.py voidlight_whispers.py
 
-      - name: Byte-compile planner
+      - name: 🧪 Ensure bytecode compiles without choking
         run: PYTHONPYCACHEPREFIX=./.pycache python -m compileall voidlight_choreographer.py voidlight_whispers.py
 
   rust-check:
-    name: Rust Spellcraft
+    name: ⚔️ Rust Engine Sanctification
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: 📦 Retrieve sacred codebase from digital depths
         uses: actions/checkout@v5
 
-      - name: Install Rust toolchain
+      - name: 🔨 Anoint Rust toolchain with power
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Cargo fmt check
+      - name: 💎 Hammer Rust into perfect aesthetic form
         run: |
           rustup component add rustfmt
           cargo fmt --manifest-path voidlight_engine/Cargo.toml --all -- --check
 
-      - name: Cargo clippy
+      - name: 🖤 Submit engine to clippy's merciless judgment
         run: |
           rustup component add clippy
           cargo clippy --manifest-path voidlight_engine/Cargo.toml --all-targets -- -D warnings
 
-      - name: Cargo test (binary smoke)
+      - name: 🧨 Verify binary forges without exploding
         run: cargo test --manifest-path voidlight_engine/Cargo.toml --no-run
+
+  release-artifacts:
+    name: 🏆 Forge Corsair Armaments for Distribution
+    if: startsWith(github.ref, 'refs/tags/v')
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            platform: "🐧 Linux Stronghold"
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            platform: "🍎 macOS Sanctuary"
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            platform: "🪟 Windows Fortress"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 📦 Acquire sacred source code
+        uses: actions/checkout@v5
+
+      - name: ⚔️ Consecrate Rust forge for ${{ matrix.platform }}
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: 🔥 Forge release-grade voidlight binary
+        run: cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{ matrix.target }}
+
+      - name: 🎁 Package corsair weaponry for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: voidlight-${{ matrix.target }}
+          path: |
+            voidlight_engine/target/${{ matrix.target }}/release/git-voidlight*
+            !voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.d
+
+  python-package:
+    name: 🐍 Choreographer Package Assembly
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Retrieve Python sorcery from repository
+        uses: actions/checkout@v5
+
+      - name: 🔥 Establish Python 3.12 ritual environment
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: ⚓ Assemble packaging arsenal
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: 🎭 Craft distributable Python package
+        run: python -m build
+
+      - name: 🛡️ Verify package meets corsair standards
+        run: twine check dist/*
+
+      - name: 🏴‍☠️ Prepare package for treasure distribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package
+          path: dist/

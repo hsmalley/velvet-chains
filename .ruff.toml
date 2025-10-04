@@ -1,0 +1,23 @@
+# Voidlight Python linting - corsair code discipline
+[lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # Pyflakes
+    "UP", # pyupgrade
+    "B",  # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I",  # isort
+]
+ignore = [
+    "E501",  # line too long (we use 88 chars like black)
+    "UP007", # Use X | Y for unions (we support 3.12+)
+]
+
+[lint.isort]
+known-first-party = ["voidlight_choreographer", "voidlight_whispers"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"

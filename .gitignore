@@ -24,7 +24,11 @@ htmlcov/
 planned_commits_preview_*.json
 .generated_commits.txt
 hooks/__pycache__/
+voidlight_engine/target/
 rust_snark/target/
 dist/
 build/
 *.egg-info/
+
+# Ruff cache
+.ruff_cache/

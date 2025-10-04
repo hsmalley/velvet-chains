@@ -22,11 +22,32 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/velvet-chains/velvet-chains"
-Repository = "https://github.com/velvet-chains/velvet-chains"
+Homepage = "https://github.com/hsmalley/velvet-chains"
+Repository = "https://github.com/hsmalley/velvet-chains"
 
 [project.scripts]
 voidlight-plan = "voidlight_choreographer:main"
 
 [tool.setuptools]
 py-modules = ["voidlight_choreographer"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I",   # isort
+]
+ignore = [
+    "E501", # line too long (we use 88 chars)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["voidlight_choreographer", "voidlight_whispers"]
