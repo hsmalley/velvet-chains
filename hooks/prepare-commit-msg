@@ -1,49 +1,28 @@
-#!/usr/bin/env python3
-"""Inject a glitter-dripping snark footer into commit messages."""
+#!/usr/bin/env bash
+set -euo pipefail
 
-from __future__ import annotations
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$HOOK_DIR/.." && pwd)"
+BIN="$REPO_ROOT/rust_snark/target/release/git-snark"
 
-import random
-import sys
-from pathlib import Path
+if [[ ! -x "$BIN" ]]; then
+  if command -v cargo >/dev/null 2>&1; then
+    echo "[snark] building Rust hook binary..." >&2
+    cargo build --manifest-path "$REPO_ROOT/rust_snark/Cargo.toml" --release >&2
+  else
+    echo "[snark] warning: cargo not found; skipping snark flourish" >&2
+    exit 0
+  fi
+fi
 
+if [[ ! -x "$BIN" ]]; then
+  echo "[snark] git-snark binary still missing after build attempt" >&2
+  exit 0
+fi
 
-def main() -> None:
-    if len(sys.argv) < 2:
-        return
+ARGS=("--hook" "$1")
+if [[ $# -ge 2 ]]; then
+  ARGS+=("--source" "$2")
+fi
 
-    msg_file = Path(sys.argv[1])
-    commit_source = sys.argv[2] if len(sys.argv) > 2 else None
-
-    # Skip merge commits or squashes where a pre-filled message should remain untouched.
-    if commit_source in {"merge", "squash", "commit"}:
-        return
-
-
-    hook_path = Path(__file__).resolve()
-    repo_root = hook_path.parent
-    # Walk upward until we find the repository root (the directory containing our code).
-    for _ in range(6):
-        if (repo_root / "snark_messages.py").exists():
-            break
-        if repo_root.parent == repo_root:
-            break
-        repo_root = repo_root.parent
-    else:  # pragma: no cover - extremely unlikely fall-through.
-        raise SystemExit("Unable to locate snark_messages.py relative to hook position.")
-
-    sys.path.insert(0, str(repo_root))
-
-    try:
-        from snark_messages import SNARKY_MESSAGES
-    except Exception as exc:  # pragma: no cover - hook should fail loudly.
-        raise SystemExit(f"Unable to load snark messages: {exc}")
-
-    flourish = random.choice(SNARKY_MESSAGES)
-
-    with msg_file.open("a", encoding="utf-8") as handle:
-        handle.write("\n\n✨ " + flourish + "\n")
-
-
-if __name__ == "__main__":
-    main()
+"$BIN" "${ARGS[@]}"

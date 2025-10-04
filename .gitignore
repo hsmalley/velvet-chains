@@ -24,3 +24,4 @@ htmlcov/
 planned_commits_preview_*.json
 .generated_commits.txt
 hooks/__pycache__/
+rust_snark/target/

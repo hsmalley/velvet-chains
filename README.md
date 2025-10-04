@@ -1,83 +1,74 @@
-# 🏴‍☠️ generate_snark.py — Neon-Slick Snark Cannon
+# 🏴‍☠️ generate_snark.py — Velvet Chains & Voidlight
 
-Welcome aboard the **Absolutely gaudy, NSFW, emoji-saturated, rainbow-vomiting snark-commit generator**. This script fabricates ridiculous historical commits drenched in pirate sass, consensual rope-play metaphors, and retina-melting ANSI colors. It’s **only** for demos, art projects, and consenting glitter goblins — never for impersonating real work.
+Welcome to the brig, darling. This repository is a **BDSM space-pirate romance engine** disguised as a git toolchain. It fabricates historical commits, spins NSFW micro-novellas, and drenches your history in consensual decadence. Read the safe word (_“fiction”_) twice, then proceed at your own peril.
 
-> ⚠️ Safe word reminder: _"fiction"_. Don’t weaponize fabricated history without consent.
+## 🌌 Sinful Feature Cabaret
 
-## 🌈 Feature Striptease
+- Conjures `N` backdated commits with timestamps that purr in harmony.
+- Distributes them across days or weeks, respecting weekday-only fantasies and weighted months.
+- Preview mode splashes rainbow heatmaps, histograms, and exports JSON/SVG alibis.
+- Imports previous plans to replay the exact rope pattern.
+- Shares a 3000-entry vault of NSFW space-pirate love letters and blame tags.
+- Offers both Python scripts and a Rust heart beating beneath the leather.
 
-- Generates `N` commits with randomized messages, timestamps, and blame tags.
-- Supports day-by-day or week-wise spreading, weekday-only planning, and weighted months.
-- Preview mode prints a rainbow heatmap + histogram, exports JSON, and optional SVG.
-- Import the preview JSON later to replay the exact choreographed commit queue.
-- Fully colorized output with `--no-color` grayscale aftercare available.
-- Slots-powered dataclasses and other Python 3.12+ delights for maximum sheen.
+## 🔧 Rituals & Requirements
 
-## 🛠️ Requirements & Setup
+- **Python 3.12+** for the decadent planner (`generate_snark.py`).
+- **Rust (cargo 1.70+)** for the binary hook & `git snark` subcommand.
+- Optional decadence: `pip install ruff` to make the linter blush.
 
-- **Python 3.12+** (the script mainlines `datetime.UTC`, `argparse.BooleanOptionalAction`, and other modern toys).
-- An existing git repository with a branch you’re comfortable desecrating.
-- Optional but spicy: `ruff` for formatting (`pip install ruff`).
-
-Clone or copy the script into your repo, then:
+Initial setup:
 
 ```bash
 python3.12 -m pip install --upgrade ruff
 chmod +x generate_snark.py
 ```
 
-### Optional: Auto-Snark Git Hook
+### ⛓️ Auto-Hook: Snark at Commit Time
 
-Let every commit end with a glitter-coated quip:
+Forge the Rust binary and let Git whisper it into every commit message:
 
 ```bash
-# from the repo root
+cargo build --manifest-path rust_snark/Cargo.toml --release
 rm -f .git/hooks/prepare-commit-msg
-ln -s ../../hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
-chmod +x .git/hooks/prepare-commit-msg
+ln -s "$(pwd)/hooks/prepare-commit-msg" .git/hooks/prepare-commit-msg
 ```
 
-If symlinks are frowned upon (hey corporate IT), swap the second line for:
+Corporate shackles hate symlinks? Copy instead:
 
 ```bash
 cp hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
-chmod +x .git/hooks/prepare-commit-msg
 ```
 
-Now every commit message gets a consensual flourish pulled from the 1000+ entry snark bestiary.
-
-Prefer to keep hooks under version control? Set the repo’s hook path instead:
+Prefer a version-controlled dungeon?
 
 ```bash
-chmod +x hooks/prepare-commit-msg
 git config core.hooksPath hooks
 ```
 
-Git will now execute the shipped hook (and any future glitter weapons) without extra copying.
+The hook rebuilds the Rust binary when needed and then laces a 4-sentence kink novella into every commit.
 
-### Optional: `git snark` Plugin
+### 🚀 `git snark` — Subcommand of Desire
 
-Want a dedicated subcommand? Drop the bundled script somewhere on your `$PATH`:
-
-```bash
-chmod +x git-snark
-ln -s "$(pwd)/git-snark" /usr/local/bin/git-snark  # adjust destination as needed
-```
-
-Or wire it into Git’s alias system:
+Promote the binary into a first-class git command:
 
 ```bash
-chmod +x git-snark
-git config alias.snark '!"$(pwd)/git-snark"'
+cargo install --path rust_snark --force
 ```
 
-Usage becomes delightfully simple:
+Then either call it directly or wrap an alias:
 
 ```bash
-git snark -a -m "Refactor release valve" -- -- path/to/file
+git config alias.snark '!git-snark'
 ```
 
-The command stages (optional `-a`), commits, and appends a random flourish from the snark vault in one swoop.
+Usage that stages, commits, and appends a flourish in one breath:
+
+```bash
+git snark --commit -a -m "Refactor the warp-drive leash" -- -- path/to/file
+```
+
+Skip `--commit` to simply print a fresh tale to stdout—perfect for README lore or issue comment theatrics.
 
 ## 🚀 Quick Start Fantasia
 
@@ -87,15 +78,9 @@ The command stages (optional `-a`), commits, and appends a random flourish from 
 python3.12 generate_snark.py -n 50 --preview-only --svg-out preview.svg
 ```
 
-This splashes the terminal with:
+Expect rainbow vomit, heatmap couture, and a JSON dossier you can tuck into your captain’s coat.
 
-- summary stats
-- rainbow heatmap + histogram
-- top 20 planned commits
-- a JSON file in the repo root (`planned_commits_preview_<timestamp>.json`)
-- optional SVG heatmap if you supplied `--svg-out`
-
-### Commit For Real (Still: Demo Branch Only)
+### Commit For Real (Demo Branch Only)
 
 ```bash
 python3.12 generate_snark.py \
@@ -107,49 +92,46 @@ python3.12 generate_snark.py \
   --end-date 2024-12-31
 ```
 
-The script appends log entries to `.generated_commits.txt`, stages them, and creates commits with historical timestamps spaced inside ±8 hours.
+Every commit writes to `.generated_commits.txt`, stages it, and lands with historical timestamps that stay within 16 h of each other.
 
-## 🔄 Importing A Previously Exported Plan
-
-Preview JSONs are reusable choreographies. To replay one exactly:
+### Replaying a Previous Choreography
 
 ```bash
-python3.12 generate_snark.py \
-  --import-json planned_commits_preview_20251004T123059Z.json
+python3.12 generate_snark.py --import-json planned_commits_preview_20251004T123059Z.json
 ```
 
-You can still override `--repo` or `--file` if you want to aim the glitter cannon elsewhere.
+Override `--repo` or `--file` if you want to lash the flourish onto a new project.
 
-## 🎛️ CLI Cheat Sheet
+## 🎛️ CLI Cheat Sheet (Velvet Edition)
 
 | Flag | Default | Description |
 |------|---------|-------------|
 | `-n / --num` | required | Commit count to fabricate. |
 | `--repo` | `.` | Path to an existing git repo. |
-| `--file` | `.generated_commits.txt` | File to append commit log entries. |
+| `--file` | `.generated_commits.txt` | Where the captain scrawls each forged entry. |
 | `--seed` | `None` | Random seed for reproducible chaos. |
 | `--start-date` / `--end-date` | None | Explicit date window (inclusive). |
-| `--start-days-ago` | `365` | If no explicit start, backfill this many days. |
+| `--start-days-ago` | `365` | Backfill window when no start/end is offered. |
 | `--spread-mode` | `day` | `day` or `week` distribution. |
 | `--month-weights` | `1,1,...` | Comma-separated 12-tuple of relative weights. |
-| `--weekdays-only` | off | Skip weekends entirely. |
+| `--weekdays-only` | off | Only lash commits Monday–Friday. |
 | `--color` / `--no-color` | on | Toggle the rainbow vomit in terminal output. |
 | `--svg-out` | None | Write an SVG heatmap when previewing. |
-| `--max-attempts-offset` | `20` | Retry budget for finding committer timestamps. |
+| `--max-attempts-offset` | `20` | How often we try to align author/committer timestamps. |
 | `--preview-only` | off | Produce previews/export JSON without committing. |
 | `--import-json` | None | Load a preview JSON and replay its plan. |
 
-## 🧪 Development / Safety Rituals
+## 🧪 Rituals & Aftercare
 
-- Format: `ruff format generate_snark.py`
-- Byte-compile sanity: `PYTHONPYCACHEPREFIX=./.pycache python3.12 -m compileall generate_snark.py`
-- Dry runs: always start with `--preview-only` before touching history.
-- Keep commits quarantined (e.g., on a `demo/snark` branch). Never merge into production without consent.
+- Polish the code: `ruff format generate_snark.py`
+- Sanity check bytecode: `PYTHONPYCACHEPREFIX=./.pycache python3.12 -m compileall generate_snark.py`
+- Practice safe words: start every dance with `--preview-only`.
+- Quarantine the spectacle on a demo branch until everyone consents.
 
-## 🔥 Consent Clause
+## 🔥 Consent Clause (repeat after me)
 
-- These commits are fictional. Don’t use them to falsify work, harass teams, or otherwise break trust.
-- Always inform collaborators before pushing the glitter avalanche upstream.
-- Clean up when you’re done (`git reset --hard`, delete branches, remove `.generated_commits.txt`).
+- These commits are fiction. Don’t weaponize them.
+- Announce before you unleash glitter on teammates.
+- When the show ends: `git reset --hard`, delete demo branches, remove `.generated_commits.txt`.
 
-Now grab your shiniest eyepatch, hydrate, and let the rainbow cannon roar.🏳️‍🌈
+Hydrate. Breathe. Then fire the rainbow cannon. 🏳️‍🌈
