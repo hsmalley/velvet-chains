@@ -103,13 +103,27 @@ python3.12 voidlight_choreographer.py \
 *Infuse your repository with automatic story generation magic*
 
 ```bash
-# Install the voidlight engine as commit-msg hook
-cd voidlight_engine && cargo build --release
-cp target/release/git-voidlight ~/.local/bin/  # or your preferred PATH location
+# Build and install the voidlight engine
+cd voidlight_engine
+cargo build --release
+
+# Install to system PATH (choose your preferred method):
+# Option 1: Use cargo install (recommended)
+cargo install --path . --force
+# Note: Ensure ~/.cargo/bin is in your PATH. Add to ~/.zshrc or ~/.bashrc if needed:
+# export PATH="$HOME/.cargo/bin:$PATH"
+
+# Option 2: Manual installation to common PATH locations
+# For macOS/Linux with Homebrew:
+cp target/release/git-voidlight /opt/homebrew/bin/
+# For systems with ~/.local/bin in PATH:
+cp target/release/git-voidlight ~/.local/bin/
+# For manual PATH addition, add to ~/.zshrc or ~/.bashrc:
+# export PATH="$HOME/.local/bin:$PATH"
 
 # Activate the hook in your project repository
 cd /your/actual/project
-git-voidlight --hook install
+git-voidlight install-hook
 
 # Test the magic with a theatrical commit
 git add some_file.txt
@@ -163,7 +177,7 @@ python3.12 /path/to/voidlight_choreographer.py \
   --file demo.py
 
 # Install voidlight hooks for future commits
-git-voidlight --hook install
+git-voidlight install-hook
 
 echo "🎉 Showcase repository complete with 6 months of theatrical history!"
 ```
@@ -223,7 +237,7 @@ cd /tmp && git init demo-repo && cd demo-repo
 git config user.name "Demo Corsair" && git config user.email "demo@example.com"
 echo "console.log('Demo magic!');" > demo.js
 git add demo.js
-git-voidlight --hook install
+git-voidlight install-hook
 git commit -m "Add demo functionality with theatrical flair"
 git log -1 --format="%B"  # Show enhanced message to audience
 

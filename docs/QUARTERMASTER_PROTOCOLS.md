@@ -123,7 +123,7 @@ python3 voidlight_choreographer.py -n 5 --preview-only --seed 42
 
 # Hook installation and functionality verification
 echo "⚔️ Testing git hook integration magic..."
-git-voidlight --hook install && echo "✅ Hook integration successful!"
+git-voidlight install-hook && echo "✅ Hook integration successful!"
 ```
 
 ## 🎭 **CORSAIR CODE EXCELLENCE STANDARDS**
