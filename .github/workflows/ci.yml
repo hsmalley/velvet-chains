@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint-and-test:
+    name: Python Planner Rituals
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff
+
+      - name: Ruff format check
+        run: ruff format --check generate_snark.py rust_snark/src/main.rs snark_messages.py
+
+      - name: Ruff lint
+        run: ruff check generate_snark.py
+
+      - name: Byte-compile planner
+        run: PYTHONPYCACHEPREFIX=./.pycache python -m compileall generate_snark.py snark_messages.py
+
+  rust-check:
+    name: Rust Spellcraft
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cargo fmt check
+        run: |
+          rustup component add rustfmt
+          cargo fmt --manifest-path rust_snark/Cargo.toml --all -- --check
+
+      - name: Cargo clippy
+        run: |
+          rustup component add clippy
+          cargo clippy --manifest-path rust_snark/Cargo.toml --all-targets -- -D warnings
+
+      - name: Cargo test (binary smoke)
+        run: cargo test --manifest-path rust_snark/Cargo.toml --no-run
+
