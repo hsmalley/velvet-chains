@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_commits.py — Absolutely gaudy, emoji-saturated, rainbow-vomiting snark-commit generator.
+voidlight_choreographer.py — Absolutely gaudy, emoji-saturated, rainbow-vomiting snark-commit generator.
 
 What it does (short):
  - creates N commits in an existing git repo with historical timestamps
@@ -15,10 +15,10 @@ Use responsibly (sandbox/demo). Don't use to impersonate real work. Consent & sa
 
 Examples:
   preview + JSON + SVG:
-    python3 generate_commits.py -n 200 --preview-only --svg-out preview_heatmap.svg
+    python3 voidlight_choreographer.py -n 200 --preview-only --svg-out preview_heatmap.svg
 
   create commits (rainbow mode on by default):
-    python3 generate_commits.py -n 120 --start-date 2024-01-01 --end-date 2024-12-31 --spread-mode week
+    python3 voidlight_choreographer.py -n 120 --start-date 2024-01-01 --end-date 2024-12-31 --spread-mode week
 
 Enjoy the chaos. 🐙🎉
 """
@@ -38,7 +38,7 @@ from datetime import UTC, datetime, date, time, timedelta
 from math import ceil
 from pathlib import Path
 
-from snark_messages import (
+from voidlight_whispers import (
     pick_snarky_blame_tag,
     pick_snarky_extra_emoji,
     pick_snarky_message,

@@ -1,4 +1,4 @@
-name: CI
+name: Voidlight Rituals
 
 on:
   push:
@@ -25,13 +25,13 @@ jobs:
           pip install ruff
 
       - name: Ruff format check
-        run: ruff format --check generate_snark.py rust_snark/src/main.rs snark_messages.py
+        run: ruff format --check voidlight_choreographer.py voidlight_whispers.py
 
       - name: Ruff lint
-        run: ruff check generate_snark.py
+        run: ruff check voidlight_choreographer.py voidlight_whispers.py
 
       - name: Byte-compile planner
-        run: PYTHONPYCACHEPREFIX=./.pycache python -m compileall generate_snark.py snark_messages.py
+        run: PYTHONPYCACHEPREFIX=./.pycache python -m compileall voidlight_choreographer.py voidlight_whispers.py
 
   rust-check:
     name: Rust Spellcraft
@@ -46,13 +46,12 @@ jobs:
       - name: Cargo fmt check
         run: |
           rustup component add rustfmt
-          cargo fmt --manifest-path rust_snark/Cargo.toml --all -- --check
+          cargo fmt --manifest-path voidlight_engine/Cargo.toml --all -- --check
 
       - name: Cargo clippy
         run: |
           rustup component add clippy
-          cargo clippy --manifest-path rust_snark/Cargo.toml --all-targets -- -D warnings
+          cargo clippy --manifest-path voidlight_engine/Cargo.toml --all-targets -- -D warnings
 
       - name: Cargo test (binary smoke)
-        run: cargo test --manifest-path rust_snark/Cargo.toml --no-run
-
+        run: cargo test --manifest-path voidlight_engine/Cargo.toml --no-run

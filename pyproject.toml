@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "voidlight-plan"
 version = "0.1.0"
 description = "BDSM space-pirate commit planner and preview engine"
-readme = "README.md"
+readme = "CAPTAINS_LOG.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "Velvet Chains Maintainers", email = "snark@voidlight.dev" }]
@@ -26,7 +26,7 @@ Homepage = "https://github.com/velvet-chains/snark_tester"
 Repository = "https://github.com/velvet-chains/snark_tester"
 
 [project.scripts]
-voidlight-plan = "generate_snark:main"
+voidlight-plan = "voidlight_choreographer:main"
 
 [tool.setuptools]
-py-modules = ["generate_snark"]
+py-modules = ["voidlight_choreographer"]
