@@ -43,6 +43,25 @@ Safe word reminder: <em>“fiction.”</em> Never weaponize fabricated history w
   </Tab>
 </Tabs>
 
+### Optional: Auto-Snark Git Hook
+
+Ensure every commit exits with a consensual flourish:
+
+```bash
+rm -f .git/hooks/prepare-commit-msg
+ln -s ../../hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+```
+
+If symlinks make security blush, copy instead:
+
+```bash
+cp hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+```
+
+Voilà—commit messages now pull from the 1000+ kink-positive snark vault.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History

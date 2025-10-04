@@ -26,6 +26,26 @@ python3.12 -m pip install --upgrade ruff
 chmod +x generate_snark.py
 ```
 
+### Optional: Auto-Snark Git Hook
+
+Let every commit end with a glitter-coated quip:
+
+```bash
+# from the repo root
+rm -f .git/hooks/prepare-commit-msg
+ln -s ../../hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+```
+
+If symlinks are frowned upon (hey corporate IT), swap the second line for:
+
+```bash
+cp hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+```
+
+Now every commit message gets a consensual flourish pulled from the 1000+ entry snark bestiary.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History
