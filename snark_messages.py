@@ -41,60 +41,57 @@ _SUBJECTS = [
 ]
 
 _OPENERS = [
-    "caught me against the trembling bulkhead",
-    "sealed me to the figurehead with starlit chains",
-    "swept me into the chart room's velvet shadow",
-    "pressed me over the humming warp drive",
-    "pinned me across the brig's obedient rail",
-    "tethered me to the captain's oathstone",
-    "dragged me below deck where planets spin",
-    "kissed a rope-brand along my throat",
-    "buckled me into the cryo-cradle of sinners",
-    "hoisted me above the deck in shimmering rigging",
-    "clasped cold cuffs around my fevered wrists",
-    "cinched my waist with comet-lit corsetry",
-    "slid a hook beneath my spine and laughed",
-    "locked my ankles to the mast with nebulae",
-    "braced me on the hull as meteors whispered",
+    "caught me against the trembling bulkhead, breath hot with rum-drenched sin",
+    "sealed me to the figurehead with starlit chains and a smile sharper than a cutlass",
+    "pinned me to the brig's rail while nebulae swirled like voyeur ghosts",
+    "pressed me over the humming warp drive, tasting my gasp like contraband",
+    "dragged me to the oathstone and traced consent in phosphor kisses",
+    "buckled me into the cryo cradle, promising thaw only for obedience",
+    "hooked my spine into the rigging, humming shanties of soft surrender",
+    "cinched comet-lit corsetry around my waist until gravity whimpered",
+    "brushed brimstone lips along my throat and whispered mutiny",
+    "tethered my wrists with silken moorings as planets spun jealous circles",
+    "pressed the chill of a cutlass flat to my ribs, inviting me to beg",
+    "swept me into the chart room where maps melted under our heat",
 ]
 
 _TIDES = [
-    "while their voice dripped obsidian promises",
-    "as silk lashes mapped constellations on my skin",
-    "with a cat-o'-nine tail singing in slow, wicked arcs",
-    "while irons steamed the scent of rum and salt",
-    "as their gloved fingers traced consent sigils",
-    "while hot candlewax spelled out forbidden tides",
-    "with breathless murmurs of mutiny and surrender",
-    "as pearls of sweat jeweled the leather straps",
-    "while the ship AI begged to record every moan",
-    "as the crew knelt, reciting the safe word in chorus",
+    "Each lash of the cat-o'-nine painted constellations down my spine",
+    "Silk ropes braided the safe word around my pulse",
+    "Leather gloves traced promises of pillage over every scar",
+    "Chains sang hymns of desire against the bulkhead",
+    "Hot candlewax spelled out forbidden ports upon my skin",
+    "Breath heavy with bloodwine fogged my collarbones",
+    "Suspension hooks rocked me like a storm-tossed mast",
+    "Gilded manacles clicked like a maestro conducting sighs",
+    "Razor-edged kisses tasted of gunpowder and surrender",
+    "Velvet gags caught every plea and polished it into melody",
 ]
 
 _PLEDGES = [
-    "I offered the map to my tidal heartbeat",
-    "my pulse thrummed like rigging in a storm",
-    "our hips marked time with the cannons' thunder",
-    "I tasted plasma and paradise on their tongue",
-    "we bartered oxygen for wicked devotion",
-    "I promised them the treasure locked under my ribs",
-    "the keel groaned in rhythm with our hunger",
-    "their teeth signed the captain's log on my shoulder",
-    "we rewrote the Articles of Plunder in sweat",
-    "desire bloomed like a red sun over the horizon",
+    "I traded the treasure map inked beneath my ribs for another strike",
+    "We rewrote the Articles of Plunder line by sweating line",
+    "My heartbeat hammered SOS against the hull until they answered",
+    "We bartered oxygen for decadent devotion in the dark",
+    "I swore fealty to their lash in the language of sighs",
+    "The keel groaned harmony with our wicked duet",
+    "They carved their rank into my shoulder with jeweled teeth",
+    "We signed a treaty of lust with pearls and bruises",
+    "Desire bloomed like a red dwarf beneath our skin",
+    "I offered my pulse as collateral for another plunge",
 ]
 
 _FINALES = [
-    "until the void itself shuddered and sighed",
-    "while the figurehead wept jewels into the sea",
-    "as star-whales crooned lullabies of aftercare",
-    "until the brig applauded with rattling chains",
-    "while the moon carved our names in phosphor",
-    "as the crew toasted our ruin with black rum",
-    "until the nebula outside painted us in auroras",
-    "while cursed admirals begged for a turn",
-    "until the mast surrendered its final knot",
-    "as the Jolly Roger fluttered like a lover's gasp",
+    "Until the void shuddered and moaned like a satiated kraken",
+    "While the Jolly Roger fluttered like a lover's gasp",
+    "As star-whales crooned aftercare in distant harmonics",
+    "Until the mast surrendered and the crew cheered for encore",
+    "While cursed admirals begged to taste our ruin",
+    "As the moon carved our names into phosphorescent foam",
+    "Until the figurehead wept jewels into the hungry sea",
+    "While the AI archived our every gasp for legend",
+    "As the tide bowed and the stars promised silence",
+    "Until dawn blushed scarlet across the scandalous deck",
 ]
 
 _EMOJI_SWIRL = [
@@ -126,9 +123,10 @@ def _build_messages() -> List[str]:
         pledge = _PLEDGES[(idx * 13) % len(_PLEDGES)]
         finale = _FINALES[(idx * 17) % len(_FINALES)]
         emoji = _EMOJI_SWIRL[idx % len(_EMOJI_SWIRL)]
-        combos.append(
-            f"{subject} {opener}, {tide}; {pledge}, {finale}. {emoji}"
+        story = (
+            f"{subject} {opener}. {tide}. {pledge}. {finale}. {emoji}"
         )
+        combos.append(story)
     return combos
 
 
