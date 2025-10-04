@@ -26,10 +26,10 @@ chmod +x generate_snark.py
 
 ### ⛓️ Auto-Hook: Snark at Commit Time
 
-Forge the Rust binary and let Git whisper it into every commit message:
+Forge the Rust binary, then let Git whisper it into every commit message:
 
 ```bash
-cargo build --manifest-path rust_snark/Cargo.toml --release
+cargo install --path rust_snark --force
 rm -f .git/hooks/prepare-commit-msg
 ln -s "$(pwd)/hooks/prepare-commit-msg" .git/hooks/prepare-commit-msg
 ```
@@ -47,6 +47,8 @@ git config core.hooksPath hooks
 ```
 
 The hook rebuilds the Rust binary when needed and then laces a 4-sentence kink novella into every commit.
+
+Shortcut: once `git-snark` is on your `$PATH`, simply run `git snark install-hook` (add `--force` to overwrite an existing hook).
 
 ### 🚀 `git snark` — Subcommand of Desire
 
@@ -69,6 +71,23 @@ git snark --commit -a -m "Refactor the warp-drive leash" -- -- path/to/file
 ```
 
 Skip `--commit` to simply print a fresh tale to stdout—perfect for README lore or issue comment theatrics.
+
+### 🐍 Python Package (`snark-plan`)
+
+Prefer the Python planner? Package it as a CLI:
+
+```bash
+pip install .
+snark-plan --help
+```
+
+Or pull straight from the repo:
+
+```bash
+pip install git+https://github.com/velvet-chains/snark_tester.git
+```
+
+Use `snark-plan` exactly like `generate_snark.py`—all flags carry over, now globally available on your path.
 
 ## 🚀 Quick Start Fantasia
 
@@ -107,7 +126,7 @@ Override `--repo` or `--file` if you want to lash the flourish onto a new projec
 | Flag | Default | Description |
 |------|---------|-------------|
 | `-n / --num` | required | Commit count to fabricate. |
-| `--repo` | `.` | Path to an existing git repo. |
+| `--repo` | `.` | Parlor where the fantasy is staged. |
 | `--file` | `.generated_commits.txt` | Where the captain scrawls each forged entry. |
 | `--seed` | `None` | Random seed for reproducible chaos. |
 | `--start-date` / `--end-date` | None | Explicit date window (inclusive). |

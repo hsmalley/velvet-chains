@@ -1,11 +1,15 @@
-use clap::{ArgAction, Parser};
+use clap::{ArgAction, Parser, Subcommand};
+use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
 use rand::SeedableRng;
-use rand::rngs::StdRng;
-use std::fs::OpenOptions;
-use std::io::{self, Write};
+use std::env;
+use std::fs::{self, OpenOptions};
+use std::io::{self, ErrorKind, Write};
 use std::path::{Path, PathBuf};
 use std::process::Command;
+
+#[cfg(unix)]
+use std::os::unix::fs::PermissionsExt;
 
 const SUBJECTS: &[&str] = &[
     "Captain Velvet, corseted corsair",
@@ -200,20 +204,16 @@ const EMOJIS: &[&str] = &[
     "🧴🦂",
 ];
 
-const BLAME_TAGS: &[&str] = &[
-    "@bosun",
-    "@captain",
-    "@quartermaster",
-    "@sirens",
-    "@brig",
-    "@galley",
-    "@mutineer",
-    "@corsair",
-    "@helmsman",
-    "@rigging",
-    "@raiding-party",
-    "@nebula",
-];
+const HOOK_TEMPLATE: &str = r"#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v git-snark >/dev/null 2>&1; then
+  echo '[snark] git-snark not found on PATH. Install with "cargo install snarkgit".' >&2
+  exit 0
+fi
+
+git-snark --hook "$@"
+";
 
 fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
     pool.choose(rng).expect("pool not empty")
@@ -248,11 +248,11 @@ fn append_to_message(path: &Path, story: &str) -> io::Result<()> {
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Space-pirate snark cannon for commits", long_about = None)]
 struct Cli {
-    /// Path to commit message file when invoked as a hook
+    /// Path to the commit message file when Git drags us on stage (hook mode)
     #[arg(long)]
     hook: Option<PathBuf>,
 
-    /// Optional source parameter passed by Git hooks
+    /// Optional source parameter passed by Git hooks (merge/squash/etc.)
     #[arg(long)]
     source: Option<String>,
 
@@ -291,6 +291,88 @@ struct Cli {
     /// Additional arguments passed to `git commit`
     #[arg(trailing_var_arg = true)]
     extra: Vec<String>,
+
+    /// Subcommands for shipboard rituals
+    #[command(subcommand)]
+    command: Option<Commands>,
+}
+
+#[derive(Subcommand, Debug, Clone)]
+enum Commands {
+    /// Install or update the prepare-commit-msg hook for this repository
+    InstallHook {
+        /// Optional path to the hook file (defaults to <git-dir>/hooks/prepare-commit-msg)
+        #[arg(value_name = "PATH")]
+        path: Option<PathBuf>,
+        /// Overwrite any existing hook without prompting
+        #[arg(short, long, action = ArgAction::SetTrue)]
+        force: bool,
+    },
+}
+
+fn install_hook(path: Option<PathBuf>, force: bool) -> io::Result<PathBuf> {
+    let target = if let Some(custom) = path {
+        if custom.is_dir() {
+            custom.join("prepare-commit-msg")
+        } else {
+            custom
+        }
+    } else {
+        let output = Command::new("git")
+            .args(["rev-parse", "--git-dir"])
+            .output()
+            .map_err(|err| io::Error::new(ErrorKind::Other, format!("git rev-parse failed: {err}")))?;
+
+        if !output.status.success() {
+            return Err(io::Error::new(
+                ErrorKind::Other,
+                "git rev-parse --git-dir returned a non-zero status",
+            ));
+        }
+
+        let git_dir = String::from_utf8(output.stdout)
+            .map_err(|_| io::Error::new(ErrorKind::Other, "git dir is not valid UTF-8"))?;
+        let git_dir = git_dir.trim();
+        let mut path = PathBuf::from(git_dir);
+        if !path.is_absolute() {
+            path = env::current_dir()?.join(path);
+        }
+        path.join("hooks/prepare-commit-msg")
+    };
+
+    if target.exists() && !force {
+        return Err(io::Error::new(
+            ErrorKind::AlreadyExists,
+            format!(
+                "hook already exists at {} (use --force to overwrite)",
+                target.display()
+            ),
+        ));
+    }
+
+    if let Some(parent) = target.parent() {
+        fs::create_dir_all(parent)?;
+    }
+
+    fs::write(&target, HOOK_TEMPLATE)?;
+
+    #[cfg(unix)]
+    {
+        let perms = fs::Permissions::from_mode(0o755);
+        fs::set_permissions(&target, perms)?;
+    }
+
+    if Command::new("git-snark")
+        .arg("--version")
+        .status()
+        .map_or(true, |status| !status.success())
+    {
+        eprintln!(
+            "[snark] hook installed, but git-snark is not on PATH. Run 'cargo install snarkgit'."
+        );
+    }
+
+    Ok(target)
 }
 
 fn handle_hook(path: &Path, source: Option<&str>, story: &str) -> io::Result<()> {
@@ -335,6 +417,25 @@ fn run_commit(cli: &Cli, story: &str) -> io::Result<i32> {
 
 fn main() -> i32 {
     let cli = Cli::parse();
+
+    if let Some(command) = cli.command.clone() {
+        match command {
+            Commands::InstallHook { path, force } => match install_hook(path, force) {
+                Ok(path) => {
+                    println!(
+                        "[snark] prepare-commit-msg hook installed at {}",
+                        path.display()
+                    );
+                    return 0;
+                }
+                Err(err) => {
+                    eprintln!("[snark] failed to install hook: {err}");
+                    return 1;
+                }
+            },
+        }
+    }
+
     let story = build_story(cli.seed);
 
     if let Some(path) = cli.hook.as_ref() {

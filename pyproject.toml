@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snark-plan"
+version = "0.1.0"
+description = "BDSM space-pirate commit planner and preview engine"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Velvet Chains Maintainers", email = "snark@voidlight.dev" }]
+keywords = ["git", "commit", "cli", "nsfw", "space-pirate"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Topic :: Software Development :: Version Control",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/velvet-chains/snark_tester"
+Repository = "https://github.com/velvet-chains/snark_tester"
+
+[project.scripts]
+snark-plan = "generate_snark:main"
+
+[tool.setuptools]
+py-modules = ["generate_snark"]
