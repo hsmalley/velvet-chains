@@ -22,8 +22,8 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/velvet-chains/snark_tester"
-Repository = "https://github.com/velvet-chains/snark_tester"
+Homepage = "https://github.com/velvet-chains/velvet-chains"
+Repository = "https://github.com/velvet-chains/velvet-chains"
 
 [project.scripts]
 voidlight-plan = "voidlight_choreographer:main"

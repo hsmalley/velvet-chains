@@ -86,7 +86,7 @@ voidlight-plan --help
 Or pull straight from the repo:
 
 ```bash
-pip install git+https://github.com/velvet-chains/snark_tester.git
+pip install git+https://github.com/velvet-chains/velvet-chains.git
 ```
 
 Use `voidlight-plan` exactly like `voidlight_choreographer.py`—all flags carry over, now globally available on your path.
