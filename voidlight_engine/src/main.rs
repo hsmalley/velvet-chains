@@ -380,10 +380,7 @@ fn handle_hook(path: &Path, source: Option<&str>, story: &str) -> io::Result<()>
 }
 
 fn run_commit(cli: &Cli, story: &str) -> io::Result<i32> {
-    let base = cli
-        .message
-        .clone()
-        .unwrap_or_else(|| "Voidlight flourish".to_string());
+    let base = cli.message.clone().unwrap_or_else(|| "Voidlight flourish".to_string());
     let full_message = format!("{base}\n\n✨ {story}");
 
     let mut cmd = Command::new("git");

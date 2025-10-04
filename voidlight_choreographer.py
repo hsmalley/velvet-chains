@@ -34,7 +34,7 @@ import sys
 from collections import OrderedDict, defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime, date, time, timedelta
+from datetime import UTC, date, datetime, time, timedelta
 from math import ceil
 from pathlib import Path
 
@@ -150,8 +150,7 @@ def run_git(
         ["git", *cmd_args],
         cwd=repo_path,
         env=env,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        capture_output=True,
         check=False,
     )
     if check and proc.returncode != 0:
@@ -359,8 +358,8 @@ def parse_ymd(s: str) -> date:
     """Parse YYYY-MM-DD to date."""
     try:
         return datetime.strptime(s, "%Y-%m-%d").date()
-    except Exception:
-        raise argparse.ArgumentTypeError("Dates must be YYYY-MM-DD")
+    except Exception as exc:
+        raise argparse.ArgumentTypeError("Dates must be YYYY-MM-DD") from exc
 
 
 def daterange(start: date, end: date):
@@ -785,7 +784,7 @@ def main() -> None:
             run_git(["add", target_file_rel], repo)
         except subprocess.CalledProcessError as exc:
             print("git add failed:", exc.stderr.decode().strip())
-            raise SystemExit(1)
+            raise SystemExit(1) from exc
 
         env = os.environ.copy()
         env["GIT_AUTHOR_DATE"] = author_iso
@@ -805,10 +804,10 @@ def main() -> None:
                         "Commit failed even with --allow-empty:",
                         secondary.stderr.decode().strip(),
                     )
-                    raise SystemExit(1)
+                    raise SystemExit(1) from exc
             else:
                 print("git commit failed:", stderr)
-                raise SystemExit(1)
+                raise SystemExit(1) from exc
 
         if i % 25 == 0 or i == total:
             print(f"  -> created {i}/{total} commits (latest author date {author_iso})")

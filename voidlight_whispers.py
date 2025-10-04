@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import random
-from typing import List
 
 # Structured components for grammatically consistent NSFW space-pirate snark.
 _SUBJECTS = [
@@ -200,8 +199,8 @@ _EMOJI_SWIRL = [
 ]
 
 
-def _build_messages() -> List[str]:
-    combos: List[str] = []
+def _build_messages() -> list[str]:
+    combos: list[str] = []
     choices = random.Random(777)
     seen = set()
     while len(combos) < 3000:
