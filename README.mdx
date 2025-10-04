@@ -71,6 +71,30 @@ git config core.hooksPath hooks
 
 Git will happily execute the repo’s `hooks/` directory on every commit.
 
+### Optional: `git snark` Plugin
+
+Promote the included script into a full-fledged subcommand:
+
+```bash
+chmod +x git-snark
+ln -s "$(pwd)/git-snark" /usr/local/bin/git-snark
+```
+
+Alias lovers can stay in Git-land:
+
+```bash
+chmod +x git-snark
+git config alias.snark '!"$(pwd)/git-snark"'
+```
+
+Then simply:
+
+```bash
+git snark -a -m "Refactor release valve" -- -- path/to/file
+```
+
+It stages (if asked), commits, and auto-appends a random flourish—all consensually outrageous.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History

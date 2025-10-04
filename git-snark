@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""git-subcommand that commits with a glitter-drenched snark footer."""
+
+from __future__ import annotations
+
+import argparse
+import subprocess
+import sys
+from pathlib import Path
+
+
+def _repo_root() -> Path:
+    script_path = Path(__file__).resolve()
+    candidate = script_path.parent
+    for _ in range(6):
+        if (candidate / "snark_messages.py").exists():
+            return candidate
+        if candidate.parent == candidate:
+            break
+        candidate = candidate.parent
+    raise SystemExit("Could not locate snark_messages.py relative to git-snark")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Commit with an auto-appended kinky snark footer"
+    )
+    parser.add_argument(
+        "-m",
+        "--message",
+        help="Primary commit message subject (defaults to 'Snark drop').",
+    )
+    parser.add_argument(
+        "-a",
+        "--all",
+        action="store_true",
+        help="Stage modified and deleted files before committing.",
+    )
+    parser.add_argument(
+        "--no-verify",
+        action="store_true",
+        help="Bypass pre-commit and commit-msg hooks.",
+    )
+    parser.add_argument(
+        "--signoff",
+        action="store_true",
+        help="Add Signed-off-by trailer.",
+    )
+    parser.add_argument(
+        "--amend",
+        action="store_true",
+        help="Amend the previous commit without creating a new one.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Show the git command without executing it.",
+    )
+    parser.add_argument(
+        "extra",
+        nargs=argparse.REMAINDER,
+        help="Any additional flags/paths (prefix with -- to pass to git).",
+    )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    repo_root = _repo_root()
+    sys.path.insert(0, str(repo_root))
+
+    from snark_messages import pick_snarky_message  # type: ignore
+
+    base_message = args.message or "Snark drop"
+    flourish = pick_snarky_message()
+    full_message = f"{base_message}\n\n✨ {flourish}"
+
+    commit_cmd: list[str] = ["git", "commit", "-m", full_message]
+    if args.all:
+        commit_cmd.append("-a")
+    if args.no_verify:
+        commit_cmd.append("--no-verify")
+    if args.signoff:
+        commit_cmd.append("--signoff")
+    if args.amend:
+        commit_cmd.append("--amend")
+
+    if args.extra:
+        extras = args.extra
+        if extras and extras[0] == "--":
+            extras = extras[1:]
+        commit_cmd.extend(extras)
+
+    if args.dry_run:
+        print("Dry run:", " ".join(commit_cmd))
+        return 0
+
+    try:
+        subprocess.run(commit_cmd, check=True)
+    except subprocess.CalledProcessError as exc:  # pragma: no cover
+        return exc.returncode
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

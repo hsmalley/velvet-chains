@@ -55,6 +55,30 @@ git config core.hooksPath hooks
 
 Git will now execute the shipped hook (and any future glitter weapons) without extra copying.
 
+### Optional: `git snark` Plugin
+
+Want a dedicated subcommand? Drop the bundled script somewhere on your `$PATH`:
+
+```bash
+chmod +x git-snark
+ln -s "$(pwd)/git-snark" /usr/local/bin/git-snark  # adjust destination as needed
+```
+
+Or wire it into Git’s alias system:
+
+```bash
+chmod +x git-snark
+git config alias.snark '!"$(pwd)/git-snark"'
+```
+
+Usage becomes delightfully simple:
+
+```bash
+git snark -a -m "Refactor release valve" -- -- path/to/file
+```
+
+The command stages (optional `-a`), commits, and appends a random flourish from the snark vault in one swoop.
+
 ## 🚀 Quick Start Fantasia
 
 ### Preview Without Touching Git History
