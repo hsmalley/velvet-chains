@@ -1,0 +1,26 @@
+# Bytecode + artifacts
+__pycache__/
+*.py[cod]
+.Python
+*.so
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Editor/project files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Test & coverage output
+.pytest_cache/
+htmlcov/
+.coverage*
+
+# Repo-specific doodads
+planned_commits_preview_*.json
+.generated_commits.txt
+hooks/__pycache__/
