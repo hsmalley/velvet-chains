@@ -232,9 +232,7 @@ fn build_story(seed: Option<u64>) -> String {
     let finale = pick(&mut rng, FINALES);
     let emoji = pick(&mut rng, EMOJIS);
 
-    format!(
-        "{subject} {opener}. {tide}. {pledge}. {finale}. {emoji}"
-    )
+    format!("{subject} {opener}. {tide}. {pledge}. {finale}. {emoji}")
 }
 
 fn append_to_message(path: &Path, story: &str) -> io::Result<()> {
@@ -321,7 +319,9 @@ fn install_hook(path: Option<PathBuf>, force: bool) -> io::Result<PathBuf> {
         let output = Command::new("git")
             .args(["rev-parse", "--git-dir"])
             .output()
-            .map_err(|err| io::Error::new(ErrorKind::Other, format!("git rev-parse failed: {err}")))?;
+            .map_err(|err| {
+                io::Error::new(ErrorKind::Other, format!("git rev-parse failed: {err}"))
+            })?;
 
         if !output.status.success() {
             return Err(io::Error::new(
@@ -383,7 +383,10 @@ fn handle_hook(path: &Path, source: Option<&str>, story: &str) -> io::Result<()>
 }
 
 fn run_commit(cli: &Cli, story: &str) -> io::Result<i32> {
-    let base = cli.message.clone().unwrap_or_else(|| "Snark drop".to_string());
+    let base = cli
+        .message
+        .clone()
+        .unwrap_or_else(|| "Snark drop".to_string());
     let full_message = format!("{base}\n\n✨ {story}");
 
     let mut cmd = Command::new("git");
