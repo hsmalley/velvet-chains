@@ -1,12 +1,12 @@
 use clap::{ArgAction, Parser, Subcommand};
+use rand::prelude::IndexedRandom;
 use rand::rngs::{OsRng, StdRng};
-use rand::seq::SliceRandom;
 use rand::SeedableRng;
 use std::env;
 use std::fs::{self, OpenOptions};
 use std::io::{self, ErrorKind, Write};
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use std::process::{self, Command};
 
 #[cfg(unix)]
 use std::os::unix::fs::PermissionsExt;
@@ -222,7 +222,10 @@ fn pick<'a>(rng: &mut StdRng, pool: &'a [&'a str]) -> &'a str {
 fn build_story(seed: Option<u64>) -> String {
     let mut rng = match seed {
         Some(value) => StdRng::seed_from_u64(value),
-        None => StdRng::from_rng(OsRng).expect("OS entropy should be available"),
+        None => {
+            let mut os_rng = OsRng;
+            StdRng::from_rng(&mut os_rng).expect("OS entropy should be available")
+        }
     };
 
     let subject = pick(&mut rng, SUBJECTS);
@@ -418,7 +421,12 @@ fn run_commit(cli: &Cli, story: &str) -> io::Result<i32> {
     Ok(status.code().unwrap_or_default())
 }
 
-fn main() -> i32 {
+fn main() {
+    let code = run_cli();
+    process::exit(code);
+}
+
+fn run_cli() -> i32 {
     let cli = Cli::parse();
 
     if let Some(command) = cli.command.clone() {
