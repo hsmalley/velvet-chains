@@ -13,7 +13,7 @@ This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** eve
 
 Welcome to the brig, darling. This repository is a **BDSM space-pirate romance engine** disguised as a git toolchain. It fabricates historical commits, spins NSFW micro-novellas, and drenches your history in consensual decadence. Read the safe word (_“fiction”_) twice, then proceed at your own peril.
 
-[🏴‍☠️ For those eager to embark on the legendary campaign, set sail for the game here! ⚔️✨](https://hsmalley.github.io/velvet-chains/#velvet-chains-voidlight-campaign-template)
+[🏴‍☠️ For those eager to embark on the legendary campaign, set sail for the game here! ⚔️✨](https://hsmalley.github.io/velvet-chains-ttrpg/)
 
 ## 🌌 **SPECTACULAR FEATURE ARSENAL** ⚡
 
