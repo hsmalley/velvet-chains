@@ -5,6 +5,8 @@ name: 🏴‍☠️ Voidlight Rituals
 on:
   push:
     branches: ["main"]
+    tags:
+      - "v*" # Run on tags starting with 'v'
   pull_request:
     branches: ["main"]
 
