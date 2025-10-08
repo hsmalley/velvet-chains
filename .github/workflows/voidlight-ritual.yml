@@ -94,7 +94,7 @@ jobs:
             voidlight_engine/target/${{ matrix.target }}/release/git-voidlight*
             !voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.d
 
-      - name: 🚀 Publish to crates.io (Linux only, to avoid multiple publishes)
+      - name: 🌌 Launch Voidlight into the Cosmic Registry
         if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Only publish once
         run: cargo publish --manifest-path voidlight_engine/Cargo.toml
         env:
