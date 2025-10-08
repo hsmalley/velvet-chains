@@ -16,12 +16,7 @@ jobs:
       - name: 📦 Summon repository from the void
         uses: actions/checkout@v5
 
-      - name: 🔥 Forge Python 3.12 environment
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: 📦 Setup uv
+      - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
 
       - name: ⚓ Provision corsair development arsenal
@@ -114,7 +109,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 📦 Setup uv
+      - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
 
       - name: ⚓ Assemble packaging arsenal
