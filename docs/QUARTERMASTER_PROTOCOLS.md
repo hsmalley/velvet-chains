@@ -219,13 +219,16 @@ cargo clean --manifest-path voidlight_engine/Cargo.toml
 
 **Python environment complications:**
 ```bash
+# Ensure latest uv installation
+uv self update
+
 # Verify ruff installation and functionality
-python3 -m pip install --upgrade ruff
-ruff --version
+uv pip install ruff
+uv run ruff --version
 
 # Test ruff functionality independently
-ruff format --check voidlight_choreographer.py
-ruff check voidlight_choreographer.py
+uv run ruff format --check voidlight_choreographer.py
+uv run ruff check voidlight_choreographer.py
 ```
 
 ## 🌟 **QUALITY ASSURANCE MASTERY ACHIEVEMENT**

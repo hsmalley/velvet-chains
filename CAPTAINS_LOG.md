@@ -28,12 +28,12 @@ Welcome to the brig, darling. This repository is a **BDSM space-pirate romance e
 
 - **Python 3.12+** - The **MAGNIFICENT CHOREOGRAPHY ENGINE** that orchestrates temporal magic (`voidlight_choreographer.py`)! 🐍✨
 - **Rust (cargo 1.70+)** - The **STEEL-FORGED BINARY HEART** powering git hooks & `git voidlight` subcommands with **UNSTOPPABLE PRECISION**! 🦀⚔️
-- **Optional Excellence**: `pip install ruff` to make your **LINTING DOMINATRIX PURR** with satisfaction! 💅
+- **Optional Excellence**: `uv pip install ruff` to make your **LINTING DOMINATRIX PURR** with satisfaction! 💅
 
 Initial setup:
 
 ```bash
-python3.12 -m pip install --upgrade ruff
+uv pip install ruff
 chmod +x voidlight_choreographer.py
 ```
 
@@ -92,14 +92,14 @@ Skip `--commit` to simply print a fresh tale to stdout—perfect for `CAPTAINS_L
 Prefer the Python planner? Package it as a CLI:
 
 ```bash
-pip install .
+uv pip install .
 voidlight-plan --help
 ```
 
 Or pull straight from the repo:
 
 ```bash
-pip install git+https://github.com/velvet-chains/velvet-chains.git
+uv pip install git+https://github.com/velvet-chains/velvet-chains.git
 ```
 
 Use `voidlight-plan` exactly like `voidlight_choreographer.py`—all flags carry over, now globally available on your path.
@@ -208,7 +208,7 @@ If validation fails (missing frontmatter, duplicate indices, unsafe ordering), t
 Ensure `pyyaml` is installed locally if you invoke the validator directly:
 
 ```bash
-python3 -m pip install pyyaml
+uv pip install pyyaml
 ```
 
 Captain Velvet purrs approvingly when your lore sails clean. ✨

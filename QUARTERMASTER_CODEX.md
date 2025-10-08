@@ -65,11 +65,11 @@
    pre-commit install
 
    # Setup Python choreography environment
-   python3.12 -m pip install --upgrade ruff
+   uv pip install ruff
    chmod +x voidlight_choreographer.py
 
    # Forge the Rust engine heart
-   cargo install --path voidlight_engine --force
+   cargo install --path voidlight_engine --force # Or `cargo install voidlight` if published to crates.io
    ```
 
 3. **🎭 CREATE THEATRICAL EXCELLENCE**
