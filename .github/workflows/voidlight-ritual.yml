@@ -23,18 +23,16 @@ jobs:
         run: uv venv
 
       - name: ⚓ Provision corsair development arsenal
-        run: |
-          source .venv/bin/activate # Activate the venv
-          uv pip install ruff
+        run: uv pip install ruff
 
       - name: ✨ Polish Python formatting until it gleams
-        run: ruff format --check voidlight_choreographer.py voidlight_whispers.py
+        run: uv run ruff format --check voidlight_choreographer.py voidlight_whispers.py
 
       - name: 🎭 Submit to the linting dominatrix
-        run: ruff check voidlight_choreographer.py voidlight_whispers.py
+        run: uv run ruff check voidlight_choreographer.py voidlight_whispers.py
 
       - name: 🧪 Ensure bytecode compiles without choking
-        run: PYTHONPYCACHEPREFIX=./.pycache python -m compileall voidlight_choreographer.py voidlight_whispers.py
+        run: uv run python -m compileall voidlight_choreographer.py voidlight_whispers.py
 
   rust-check:
     name: ⚔️ Rust Engine Sanctification
@@ -120,15 +118,13 @@ jobs:
         run: uv venv
 
       - name: ⚓ Assemble packaging arsenal
-        run: |
-          source .venv/bin/activate # Activate the venv
-          uv pip install build twine
+        run: uv pip install build twine
 
       - name: 🎭 Craft distributable Python package
-        run: python -m build
+        run: uv run python -m build
 
       - name: 🛡️ Verify package meets corsair standards
-        run: twine check dist/*
+        run: uv run twine check dist/*
 
       - name: 🏴‍☠️ Prepare package for treasure distribution
         uses: actions/upload-artifact@v4
