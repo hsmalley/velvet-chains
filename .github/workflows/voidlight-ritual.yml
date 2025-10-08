@@ -19,8 +19,12 @@ jobs:
       - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
 
+      - name: 🐍 Weave Python's Choreography Space
+        run: uv venv
+
       - name: ⚓ Provision corsair development arsenal
         run: |
+          source .venv/bin/activate # Activate the venv
           uv pip install ruff
 
       - name: ✨ Polish Python formatting until it gleams
@@ -112,8 +116,12 @@ jobs:
       - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
 
+      - name: 🐍 Weave Python's Choreography Space
+        run: uv venv
+
       - name: ⚓ Assemble packaging arsenal
         run: |
+          source .venv/bin/activate # Activate the venv
           uv pip install build twine
 
       - name: 🎭 Craft distributable Python package
