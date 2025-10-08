@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "voidlight-plan"
-version = "0.1.0"
+version = "0.1.1"
 description = "BDSM space-pirate commit planner and preview engine"
 readme = "CAPTAINS_LOG.md"
 requires-python = ">=3.12"
