@@ -3,8 +3,8 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "voidlight-plan"
-version = "0.1.1"
+name = "voidlight_choreographer"
+version = "0.1.2"
 description = "BDSM space-pirate commit planner and preview engine"
 readme = "CAPTAINS_LOG.md"
 requires-python = ">=3.12"
