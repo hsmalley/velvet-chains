@@ -21,10 +21,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 📦 Setup uv
+        uses: astral-sh/setup-uv@v1
+
       - name: ⚓ Provision corsair development arsenal
         run: |
-          python -m pip install --upgrade pip
-          pip install ruff
+          uv pip install ruff
 
       - name: ✨ Polish Python formatting until it gleams
         run: ruff format --check voidlight_choreographer.py voidlight_whispers.py
@@ -112,10 +114,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 📦 Setup uv
+        uses: astral-sh/setup-uv@v1
+
       - name: ⚓ Assemble packaging arsenal
         run: |
-          python -m pip install --upgrade pip
-          pip install build twine
+          uv pip install build twine
 
       - name: 🎭 Craft distributable Python package
         run: python -m build
