@@ -94,6 +94,12 @@ jobs:
             voidlight_engine/target/${{ matrix.target }}/release/git-voidlight*
             !voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.d
 
+      - name: 🚀 Publish to crates.io (Linux only, to avoid multiple publishes)
+        if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Only publish once
+        run: cargo publish --manifest-path voidlight_engine/Cargo.toml
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
   python-package:
     name: 🐍 Choreographer Package Assembly
     runs-on: ubuntu-latest
