@@ -38,7 +38,7 @@ jobs:
       - name: ⚔️ Forge the Spectacle - Build the Site
         run: npm run build
       - name: 📜 Archive the Bounty - Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
   deploy:
