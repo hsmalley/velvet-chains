@@ -22,7 +22,7 @@ jobs:
       - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
         uses: actions/checkout@v5
       - name: 🏴‍☠️ Prepare the Ship - Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
           cache: npm
