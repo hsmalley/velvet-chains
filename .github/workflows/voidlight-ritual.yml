@@ -17,7 +17,7 @@ jobs:
       - name: 📦 Summon repository from the void
         uses: actions/checkout@v5
       - name: ✨ Invoke uv's Cosmic Power
-        uses: astral-sh/setup-uv@v1
+        uses: astral-sh/setup-uv@v7
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
       - name: ⚓ Provision corsair development arsenal
@@ -96,7 +96,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: ✨ Invoke uv's Cosmic Power
-        uses: astral-sh/setup-uv@v1
+        uses: astral-sh/setup-uv@v7
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
       - name: ⚓ Assemble packaging arsenal
