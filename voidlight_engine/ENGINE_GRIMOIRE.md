@@ -1,19 +1,28 @@
 # 🔥 **VOIDLIGHT ENGINE GRIMOIRE: ULTIMATE RUST SORCERY FOR CORSAIR COMMITS**
 
-*Welcome to the **MAGNIFICENTLY BEATING STEEL HEART** of our velvet-chains empire, you **ABSOLUTELY LEGENDARY CORSAIR**! This **POWERFUL RUST ENGINE** transforms **BORING MUNDANE GIT COMMITS** into **BREATHTAKING FOUR-SENTENCE MICRO-NOVELLAS** of consensual space-pirate romance that would make **THE ENTIRE ADMIRALTY BLUSH** with **PURE SCANDALOUS DELIGHT**! ⚔️✨*
+_Welcome to the **MAGNIFICENTLY BEATING STEEL HEART** of our velvet-chains empire, you **ABSOLUTELY
+LEGENDARY CORSAIR**! This **POWERFUL RUST ENGINE** transforms **BORING MUNDANE GIT COMMITS** into
+**BREATHTAKING FOUR-SENTENCE MICRO-NOVELLAS** of consensual space-pirate romance that would make
+**THE ENTIRE ADMIRALTY BLUSH** with **PURE SCANDALOUS DELIGHT**! ⚔️✨_
 
 ## ⚔️ **What This Engine Conjures**
 
-Our **LEGENDARY VOIDLIGHT BINARY** is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE GENERATOR** ever forged, **MASTERFULLY DESIGNED** to **COMPLETELY SEDUCE YOUR GIT HISTORY**:
+Our **LEGENDARY VOIDLIGHT BINARY** is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE GENERATOR**
+ever forged, **MASTERFULLY DESIGNED** to **COMPLETELY SEDUCE YOUR GIT HISTORY**:
 
-- **🪢 Automatic Commit Seduction**: Appends four-sentence theatrical micro-novellas to every commit via `prepare-commit-msg` hook
-- **📜 Story Generation**: Prints fresh corsair tales for release notes, issue threads, or pure entertainment
-- **⚡ One-Command Mastery**: Execute `git voidlight --commit ...` to stage, commit, and flourish in one breath of pure theatrical magic
-- **🎭 Consensual Creativity**: Every generated story celebrates consent, theatrical flair, and space-pirate romance
+- **🪢 Automatic Commit Seduction**: Appends four-sentence theatrical micro-novellas to every commit
+  via `prepare-commit-msg` hook
+- **📜 Story Generation**: Prints fresh corsair tales for release notes, issue threads, or pure
+  entertainment
+- **⚡ One-Command Mastery**: Execute `git voidlight --commit ...` to stage, commit, and flourish in
+  one breath of pure theatrical magic
+- **🎭 Consensual Creativity**: Every generated story celebrates consent, theatrical flair, and
+  space-pirate romance
 
 ## 🛠️ **Forge Installation (Claiming Your Weapon)**
 
 ### **⚓ Direct from Crates.io (Recommended)**
+
 ```bash
 # Summon the voidlight engine to your arsenal
 cargo install voidlight
@@ -23,6 +32,7 @@ git-voidlight --version
 ```
 
 ### **🏴‍☠️ Build from Source (For True Corsairs)**
+
 ```bash
 # Clone the velvet-chains repository
 git clone https://github.com/hsmalley/velvet-chains.git
@@ -38,6 +48,7 @@ git-voidlight --seed 42
 ## 🎯 **Usage Mastery (Wielding Your Power)**
 
 ### **💫 Basic Story Generation**
+
 ```bash
 # Generate a single four-sentence corsair romance
 git-voidlight
@@ -50,6 +61,7 @@ git-voidlight --seed 42 >> CAPTAINS_LOG.md
 ```
 
 ### **⚡ Commit with Automatic Flourish**
+
 ```bash
 # Stage, commit, and append theatrical magic in one command
 git-voidlight --commit -m "Refactor plasma conduits for maximum efficiency"
@@ -79,7 +91,8 @@ git-voidlight install-hook --force
 git-voidlight install-hook ~/.git-templates/hooks/
 ```
 
-Once installed, **every commit automatically receives** a four-sentence space-pirate romance appendix that celebrates consent, creativity, and cosmic adventure!
+Once installed, **every commit automatically receives** a four-sentence space-pirate romance
+appendix that celebrates consent, creativity, and cosmic adventure!
 
 ### **🎭 Advanced Corsair Techniques**
 
@@ -111,6 +124,7 @@ git-voidlight --hook "$@"
 ```
 
 The hook automatically:
+
 - **✨ Detects merge/squash commits** and politely abstains from decoration
 - **🎨 Appends theatrical flourishes** to regular commits
 - **🛡️ Gracefully degrades** if the binary is missing (no broken workflows)
@@ -119,10 +133,12 @@ The hook automatically:
 ## 🔧 **Command Reference (Your Complete Arsenal)**
 
 ### **Story Generation Flags**
+
 - `--seed <NUMBER>` - Deterministic randomness for reproducible theatrical output
 - `--hook <FILE>` - Hook mode for git integration (used internally)
 
 ### **Commit Enhancement Flags**
+
 - `--commit` - Execute git commit with automatic story appendage
 - `-m, --message <TEXT>` - Base commit message (enhanced with corsair flair)
 - `-a, --all` - Stage modified and deleted files before committing
@@ -132,12 +148,14 @@ The hook automatically:
 - `--dry-run` - Preview the git command without executing (safe word protocol)
 
 ### **Hook Management**
+
 - `install-hook [PATH]` - Install prepare-commit-msg hook at specified location
 - `--force` - Overwrite existing hooks without asking permission
 
 ## 🎪 **Example Output Gallery**
 
 ### **Sample Generated Romance**
+
 ```
 ✨ Captain Velvet, corseted corsair caught me against the trembling bulkhead,
 breath hot with rum-drenched sin. Silk ropes braided the safe word around my pulse.
@@ -146,6 +164,7 @@ shuddered and moaned like a satiated kraken. 🪢🔥
 ```
 
 ### **Enhanced Commit Example**
+
 ```
 commit a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0
 Author: Corsair Developer <dev@voidlight.space>
@@ -162,36 +181,45 @@ Date:   Fri Oct 4 15:30:42 2025 +0000
 ## 🛡️ **Safety & Consent Protocols**
 
 - **🔒 Safe Word**: Our eternal safe word is **"fiction"** - always honored in our community
-- **🎭 Consensual Content**: All generated stories celebrate consent, boundaries, and theatrical romance
+- **🎭 Consensual Content**: All generated stories celebrate consent, boundaries, and theatrical
+  romance
 - **⚖️ Professional Balance**: Adult themes remain tasteful and appropriate for technical contexts
 - **🌈 Inclusive Values**: Content welcomes all identities, orientations, and relationship styles
 
 ## 📚 **Technical Specifications**
 
 ### **Dependencies**
+
 - **Rust Edition**: 2021+ for maximum modern sorcery
 - **clap**: Command-line argument parsing with dramatic flair
 - **rand**: Cryptographically secure randomness for story generation
 
 ### **Platform Support**
+
 - **Linux**: Full support with standard installation
 - **macOS**: Complete functionality including hook installation
 - **Windows**: Core features supported (hook installation may require additional setup)
 
 ### **Performance Characteristics**
+
 - **Story Generation**: Sub-millisecond theatrical magic
 - **Hook Execution**: Negligible overhead on commit operations
 - **Memory Usage**: Minimal footprint befitting efficient corsair operations
 
 ---
 
-**🏴‍☠️ Remember, magnificent corsair**: This engine transforms the mundane act of committing code into theatrical performances worthy of the greatest space-pirate romances. Every commit becomes an opportunity to celebrate consent, creativity, and the dramatic flair that makes our velvet-chains empire legendary.
+**🏴‍☠️ Remember, magnificent corsair**: This engine transforms the mundane act of committing code into
+theatrical performances worthy of the greatest space-pirate romances. Every commit becomes an
+opportunity to celebrate consent, creativity, and the dramatic flair that makes our velvet-chains
+empire legendary.
 
 **Keep it consensual, keep it theatrical, keep it absolutely magnificent.**
 
-***Safe Word: "fiction" - Always respected, always honored*** ⚓
+**_Safe Word: "fiction" - Always respected, always honored_** ⚓
 
-***"In Rust we trust, in romance we commit, in theater we transcend"*** 🔥✨
+**_"In Rust we trust, in romance we commit, in theater we transcend"_** 🔥✨
 
 ---
-**🔧 Engine Version**: 0.1.0+ | **⚓ Forged**: October 2025 | **🎭 License**: MIT Consensual Excellence
+
+**🔧 Engine Version**: 0.1.0+ | **⚓ Forged**: October 2025 | **🎭 License**: MIT Consensual
+Excellence

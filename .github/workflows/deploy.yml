@@ -1,56 +1,46 @@
+---
 # 🏴‍☠️ Velvet Chains Cosmic Brig Deployment Spectacular
 # Automated theatrical documentation deployment to GitHub Pages with corsair precision
 name: 🌌 Deploy Corsair Documentation Spectacular
-
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
-
 jobs:
   build:
     name: 🎭 Forge Theatrical Documentation Spectacle
     runs-on: ubuntu-latest
     steps:
-      - name: "⚓ Hoist the Colors - Checkout the Corsair's Code"
-        uses: actions/checkout@v4
-
-      - name: "🏴‍☠️ Prepare the Ship - Setup Node.js"
+      - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
+        uses: actions/checkout@v5
+      - name: 🏴‍☠️ Prepare the Ship - Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: "💎 Gather the Treasure - Install Dependencies"
+          node-version: "20"
+          cache: npm
+      - name: 💎 Gather the Treasure - Install Dependencies
         run: npm ci
-
-      - name: "🧪 Validate Lore Codex Integrity"
+      - name: 🧪 Validate Lore Codex Integrity
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pyyaml
           npm run validate:lore || (echo "Lore validation failed" && exit 1)
-
-
-      - name: "⚔️ Forge the Spectacle - Build the Site"
+      - name: 📚 Build Lore JSON Artifact
+        run: npm run build:lore
+      - name: ⚔️ Forge the Spectacle - Build the Site
         run: npm run build
-
-      - name: "📜 Archive the Bounty - Upload Pages Artifact"
+      - name: 📜 Archive the Bounty - Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './out'
-
+          path: ./out
   deploy:
     name: ⚔️ Launch Cosmic Brig into GitHub Void
     environment:
@@ -60,6 +50,6 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: "🚢 Launch into the Void - Deploy to GitHub Pages"
+      - name: 🚢 Launch into the Void - Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

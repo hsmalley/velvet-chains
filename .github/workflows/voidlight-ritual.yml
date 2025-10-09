@@ -1,15 +1,14 @@
+---
 # 🏴‍☠️ Velvet Chains Corsair Ceremonials
 # Automated rituals to ensure our space-pirate empire maintains theatrical excellence
 name: 🏴‍☠️ Voidlight Rituals
-
 on:
   push:
-    branches: ["main"]
+    branches: [main]
     tags:
-      - "v*" # Run on tags starting with 'v'
+      - v* # Run on tags starting with 'v'
   pull_request:
-    branches: ["main"]
-
+    branches: [main]
 jobs:
   lint-and-test:
     name: 🐍 Python Choreographer Ceremonies
@@ -17,48 +16,36 @@ jobs:
     steps:
       - name: 📦 Summon repository from the void
         uses: actions/checkout@v5
-
       - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
-
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
-
       - name: ⚓ Provision corsair development arsenal
         run: uv pip install ruff
-
       - name: ✨ Polish Python formatting until it gleams
         run: uv run ruff format --check voidlight_choreographer.py voidlight_whispers.py
-
       - name: 🎭 Submit to the linting dominatrix
         run: uv run ruff check voidlight_choreographer.py voidlight_whispers.py
-
       - name: 🧪 Ensure bytecode compiles without choking
         run: uv run python -m compileall voidlight_choreographer.py voidlight_whispers.py
-
   rust-check:
     name: ⚔️ Rust Engine Sanctification
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Retrieve sacred codebase from digital depths
         uses: actions/checkout@v5
-
       - name: 🔨 Anoint Rust toolchain with power
         uses: dtolnay/rust-toolchain@stable
-
       - name: 💎 Hammer Rust into perfect aesthetic form
         run: |
           rustup component add rustfmt
           cargo fmt --manifest-path voidlight_engine/Cargo.toml --all -- --check
-
       - name: 🖤 Submit engine to clippy's merciless judgment
         run: |
           rustup component add clippy
           cargo clippy --manifest-path voidlight_engine/Cargo.toml --all-targets -- -D warnings
-
       - name: 🧨 Verify binary forges without exploding
         run: cargo test --manifest-path voidlight_engine/Cargo.toml --no-run
-
   release-artifacts:
     name: 🏆 Forge Corsair Armaments for Distribution
     if: startsWith(github.ref, 'refs/tags/v')
@@ -67,26 +54,25 @@ jobs:
         include:
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
-            platform: "🐧 Linux Stronghold"
+            platform: 🐧 Linux Stronghold
           - target: x86_64-apple-darwin
             os: macos-latest
-            platform: "🍎 macOS Sanctuary"
+            platform: 🍎 macOS Sanctuary
           - target: x86_64-pc-windows-msvc
             os: windows-latest
-            platform: "🪟 Windows Fortress"
+            platform: 🪟 Windows Fortress
     runs-on: ${{ matrix.os }}
     steps:
       - name: 📦 Acquire sacred source code
         uses: actions/checkout@v5
-
       - name: ⚔️ Consecrate Rust forge for ${{ matrix.platform }}
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
-
       - name: 🔥 Forge release-grade voidlight binary
-        run: cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{ matrix.target }}
-
+        run:
+          cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{
+          matrix.target }}
       - name: 🎁 Package corsair weaponry for deployment
         uses: actions/upload-artifact@v4
         with:
@@ -94,46 +80,36 @@ jobs:
           path: |
             voidlight_engine/target/${{ matrix.target }}/release/git-voidlight*
             !voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.d
-
       - name: 🌌 Launch Voidlight into the Cosmic Registry
         if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Only publish once
         run: cargo publish --manifest-path voidlight_engine/Cargo.toml
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-
   python-package:
     name: 🐍 Choreographer Package Assembly
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Retrieve Python sorcery from repository
         uses: actions/checkout@v5
-
       - name: 🔥 Establish Python 3.12 ritual environment
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
       - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v1
-
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
-
       - name: ⚓ Assemble packaging arsenal
         run: uv pip install build twine
-
       - name: 🎭 Craft distributable Python package
         run: uv run python -m build
-
       - name: 🛡️ Verify package meets corsair standards
         run: uv run twine check dist/*
-
       - name: 🏴‍☠️ Prepare package for treasure distribution
         uses: actions/upload-artifact@v4
         with:
           name: python-package
           path: dist/
-
       - name: 🐍 Ascend Python Package to the Cosmic Registry
         if: startsWith(github.ref, 'refs/tags/v')
         run: uv run twine upload dist/*

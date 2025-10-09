@@ -1,35 +1,33 @@
+---
 # 🏴‍☠️ Velvet Chains Fleet Maintenance Protocols
 # Automated dependency updates to keep our corsair arsenal sharp and secure
 # Because even space pirates need their weapons properly maintained!
-
 version: 2
 updates:
   # 🐍 Python Arsenal Maintenance (voidlight_choreographer & whispers)
-  - package-ecosystem: "pip"
-    directory: "/"
+  - package-ecosystem: pip
+    directory: /
     schedule:
-      interval: "weekly"  # Weekly inspection of our Python treasures
+      interval: weekly # Weekly inspection of our Python treasures
     open-pull-requests-limit: 5
     commit-message:
-      prefix: "⚓"
-      include: "scope"
-
+      prefix: ⚓
+      include: scope
   # ⚔️ Rust Engine Upkeep (voidlight binary sorcery)
-  - package-ecosystem: "cargo"
-    directory: "/voidlight_engine"
+  - package-ecosystem: cargo
+    directory: /voidlight_engine
     schedule:
-      interval: "weekly"  # Polish the steel weekly for maximum sharpness
+      interval: weekly # Polish the steel weekly for maximum sharpness
     open-pull-requests-limit: 5
     commit-message:
-      prefix: "🔥"
-      include: "scope"
-
+      prefix: 🔥
+      include: scope
   # 🤖 GitHub Actions Workflow Maintenance (our automation crew)
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "monthly"  # Monthly ritual to keep our CI/CD crew loyal
+      interval: monthly # Monthly ritual to keep our CI/CD crew loyal
     open-pull-requests-limit: 5
     commit-message:
-      prefix: "🎭"
-      include: "scope"
+      prefix: 🎭
+      include: scope

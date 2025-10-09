@@ -8,7 +8,12 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "deploy": "npm run build && npm run build:lore && npm run export",
+    "deploy": "npm run build:lore && npm run build && npm run export",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
     "validate:lore": "python3 scripts/validate_lore.py",
     "build:lore": "python3 scripts/build_lore_json.py"
   },
@@ -20,7 +25,6 @@
     "next": "^14.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "rehype-highlight": "^7.0.0",
     "rehype-stringify": "^10.0.1",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
@@ -31,8 +35,11 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "eslint": "^8.0.0",
+    "eslint": "^8.57.1",
     "eslint-config-next": "^14.0.0",
+    "eslint-config-prettier": "^9.1.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.0.0"
   },
   "keywords": [
@@ -53,5 +60,8 @@
   "homepage": "https://hsmalley.github.io/velvet-chains",
   "bugs": {
     "url": "https://github.com/hsmalley/velvet-chains/issues"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

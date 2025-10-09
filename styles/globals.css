@@ -2,7 +2,16 @@
 
 body {
   font-family: 'Crimson Text', 'Playfair Display', 'Times New Roman', serif;
-  background: linear-gradient(135deg, #000000 0%, #0a0005 15%, #0f0008 30%, #1a0010 45%, #0d0208 60%, #050002 80%, #000000 100%);
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0a0005 15%,
+    #0f0008 30%,
+    #1a0010 45%,
+    #0d0208 60%,
+    #050002 80%,
+    #000000 100%
+  );
   background-attachment: fixed;
   color: #e8d5e8;
   margin: 0;
@@ -11,13 +20,50 @@ body {
   min-height: 100vh;
 }
 
+/* Global resets and behaviors previously defined in _document */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Background accent overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 80%, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(190, 18, 60, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 /* Spectacular headers with dark romance corsair flair */
-h1, h2, h3, h4, h5, h6 {
-  background: linear-gradient(45deg, #d946ef 0%, #9333ea 25%, #c2410c 50%, #dc2626 75%, #be123c 100%);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background: linear-gradient(
+    45deg,
+    #d946ef 0%,
+    #9333ea 25%,
+    #c2410c 50%,
+    #dc2626 75%,
+    #be123c 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 25px rgba(217, 70, 239, 0.4), 0 0 50px rgba(147, 51, 234, 0.2);
+  text-shadow:
+    0 0 25px rgba(217, 70, 239, 0.4),
+    0 0 50px rgba(147, 51, 234, 0.2);
   font-weight: bold;
   letter-spacing: 0.02em;
 }
@@ -26,7 +72,9 @@ h1 {
   font-size: 3.5rem;
   text-align: center;
   margin-bottom: 2rem;
-  text-shadow: 0 0 30px rgba(217, 70, 239, 0.6), 0 0 60px rgba(147, 51, 234, 0.3);
+  text-shadow:
+    0 0 30px rgba(217, 70, 239, 0.6),
+    0 0 60px rgba(147, 51, 234, 0.3);
 }
 
 /* Code blocks with dark romance pirate aesthetics */
@@ -79,7 +127,9 @@ a {
 
 a:hover {
   color: #be123c;
-  text-shadow: 0 0 15px rgba(190, 18, 60, 0.6), 0 0 30px rgba(217, 70, 239, 0.4);
+  text-shadow:
+    0 0 15px rgba(190, 18, 60, 0.6),
+    0 0 30px rgba(217, 70, 239, 0.4);
   text-decoration: underline;
   text-decoration-color: rgba(190, 18, 60, 0.5);
 }
@@ -118,7 +168,8 @@ table {
   box-shadow: 0 8px 25px rgba(217, 70, 239, 0.2);
 }
 
-th, td {
+th,
+td {
   padding: 1.2rem;
   text-align: left;
   border-bottom: 1px solid rgba(217, 70, 239, 0.3);
@@ -228,8 +279,13 @@ th {
 
 /* Add subtle animations */
 @keyframes darkPulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 h1 {

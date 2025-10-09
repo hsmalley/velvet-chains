@@ -103,6 +103,9 @@ profiler.log
 # Husky internal shim
 .husky/_/
 
+# Local opt-in switches
+.enable-prepush-build
+
 # TypeScript spectral residue
 tsconfig.tsbuildinfo
 *.tsbuildinfo

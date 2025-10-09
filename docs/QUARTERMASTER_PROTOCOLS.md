@@ -1,21 +1,27 @@
 # ⚔️ QUARTERMASTER PROTOCOLS: CORSAIR CODE SANCTIFICATION RITUALS
 
-*Ahoy, magnificent corsair developer! These sacred protocols ensure every line of code sparkles with theatrical excellence while maintaining steel-sharp technical standards. Our quality enforcement dominatrix demands nothing less than perfection wrapped in velvet.*
+_Ahoy, magnificent corsair developer! These sacred protocols ensure every line of code sparkles with
+theatrical excellence while maintaining steel-sharp technical standards. Our quality enforcement
+dominatrix demands nothing less than perfection wrapped in velvet._
 
 ## 🎭 **PRE-COMMIT SENTINELS (Automated Excellence Guardians)**
 
-Our repository deploys **ruthlessly efficient pre-commit sentinels** that intercept every commit attempt, subjecting your code to rigorous theatrical quality inspection. These digital quartermaster protocols ensure:
+Our repository deploys **ruthlessly efficient pre-commit sentinels** that intercept every commit
+attempt, subjecting your code to rigorous theatrical quality inspection. These digital quartermaster
+protocols ensure:
 
 ### **🐍 Python Choreographer Sanctification**
 
 - **🎨 Velvet Code Formatting** - `ruff format` polishes Python to mirror-perfect corsair standards
-- **🔍 Linting Dominatrix Submission** - `ruff check` enforces modern Python practices with auto-correction
+- **🔍 Linting Dominatrix Submission** - `ruff check` enforces modern Python practices with
+  auto-correction
 - **🧪 Syntax Purity Validation** - AST parsing ensures your Python speaks fluent corsair
 - **📏 Line Length Discipline** - 88 characters of theatrical precision (no exceptions, darling)
 
 ### **⚔️ Rust Engine Quality Forging**
 
-- **🔧 Compilation Integrity** - `cargo check` prevents broken code from contaminating sacred history
+- **🔧 Compilation Integrity** - `cargo check` prevents broken code from contaminating sacred
+  history
 - **💎 Mirror Finish Formatting** - `cargo fmt` creates steel-sharp aesthetic consistency
 - **🔨 Clippy Dominatrix Judgment** - Warnings become errors under clippy's merciless standards
 - **🏗️ Release-Ready Building** - Binary compilation validation for deployment readiness
@@ -183,6 +189,7 @@ Our automated guardians prevent these common corsair development hazards:
 ### **🔧 Pre-Commit Sentinel Issues**
 
 **Hook execution failures:**
+
 ```bash
 # Verbose diagnostic information
 pre-commit run --all-files --verbose
@@ -195,6 +202,7 @@ pre-commit autoupdate && pre-commit run --all-files
 ```
 
 **Environment restoration rituals:**
+
 ```bash
 # Complete sentinel reinstallation
 pre-commit clean
@@ -208,6 +216,7 @@ pre-commit run ruff --all-files
 ### **🎭 Development Environment Issues**
 
 **Rust toolchain complications:**
+
 ```bash
 # Ensure latest Rust installation
 rustup update stable
@@ -218,6 +227,7 @@ cargo clean --manifest-path voidlight_engine/Cargo.toml
 ```
 
 **Python environment complications:**
+
 ```bash
 # Ensure latest uv installation
 uv self update
@@ -255,24 +265,30 @@ uv run ruff check voidlight_choreographer.py
 
 ## 🎉 **CONGRATULATIONS, CORSAIR QUARTERMASTER!**
 
-*You now command a **bulletproof quality assurance arsenal** that would make the most demanding admiralty weep with joy. Your velvet-chains repository enforces theatrical excellence automatically, ensuring every commit sparkles with professional-grade technical mastery.*
+_You now command a **bulletproof quality assurance arsenal** that would make the most demanding
+admiralty weep with joy. Your velvet-chains repository enforces theatrical excellence automatically,
+ensuring every commit sparkles with professional-grade technical mastery._
 
 **Key Achievements Unlocked:**
+
 - 🛡️ **Automated error prevention** before issues reach sacred git history
 - 🎨 **Consistent code aesthetics** across all contributors and environments
 - ⚡ **Rapid development cycles** without sacrificing quality standards
 - 🎭 **Theatrical flair** perfectly balanced with professional technical excellence
 - 🌟 **Contributor confidence** through comprehensive automated validation
 
-*Your quality sentinels now guard the repository with unwavering vigilance, ensuring that every line of code honors our corsair values: consensual, creative, technically excellent, and theatrically magnificent.*
+_Your quality sentinels now guard the repository with unwavering vigilance, ensuring that every line
+of code honors our corsair values: consensual, creative, technically excellent, and theatrically
+magnificent._
 
 **Safe word protocol: "fiction" - Always honored in all quality assurance contexts** ⚓
 
-*"In automation we trust, in quality we flourish, in theater we transcend"* 🎭✨
+_"In automation we trust, in quality we flourish, in theater we transcend"_ 🎭✨
 
 ---
 
 **🏴‍☠️ CORSAIR NAVIGATION:**
+
 - [Return to Main Repository](../README.md)
 - [Theatrical Demonstrations](../examples/THEATRICAL_DEMONSTRATIONS.md)
 - [Contribution Guidelines](../CORSAIR_CODEX.md)

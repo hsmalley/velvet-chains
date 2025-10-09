@@ -19,8 +19,13 @@ Captain Velvet decrees: Honor consent & structure! ⚔️
 from __future__ import annotations
 import re
 import sys
-import yaml
 from pathlib import Path
+
+# Optional dependency: PyYAML
+try:
+    import yaml  # type: ignore
+except Exception:  # noqa: BLE001
+    yaml = None  # type: ignore
 
 LORE_DIR = Path("_LORE_")
 ALLOWED_KEYS = {"title", "order", "tags", "draft"}
@@ -57,31 +62,41 @@ def main() -> int:
         fm_raw, body = split_frontmatter(raw)
         meta = {}
         if fm_raw:
-            try:
-                meta_loaded = yaml.safe_load(fm_raw)
-            except Exception as e:  # noqa: BLE001
-                errors.append(f"YAML parse error in {path.name}: {e}")
-                continue
-            if meta_loaded is None:
-                meta = {}
-            elif isinstance(meta_loaded, dict):
-                meta = meta_loaded
-            else:
-                errors.append(
-                    f"Frontmatter must be a mapping (key: value) in {path.name}; got {type(meta_loaded).__name__}. Example:\n"
-                    "---\n" "title: Example Title\n" "order: 10\n" "tags: [setting]\n" "draft: false\n" "---"
+            if yaml is None:
+                warnings.append(
+                    f"PyYAML not installed; skipping frontmatter validation for {path.name}"
                 )
-                continue
-            unknown = set(meta.keys()) - ALLOWED_KEYS
-            if unknown:
-                errors.append(f"Unknown frontmatter keys in {path.name}: {', '.join(sorted(unknown))}")
-            if 'order' in meta and not isinstance(meta['order'], int):
-                errors.append(f"order must be integer in {path.name}")
-            if 'tags' in meta:
-                if not isinstance(meta['tags'], list) or not all(isinstance(t, str) for t in meta['tags']):
-                    errors.append(f"tags must be list of strings in {path.name}")
-            if 'draft' in meta and not isinstance(meta['draft'], bool):
-                errors.append(f"draft must be boolean in {path.name}")
+                meta = {}
+            else:
+                try:
+                    meta_loaded = yaml.safe_load(fm_raw)
+                except Exception as e:  # noqa: BLE001
+                    errors.append(f"YAML parse error in {path.name}: {e}")
+                    continue
+                if meta_loaded is None:
+                    meta = {}
+                elif isinstance(meta_loaded, dict):
+                    meta = meta_loaded
+                else:
+                    errors.append(
+                        f"Frontmatter must be a mapping (key: value) in {path.name}; got {type(meta_loaded).__name__}. Example:\n"
+                        "---\n" "title: Example Title\n" "order: 10\n" "tags: [setting]\n" "draft: false\n" "---"
+                    )
+                    continue
+                unknown = set(meta.keys()) - ALLOWED_KEYS
+                if unknown:
+                    errors.append(
+                        f"Unknown frontmatter keys in {path.name}: {', '.join(sorted(unknown))}"
+                    )
+                if 'order' in meta and not isinstance(meta['order'], int):
+                    errors.append(f"order must be integer in {path.name}")
+                if 'tags' in meta:
+                    if not isinstance(meta['tags'], list) or not all(
+                        isinstance(t, str) for t in meta['tags']
+                    ):
+                        errors.append(f"tags must be list of strings in {path.name}")
+                if 'draft' in meta and not isinstance(meta['draft'], bool):
+                    errors.append(f"draft must be boolean in {path.name}")
         else:
             warnings.append(f"Missing frontmatter in {path.name} (legacy mode) – future versions will require it.")
         # Title check

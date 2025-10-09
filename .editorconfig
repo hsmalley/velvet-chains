@@ -12,5 +12,29 @@ trim_trailing_whitespace = true
 [*.{yml,yaml,toml}]
 indent_size = 2
 
+[*.{js,jsx,ts,tsx,json}]
+indent_size = 2
+
+[*.{css,scss,mdx}]
+indent_size = 2
+
+[*.{html,htm}]
+indent_size = 2
+
+[*.css.ts]
+indent_size = 2
+
+[*.css.tsx]
+indent_size = 2
+
+[*.module.css]
+indent_size = 2
+
+[*.module.scss]
+indent_size = 2
+
+[*.module.sass]
+indent_size = 2
+
 [*.md]
 trim_trailing_whitespace = false

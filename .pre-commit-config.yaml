@@ -1,6 +1,6 @@
+---
 # 🏴‍☠️ Velvet Chains Pre-Commit Corsair Guard Configuration
 # Ensures all code meets theatrical excellence before entering sacred git history
-
 repos:
   # 🐍 Python Choreographer Quality Assurance
   - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -10,13 +10,11 @@ repos:
       - id: ruff-format
         name: 🎭 Format Python with velvet precision
         files: ^voidlight_.*\.py$
-
       # Lint Python to dominatrix standards
       - id: ruff
         name: 🔍 Submit Python to linting dominatrix
         args: [--fix, --unsafe-fixes]
         files: ^voidlight_.*\.py$
-
   # 🦀 Rust Engine Quality Forging
   - repo: local
     hooks:
@@ -28,7 +26,6 @@ repos:
         language: system
         files: ^voidlight_engine/.*\.rs$
         pass_filenames: false
-
       # Format Rust to aesthetic perfection
       - id: rust-fmt
         name: 💎 Polish Rust to mirror finish
@@ -37,16 +34,21 @@ repos:
         language: system
         files: ^voidlight_engine/.*\.rs$
         pass_filenames: false
-
       # Submit to clippy's merciless judgment
       - id: rust-clippy
         name: 🔨 Submit engine to clippy dominatrix
         entry: cargo
-        args: [clippy, --manifest-path, voidlight_engine/Cargo.toml, --all-targets, --, -D, warnings]
+        args:
+          - clippy
+          - --manifest-path
+          - voidlight_engine/Cargo.toml
+          - --all-targets
+          - --
+          - -D
+          - warnings
         language: system
         files: ^voidlight_engine/.*\.rs$
         pass_filenames: false
-
   # 📝 General Code Quality Rituals
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -55,49 +57,178 @@ repos:
       - id: end-of-file-fixer
         name: 🎯 Ensure files end with proper flourish
         exclude: ^\.github/.*\.md$
-
       # Trim trailing whitespace with precision
       - id: trailing-whitespace
         name: ✂️ Trim excess whitespace with velvet touch
         exclude: ^\.github/.*\.md$
-
       # Validate JSON configuration files
       - id: check-json
         name: 🔍 Validate JSON corsair configurations
-
       # Validate YAML configuration files
       - id: check-yaml
         name: 🔍 Validate YAML fleet manifests
-        exclude: ^\.github/workflows/.*\.yml$  # GitHub Actions may use custom syntax
-
+        exclude: ^\.github/workflows/.*\.yml$ # GitHub Actions may use custom syntax
       # Prevent accidental large file commits
       - id: check-added-large-files
         name: 🚫 Block oversized treasure chests
-        args: ['--maxkb=1024']  # 1MB limit
-
+        args: [--maxkb=1024] # 1MB limit
       # Ensure shell scripts are executable
       - id: check-executables-have-shebangs
         name: 🔧 Ensure executable scripts have proper incantations
-
       # Validate Python syntax
       - id: check-ast
         name: 🐍 Validate Python syntax integrity
         files: ^voidlight_.*\.py$
-
   # 🎪 Markdown Documentation Quality
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.42.0
     hooks:
       - id: markdownlint
         name: 📚 Polish markdown documentation to perfection
-        args: [--fix, --disable, MD013, MD022, MD032, MD031]  # Allow long lines and spacing flexibility for theatrical content
+        args: [--fix, --disable, MD013, MD022, MD032, MD031] # Allow long lines and spacing flexibility for theatrical content
         files: ^.*\.md$
-        exclude: ^\.github/.*\.md$  # Skip symlinked GitHub files
+        exclude: ^\.github/.*\.md$ # Skip symlinked GitHub files
+  # 🎨 Code formatting with Prettier (JS/TS/MD/JSON/CSS)
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: 💄 Format with Prettier
+        additional_dependencies:
+          - prettier@3.3.3
+        files: \.(js|jsx|ts|tsx|json|md|mdx|css|scss|yaml|yml)$
+        args: ["--write"]
+  # 🔎 ESLint via Next (local hook)
+  - repo: local
+    hooks:
+      - id: next-lint
+        name: 🔎 ESLint (Next.js)
+        entry: bash
+        args:
+          - -lc
+          - |
+            set -euo pipefail
+            if [ ! -f package.json ]; then
+              echo "Skipping Next.js lint: no package.json present."
+              exit 0
+            fi
+            if [ ! -d node_modules ]; then
+              echo "Skipping Next.js lint: dependencies not installed (node_modules missing)."
+              exit 0
+            fi
+            if [ -x node_modules/.bin/next ]; then
+              node_modules/.bin/next lint --max-warnings=0
+            else
+              echo "Skipping Next.js lint: local next binary not found."
+            fi
+        language: system
+        pass_filenames: false
+      # TTRPG-specific ESLint run (scoped to subproject)
+      - id: ttrpg-eslint
+        name: 🔎 ESLint (TTRPG)
+        entry: bash
+        args:
+          - -lc
+          - |
+            set -euo pipefail
+            if [ -d velvet-chains-ttrpg ]; then
+              cd velvet-chains-ttrpg
+              npx eslint . --max-warnings=0
+            else
+              echo "Skipping TTRPG ESLint: no velvet-chains-ttrpg directory present."
+            fi
+        language: system
+        pass_filenames: false
+        files: ^velvet-chains-ttrpg/
+      # TTRPG pre-push framework check (Next preferred; falls back to Astro)
+      - id: ttrpg-framework-check
+        name: ✨ Framework Check (TTRPG)
+        entry: bash
+        args:
+          - -lc
+          - |
+            set -euo pipefail
+            if [ -d velvet-chains-ttrpg ]; then
+              cd velvet-chains-ttrpg
+            else
+              echo "Skipping framework check: no velvet-chains-ttrpg directory present."
+              exit 0
+            fi
+            if [ ! -f package.json ]; then
+              echo "No package.json in $(pwd); skipping."
+              exit 0
+            fi
+            if [ ! -d node_modules ]; then
+              echo "Dependencies not installed in $(pwd); skipping framework checks."
+              exit 0
+            fi
+            if grep -q '"next"' package.json && [ -x node_modules/.bin/next ]; then
+              echo "Detected Next.js project; running ESLint..."
+              node_modules/.bin/next lint --max-warnings=0
+            elif grep -q '"astro"' package.json && ls astro.config.* >/dev/null 2>&1 && [ -x node_modules/.bin/astro ]; then
+              echo "Detected Astro project; running astro check..."
+              node_modules/.bin/astro check
+            else
+              echo "No Next.js/Astro binaries available or project not detected; skipping."
+            fi
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+        always_run: true
 
+      # Root Next.js type-check (only if deps installed)
+      - id: next-typecheck
+        name: ✅ Type Check (Next.js)
+        entry: bash
+        args:
+          - -lc
+          - |
+            set -euo pipefail
+            if [ ! -f package.json ] || [ ! -d node_modules ]; then
+              echo "Skipping typecheck: no package.json or node_modules."
+              exit 0
+            fi
+            if [ -x node_modules/.bin/tsc ]; then
+              node_modules/.bin/tsc --noEmit
+            else
+              echo "Skipping typecheck: TypeScript not installed locally."
+            fi
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+        always_run: true
+
+      # Optional fast Next.js build on pre-push (opt-in)
+      - id: next-build-fast
+        name: ⚡ Fast Build (Next.js, pre-push)
+        entry: bash
+        args:
+          - -lc
+          - |
+            set -euo pipefail
+            # Opt-in guard: enable via env or a local file
+            if [ "${PREPUSH_FAST_BUILD:-}" != "1" ] && [ ! -f .enable-prepush-build ]; then
+              echo "Skipping fast build: set PREPUSH_FAST_BUILD=1 or create .enable-prepush-build to enable."
+              exit 0
+            fi
+            if [ ! -f package.json ] || [ ! -d node_modules ]; then
+              echo "Skipping fast build: missing package.json or node_modules."
+              exit 0
+            fi
+            if [ ! -x node_modules/.bin/next ]; then
+              echo "Skipping fast build: local next binary not found."
+              exit 0
+            fi
+            export NEXT_TELEMETRY_DISABLED=1
+            echo "Running next build --no-lint (fast) ..."
+            node_modules/.bin/next build --no-lint
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+        always_run: true
 # 🎯 Pre-commit execution configuration
 default_install_hook_types: [pre-commit, pre-push]
 default_stages: [pre-commit]
-
 # 🛡️ Safety protocols for corsair development
-fail_fast: false  # Run all checks even if early ones fail
+fail_fast: false # Run all checks even if early ones fail
 minimum_pre_commit_version: 3.0.0

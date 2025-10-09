@@ -1,15 +1,8 @@
-/*const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    // Remove plugins for now to debug the issue
-  },
-})import('next').NextConfig} */
-
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
     // Simplified configuration to avoid plugin issues
-    providerImportSource: "@mdx-js/react",
+    providerImportSource: '@mdx-js/react',
   },
 })
 
@@ -24,7 +17,7 @@ const nextConfig = {
 
   // Disable server-side image optimization for static export
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
 
   // Configure MDX

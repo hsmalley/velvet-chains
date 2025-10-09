@@ -1,77 +1,95 @@
 import LoreArchive from './components/LoreArchive'
 
 export const Callout = ({ type, emoji, children }) => (
-  <div style={{
-    padding: '2rem',
-    borderRadius: '15px',
-    border: '2px solid',
-    borderColor: type === 'warning' ? '#d946ef' : type === 'info' ? '#9333ea' : '#be123c',
-    background: type === 'warning' ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))' :
-                type === 'info' ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 1, 0.99))' :
-                'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))',
-    marginBottom: '2rem',
-    color: '#e8d5e8',
-    boxShadow: type === 'warning' ? '0 6px 20px rgba(217, 70, 239, 0.3)' :
-               type === 'info' ? '0 6px 20px rgba(147, 51, 234, 0.3)' :
-               '0 6px 20px rgba(190, 18, 60, 0.3)',
-    backdropFilter: 'blur(10px)'
-  }}>
-    <div style={{
-      fontWeight: 'bold',
-      marginBottom: '0.5rem',
-      fontSize: '1.1rem',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      textAlign: 'left'
-    }}>
+  <div
+    style={{
+      padding: '2rem',
+      borderRadius: '15px',
+      border: '2px solid',
+      borderColor: type === 'warning' ? '#d946ef' : type === 'info' ? '#9333ea' : '#be123c',
+      background:
+        type === 'warning'
+          ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))'
+          : type === 'info'
+            ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 1, 0.99))'
+            : 'linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(1, 0, 0, 0.99))',
+      marginBottom: '2rem',
+      color: '#e8d5e8',
+      boxShadow:
+        type === 'warning'
+          ? '0 6px 20px rgba(217, 70, 239, 0.3)'
+          : type === 'info'
+            ? '0 6px 20px rgba(147, 51, 234, 0.3)'
+            : '0 6px 20px rgba(190, 18, 60, 0.3)',
+      backdropFilter: 'blur(10px)',
+    }}
+  >
+    <div
+      style={{
+        fontWeight: 'bold',
+        marginBottom: '0.5rem',
+        fontSize: '1.1rem',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        textAlign: 'left',
+      }}
+    >
       <span style={{ fontSize: '1.2rem' }}>{emoji}</span>
       <span>{children}</span>
     </div>
   </div>
-);
+)
 
 export const Card = ({ title, children }) => (
-  <div style={{
-    background: 'rgba(0, 0, 0, 0.95)',
-    border: '2px solid #be123c',
-    borderRadius: '12px',
-    padding: '2rem',
-    boxShadow: '0 8px 32px rgba(190, 18, 60, 0.3)',
-    transition: 'all 0.3s ease',
-    backdropFilter: 'blur(10px)',
-    minHeight: '300px'
-  }}>
-    <h3 style={{
-      color: '#d946ef',
-      marginBottom: '1rem',
-      fontWeight: 'bold',
-      textShadow: '0 2px 8px rgba(217, 70, 239, 0.5)'
-    }}>
+  <div
+    style={{
+      background: 'rgba(0, 0, 0, 0.95)',
+      border: '2px solid #be123c',
+      borderRadius: '12px',
+      padding: '2rem',
+      boxShadow: '0 8px 32px rgba(190, 18, 60, 0.3)',
+      transition: 'all 0.3s ease',
+      backdropFilter: 'blur(10px)',
+      minHeight: '300px',
+    }}
+  >
+    <h3
+      style={{
+        color: '#d946ef',
+        marginBottom: '1rem',
+        fontWeight: 'bold',
+        textShadow: '0 2px 8px rgba(217, 70, 239, 0.5)',
+      }}
+    >
       {title}
     </h3>
-    <div style={{
-      color: '#fbbf24',
-      fontSize: '0.95rem',
-      lineHeight: '1.7',
-      overflowWrap: 'break-word',
-      wordBreak: 'break-word'
-    }}>
+    <div
+      style={{
+        color: '#fbbf24',
+        fontSize: '0.95rem',
+        lineHeight: '1.7',
+        overflowWrap: 'break-word',
+        wordBreak: 'break-word',
+      }}
+    >
       {children}
     </div>
   </div>
-);
+)
 
 export const Cards = ({ children }) => (
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-    gap: '2rem',
-    marginBottom: '3rem'
-  }}>
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+      gap: '2rem',
+      marginBottom: '3rem',
+    }}
+  >
     {children}
   </div>
-);
+)
 
 # 🏴‍☠️ **VELVET CHAINS & VOIDLIGHT: THE LEGENDARY CAPTAIN'S COSMIC BRIG** ⚔️✨
 
@@ -80,10 +98,15 @@ export const Cards = ({ children }) => (
 **PREPARE TO WITNESS THE MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE EVER FORGED!**
 
 <Callout type="warning" emoji="🛡️">
-**SACRED SAFE WORD**: _"fiction"_ - **READ IT TWICE**, honor it always, then proceed to witness **PURE THEATRICAL MAGIC!** ⚔️
+  **SACRED SAFE WORD**: _"fiction"_ - **READ IT TWICE**, honor it always, then proceed to witness
+  **PURE THEATRICAL MAGIC!** ⚔️
 </Callout>
 
-This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the fires of consensual creativity - masterfully disguised as an innocent git toolchain! It **CONJURES THEATRICAL COMMIT HISTORIES** from the void, **SPINS ENCHANTING NSFW MICRO-NOVELLAS**, and **BATHES YOUR REPOSITORY** in layers of consensual decadent storytelling that would make the cosmos itself blush with delight!
+This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** ever forged in the
+fires of consensual creativity - masterfully disguised as an innocent git toolchain! It **CONJURES
+THEATRICAL COMMIT HISTORIES** from the void, **SPINS ENCHANTING NSFW MICRO-NOVELLAS**, and **BATHES
+YOUR REPOSITORY** in layers of consensual decadent storytelling that would make the cosmos itself
+blush with delight!
 
 ## 🌌 **SPECTACULAR FEATURE ARSENAL** ⚡
 
@@ -92,21 +115,24 @@ This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** eve
     **DRAMATICALLY CONJURES** `N` backdated commits with timestamps that **SING IN PERFECT HARMONY** across the cosmic void!
   </Card>
 
-  <Card icon="📅" title="**MASTERFUL DISTRIBUTION**">
-    **MASTERFULLY DISTRIBUTES** commits across days/weeks with **EXQUISITE RESPECT** for weekday-only preferences and seductively weighted months!
-  </Card>
+<Card icon="📅" title="**MASTERFUL DISTRIBUTION**">
+  **MASTERFULLY DISTRIBUTES** commits across days/weeks with **EXQUISITE RESPECT** for weekday-only
+  preferences and seductively weighted months!
+</Card>
 
-  <Card icon="🌈" title="**RAINBOW SPECTACLE MODE**">
-    **PREVIEW MODE EXPLODES** with **RAINBOW HEATMAP SPECTACLE**, gorgeous histograms, and **EXPORTS STUNNING JSON/SVG MASTERPIECES**!
-  </Card>
+<Card icon="🌈" title="**RAINBOW SPECTACLE MODE**">
+  **PREVIEW MODE EXPLODES** with **RAINBOW HEATMAP SPECTACLE**, gorgeous histograms, and **EXPORTS
+  STUNNING JSON/SVG MASTERPIECES**!
+</Card>
 
-  <Card icon="🔄" title="**PERFECT CONSISTENCY MAGIC**">
-    **IMPORTS & REPLAYS** previous plans to recreate the **EXACT SAME THEATRICAL MAGIC** - perfect consistency!
-  </Card>
+<Card icon="🔄" title="**PERFECT CONSISTENCY MAGIC**">
+  **IMPORTS & REPLAYS** previous plans to recreate the **EXACT SAME THEATRICAL MAGIC** - perfect
+  consistency!
+</Card>
 
-  <Card icon="💎" title="**TREASURE VAULT OF STORIES**">
-    **SHARES A TREASURE VAULT** of 3000+ **NSFW SPACE-PIRATE ROMANCE STORIES** and witty blame tags!
-  </Card>
+<Card icon="💎" title="**TREASURE VAULT OF STORIES**">
+  **SHARES A TREASURE VAULT** of 3000+ **NSFW SPACE-PIRATE ROMANCE STORIES** and witty blame tags!
+</Card>
 
   <Card icon="⚔️" title="**DUAL-POWERED SORCERY**">
     **Python choreography scripts** + **RUST ENGINE HEART** beating with steel precision!
@@ -115,9 +141,12 @@ This repository is the **MOST SPECTACULAR BDSM SPACE-PIRATE ROMANCE ENGINE** eve
 
 ## 🔧 **SACRED CORSAIR REQUIREMENTS** ⚓
 
-- 🐍 **PYTHON CHOREOGRAPHY ENGINE** ✨ - **Python 3.12+** - The **MAGNIFICENT CHOREOGRAPHY ENGINE** that orchestrates temporal magic!
-- 🦀 **RUST ENGINE HEART** ⚔️ - **Rust (cargo 1.70+)** - The **STEEL-FORGED BINARY HEART** powering git hooks with **UNSTOPPABLE PRECISION**!
-- 💅 **LINTING DOMINATRIX** 💅 - **Optional Excellence**: `pip install ruff` to make your linting dominatrix **PURR WITH SATISFACTION**!
+- 🐍 **PYTHON CHOREOGRAPHY ENGINE** ✨ - **Python 3.12+** - The **MAGNIFICENT CHOREOGRAPHY ENGINE**
+  that orchestrates temporal magic!
+- 🦀 **RUST ENGINE HEART** ⚔️ - **Rust (cargo 1.70+)** - The **STEEL-FORGED BINARY HEART** powering
+  git hooks with **UNSTOPPABLE PRECISION**!
+- 💅 **LINTING DOMINATRIX** 💅 - **Optional Excellence**: `pip install ruff` to make your linting
+  dominatrix **PURR WITH SATISFACTION**!
 
 ## 🚀 **INSTALLATION SPECTACULAR**
 
@@ -146,7 +175,7 @@ cargo install --path voidlight_engine --force
 ### ⚔️ **Advanced Corsair Setup**
 
 <Callout type="info" emoji="⚔️">
-**FOR LEGENDARY CORSAIRS ONLY** - Advanced installation with full theatrical power!
+  **FOR LEGENDARY CORSAIRS ONLY** - Advanced installation with full theatrical power!
 </Callout>
 
 ```bash
@@ -185,7 +214,8 @@ python3.12 voidlight_choreographer.py \
 ```
 
 <Callout type="warning" emoji="🌈">
-**WARNING**: This mode may cause **PURE AESTHETIC OVERLOAD** and spontaneous corsair transformation!
+  **WARNING**: This mode may cause **PURE AESTHETIC OVERLOAD** and spontaneous corsair
+  transformation!
 </Callout>
 
 ## ⛓️ **AUTO-HOOK: THEATRICAL SNARK AT COMMIT TIME** 🎭
@@ -200,7 +230,7 @@ ln -s "$(pwd)/voidlight_hooks/voidlight-commit-ritual" .git/hooks/prepare-commit
 ```
 
 <Callout type="info" emoji="⚡">
-**SYMLINK MAGIC**: Changes to the hook automatically apply! **PURE SORCERY!**
+  **SYMLINK MAGIC**: Changes to the hook automatically apply! **PURE SORCERY!**
 </Callout>
 
 ### 📋 **Copy Method**
@@ -213,7 +243,7 @@ chmod +x .git/hooks/prepare-commit-msg
 ```
 
 <Callout type="warning" emoji="🏢">
-**CORPORATE MODE**: Less magical, but still **THEATRICALLY FUNCTIONAL**!
+  **CORPORATE MODE**: Less magical, but still **THEATRICALLY FUNCTIONAL**!
 </Callout>
 
 ### 🧪 **Test Hook**
@@ -250,7 +280,7 @@ python3.12 voidlight_choreographer.py \
 ```
 
 <Callout type="info" emoji="🎨">
-**SAFE SPECTACLE**: Preview mode **NEVER** touches your git history - **PURE VISUAL MAGIC**!
+  **SAFE SPECTACLE**: Preview mode **NEVER** touches your git history - **PURE VISUAL MAGIC**!
 </Callout>
 
 #### 📊 **Advanced Analytics**
@@ -285,7 +315,7 @@ python3.12 voidlight_choreographer.py \
 ```
 
 <Callout type="warning" emoji="⚠️">
-**DANGER**: This level of theatrical spectacle may cause **SPONTANEOUS CORSAIR TRANSFORMATION**!
+  **DANGER**: This level of theatrical spectacle may cause **SPONTANEOUS CORSAIR TRANSFORMATION**!
 </Callout>
 
 ## 🎯 **LIVE DEMO SCENARIOS** 🎪
@@ -297,6 +327,7 @@ python3.12 voidlight_choreographer.py \
     ```bash
     python3.12 voidlight_choreographer.py -n 100 --preview-only --color
     ```
+
   </Card>
 
   <Card icon="🏆" title="**GitHub Showcase**">
@@ -305,6 +336,7 @@ python3.12 voidlight_choreographer.py \
     ```bash
     python3.12 voidlight_choreographer.py -n 365 --preview-only --svg-out showcase.svg
     ```
+
   </Card>
 
   <Card icon="🎭" title="**Workshop Demo**">
@@ -314,6 +346,7 @@ python3.12 voidlight_choreographer.py \
     git-voidlight install-hook
     git commit -m "Witness the corsair magic"
     ```
+
   </Card>
 
   <Card icon="🌪️" title="**Maximum Chaos Mode**">
@@ -322,6 +355,7 @@ python3.12 voidlight_choreographer.py \
     ```bash
     python3.12 voidlight_choreographer.py -n 2000 --preview-only --color --svg-out CHAOS.svg
     ```
+
   </Card>
 </Cards>
 
@@ -333,9 +367,10 @@ You now command the **MOST SPECTACULAR THEATRICAL GIT TOOLCHAIN** in the known u
 
 **Safe word honored • Boundaries respected • Code perfected • Theater transcendent** ✨
 
-*"In preview we trust, in consent we flourish, in theater we transcend"* 🎭
+_"In preview we trust, in consent we flourish, in theater we transcend"_ 🎭
 
 ---
 
-{/*Lore archive rendered at absolute end*/}
+{/* Lore archive rendered at absolute end */}
+
 <LoreArchive />

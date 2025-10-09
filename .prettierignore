@@ -1,0 +1,21 @@
+# Dependencies & builds
+node_modules
+dist
+out
+
+# Static/public assets
+public
+
+# Generated content caches
+.cache
+.next
+.vercel
+.netlify
+coverage
+
+# VCS
+.git
+
+# Project-specific
+**/.DS_Store
+**/*.lock
