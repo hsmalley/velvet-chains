@@ -78,14 +78,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: squash
-      - name: "🤖 Fallback: Bless and Merge when Oracles Green"
-        if: steps.inspect.outputs.docs_only == 'true' && steps.labels.outputs.ok == 'true'
-        uses: peter-evans/merge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: pull-request-title
-          method: squash
-          required_labels: docs,automerge:docs
-          required_approving_review_count: 1
-          wait_for_status_checks_timeout: 10
-          delete_branch: true
+      # No fallback needed: enable-pull-request-automerge merges immediately if already mergeable.
