@@ -107,6 +107,7 @@ jobs:
         uses: actions/checkout@v5
       - name: 🔎 Detect Rust Engine
         id: rust
+        shell: bash
         run: |
           if [ -f voidlight_engine/Cargo.toml ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
