@@ -1,0 +1,43 @@
+name: "🎉 Benediction — Release Request"
+description: "Request a tagged release with notes and artifacts."
+title: "release: <version/tag>"
+labels: [release, needs-triage]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Present your release to the cosmos. We will unfurl the scroll and bless the artifacts.
+
+  - type: input
+    id: tag
+    attributes:
+      label: Tag / Version
+      placeholder: v0.2.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Changes in this Release
+      description: Link PRs, summarize highlights, and note breaking changes.
+      placeholder: Bulleted list of user-facing changes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Release Notes (Draft)
+      description: Will be adapted for GitHub Releases and the site.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight Checks
+      options:
+        - label: CI is green on main
+        - label: Docs updated (pages/releases/*) or included in this request
+        - label: Version in package.json matches tag
+        - label: I have smoke-tested the site build locally (npm run build)

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Security Report — Private Channel
+    url: https://github.com/hsmalley/velvet-chains/security/policy
+    about: Report security vulnerabilities discretely to the Quartermaster.
+  - name: 📜 Contribution Codex
+    url: https://github.com/hsmalley/velvet-chains/blob/main/CONTRIBUTING.md
+    about: Read the rituals before boarding the Obsidian Promise.
+  - name: 🛡️ Consent Decree
+    url: https://github.com/hsmalley/velvet-chains/blob/main/CONSENT_DECREE.txt
+    about: Our sacred oath — this is theatrical fiction.

@@ -1,0 +1,63 @@
+name: "✨ Ritual Enhancement — Feature Request"
+description: "Propose a new rite, refinement, or spectacle upgrade."
+title: "feat: <concise description>"
+labels: [enhancement, needs-triage]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The Armada thrives on elegant rituals. Describe the intention and the delight it delivers.
+
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent Oath
+      options:
+        - label: I affirm this is theatrical fiction and aligns with the Consent Decree.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Motivation
+      placeholder: What pain or limitation does this address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Ritual
+      description: Describe the feature, API, UI, or workflow changes.
+      placeholder: Outline the steps, configuration, and user flow.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: Bullet points that define “done”.
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact / Risks
+      placeholder: Performance, compatibility, migration concerns.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Target Chamber
+      options:
+        - site/docs (Next.js)
+        - voidlight_engine (Rust)
+        - choreographer (Python)
+        - CI/CD rituals (.github/workflows)
+        - other

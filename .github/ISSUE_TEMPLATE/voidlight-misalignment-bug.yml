@@ -1,0 +1,85 @@
+name: "🌑 Voidlight Misalignment — Bug Report"
+description: "Report a defect where the spectacle falters or the void snarls."
+title: "bug: <concise description>"
+labels: [bug, needs-triage]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you, Corsair. Describe the rupture in the ritual so we may atone with precision.
+
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent Oath
+      description: Confirm we are operating within consensual theatrical fiction.
+      options:
+        - label: I understand this repository is theatrical fiction and agree to the Consent Decree.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Affected Version/Tag
+      description: e.g., v0.2.1 or commit SHA
+      placeholder: v0.2.1
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected Chamber
+      options:
+        - site/docs (Next.js)
+        - voidlight_engine (Rust)
+        - choreographer (Python)
+        - CI/CD rituals (.github/workflows)
+        - other
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce (Ritual Choreography)
+      description: Numbered, minimal steps that reliably summon the bug.
+      placeholder: |
+        1. npm ci
+        2. npm run dev
+        3. Navigate to /releases/v0.2.1
+        4. Observe crash in the scrying pool
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior (Desired Incantation)
+      placeholder: What should have occurred?
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior (Observed Anomaly)
+      placeholder: What occurred instead?
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: macOS 14.6, Node 20.11.1, npm 10.7.0, Chrome 129
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Screenshots
+      description: Attach console output, stack traces, or images.
+      render: shell
+
+  - type: checkboxes
+    id: regression
+    attributes:
+      label: Regression Check
+      options:
+        - label: This worked in an earlier version
+        - label: I can reproduce on main
