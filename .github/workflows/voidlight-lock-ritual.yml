@@ -59,8 +59,8 @@ jobs:
             echo "```"
           } > PR_BODY.md
 
-      - name: 🤝 Open PR with renewed lock (with milestone)
-        if: ${{ env.GH_PR_TOKEN != '' && env.UV_LOCK_MILESTONE != '' }}
+      - name: 🤝 Open PR with renewed lock
+        if: ${{ env.GH_PR_TOKEN != '' }}
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ env.GH_PR_TOKEN }}
@@ -82,32 +82,8 @@ jobs:
             hsmalley
           reviewers: |
             hsmalley
+          # Optional milestone; if empty, action ignores.
           milestone: ${{ env.UV_LOCK_MILESTONE }}
-          delete-branch: true
-
-      - name: 🤝 Open PR with renewed lock (no milestone)
-        if: ${{ env.GH_PR_TOKEN != '' && env.UV_LOCK_MILESTONE == '' }}
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ env.GH_PR_TOKEN }}
-          commit-message: "🧬 renew: update uv.lock to latest constraints"
-          title: "🧬 Renew uv.lock — dependency refresh"
-          body-path: PR_BODY.md
-
-          branch: chore/renew-uv-lock
-          add-paths: |
-            uv.lock
-            uv.lock.sha256
-          signoff: true
-          committer: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
-          author: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
-          labels: |
-            dependencies
-            uv-lock
-          assignees: |
-            hsmalley
-          reviewers: |
-            hsmalley
           delete-branch: true
 
       - name: 📝 PR permission missing — leave a captain’s note
