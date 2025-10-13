@@ -27,33 +27,49 @@ jobs:
     steps:
       - name: ⚓ Hoist the Colors — Checkout
         uses: actions/checkout@v5
+      - name: 🔮 Scry for Next.js Portal (app/pages)
+        id: site
+        run: |
+          if [ -d app ] || [ -d pages ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Next.js portal (app/ or pages/) detected; skipping site build." >&2
+          fi
 
       - name: 🏴‍☠️ Prepare the Ship — Setup Node.js
+        if: ${{ steps.site.outputs.present == 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
 
       - name: 💎 Gather the Treasure — Install Dependencies
+        if: ${{ steps.site.outputs.present == 'true' }}
         run: npm ci
 
       - name: 🧪 Validate Lore Codex (conditional)
-        if: ${{ hashFiles('scripts/validate_lore.py') != '' }}
+        if:
+          ${{ steps.site.outputs.present == 'true' && hashFiles('scripts/validate_lore.py') != '' }}
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pyyaml
           npm run validate:lore
 
       - name: 📚 Build Lore JSON (conditional)
-        if: ${{ hashFiles('scripts/build_lore_json.py') != '' }}
+        if:
+          ${{ steps.site.outputs.present == 'true' && hashFiles('scripts/build_lore_json.py') != ''
+          }}
         run: npm run build:lore
 
       - name: ⚔️ Forge the Spectacle — Build
+        if: ${{ steps.site.outputs.present == 'true' }}
         run: |
           npm run build
           npm run export
 
       - name: 📦 Package Site Artifact
+        if: ${{ steps.site.outputs.present == 'true' }}
         run: |
           VERSION="${GITHUB_REF_NAME:-manual}"
           ARCHIVE="velvet-chains-site-${VERSION}.tgz"
@@ -62,6 +78,7 @@ jobs:
           sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
 
       - name: 📜 Upload Artifact for Release
+        if: ${{ steps.site.outputs.present == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: site-package
@@ -88,23 +105,34 @@ jobs:
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v5
+      - name: 🔎 Detect Rust Engine
+        id: rust
+        run: |
+          if [ -f voidlight_engine/Cargo.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Rust engine found; skipping binaries for ${{ matrix.target }}" >&2
+          fi
       - name: 🛠️ Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
+        if: ${{ steps.rust.outputs.present == 'true' }}
       - name: 🔥 Build release binary
+        if: ${{ steps.rust.outputs.present == 'true' }}
         run:
           cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{
           matrix.target }}
       - name: 📦 Package binary (unix)
-        if: ${{ matrix.archive == 'tar.gz' }}
+        if: ${{ steps.rust.outputs.present == 'true' && matrix.archive == 'tar.gz' }}
         run: |
           NAME="git-voidlight-${{ matrix.target }}"
           cp "voidlight_engine/target/${{ matrix.target }}/release/git-voidlight" "${NAME}"
           tar -czf "${NAME}.tar.gz" "${NAME}"
           sha256sum "${NAME}.tar.gz" > "${NAME}.tar.gz.sha256"
       - name: 📦 Package binary (windows)
-        if: ${{ matrix.archive == 'zip' }}
+        if: ${{ steps.rust.outputs.present == 'true' && matrix.archive == 'zip' }}
         shell: bash
         run: |
           NAME="git-voidlight-${{ matrix.target }}.exe"
@@ -120,6 +148,7 @@ jobs:
             git-voidlight-${{ matrix.target }}.tar.gz.sha256
             git-voidlight-${{ matrix.target }}.zip
             git-voidlight-${{ matrix.target }}.zip.sha256
+        if: ${{ steps.rust.outputs.present == 'true' }}
 
   python-package:
     name: 🐍 Build Python Package
@@ -127,6 +156,15 @@ jobs:
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v5
+      - name: 🔎 Detect Python package metadata
+        id: py
+        run: |
+          if [ -f pyproject.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No pyproject.toml found; skipping Python package build." >&2
+          fi
       - name: 🔥 Setup Python 3.12
         uses: actions/setup-python@v6
         with:
@@ -134,17 +172,20 @@ jobs:
       - name: ✨ Setup uv
         uses: astral-sh/setup-uv@v7
       - name: 🔒 Verify uv.lock is up to date
-        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        if: ${{ steps.py.outputs.present == 'true' && hashFiles('uv.lock') != '' }}
         run: uv lock --check
       - name: 🧰 Install build tooling
+        if: ${{ steps.py.outputs.present == 'true' }}
         run: uv pip install build twine
       - name: 🎭 Build dist
+        if: ${{ steps.py.outputs.present == 'true' }}
         run: uv run python -m build
       - name: 🚀 Upload python dist artifact
         uses: actions/upload-artifact@v4
         with:
           name: python-package
           path: dist/*
+        if: ${{ steps.py.outputs.present == 'true' }}
 
   github-release:
     name: 🌌 Unfurl Cosmic Release Scroll
@@ -161,8 +202,12 @@ jobs:
       - name: 🗂️ Resolve Archive Name
         id: meta
         run: |
-          NAME=$(cat releases/archive_name.txt)
-          echo "archive=$NAME" >> "$GITHUB_OUTPUT"
+          if [ -f releases/archive_name.txt ]; then
+            NAME=$(cat releases/archive_name.txt)
+            echo "archive=$NAME" >> "$GITHUB_OUTPUT"
+          else
+            echo "archive=" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: 🧮 Compute missing checksums (Python dists)
         run: |
@@ -201,32 +246,20 @@ jobs:
       - name: 📦 Assemble upload file list
         run: |
           set -euo pipefail
+          : > filelist.txt
           ARCHIVE="${{ steps.meta.outputs.archive }}"
-          {
-            echo "releases/${ARCHIVE}"
-            echo "releases/${ARCHIVE}.sha256"
-            ls releases/git-voidlight-*.tar.gz releases/git-voidlight-*.tar.gz.sha256 2>/dev/null || true
-            ls releases/git-voidlight-*.zip releases/git-voidlight-*.zip.sha256 2>/dev/null || true
-            ls releases/*.whl 2>/dev/null | sed 's#^#/#' >/dev/null || true
-            ls releases/*.whl 2>/dev/null || true
-            ls releases/*-*.tar.gz 2>/dev/null | grep -v 'git-voidlight-' || true
-          } | awk 'NF' | sed 's#^#/#' >/dev/null || true
-          FILES=$(printf "%s\n" "releases/${ARCHIVE}" "releases/${ARCHIVE}.sha256" \
-            $(ls releases/git-voidlight-*.tar.gz 2>/dev/null || true) \
-            $(ls releases/git-voidlight-*.tar.gz.sha256 2>/dev/null || true) \
-            $(ls releases/git-voidlight-*.zip 2>/dev/null || true) \
-            $(ls releases/git-voidlight-*.zip.sha256 2>/dev/null || true) \
-            $(ls releases/*.whl 2>/dev/null || true) \
-            $(ls releases/*-*.tar.gz 2>/dev/null | grep -v 'git-voidlight-' || true))
-          # Export multi-line list to env for gh-release
-          echo "FILES<<EOF" >> $GITHUB_ENV
-          echo "$FILES" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          if [ -n "$ARCHIVE" ] && [ -f "releases/$ARCHIVE" ]; then
+            echo "releases/$ARCHIVE" >> filelist.txt
+            [ -f "releases/$ARCHIVE.sha256" ] && echo "releases/$ARCHIVE.sha256" >> filelist.txt
+          fi
+          for f in releases/git-voidlight-*.tar.gz releases/git-voidlight-*.tar.gz.sha256 releases/git-voidlight-*.zip releases/git-voidlight-*.zip.sha256 releases/*.whl releases/*-*.tar.gz; do
+            [ -e "$f" ] && echo "$f" >> filelist.txt || true
+          done
 
       - name: 🌌 Publish Release to the Void
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.FILES }}
+          files: filelist.txt
           body_path: releases/RELEASE_BODY.md
           generate_release_notes: true
           draft: false

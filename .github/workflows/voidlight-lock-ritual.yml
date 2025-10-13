@@ -14,6 +14,8 @@ on:
       - pyproject.toml
       - uv.lock
       - .github/workflows/voidlight-lock-ritual.yml
+  schedule:
+    - cron: "0 7 * * 1" # Mondays at 07:00 UTC (weekly concord rite)
   workflow_dispatch: {}
 
 permissions:
@@ -39,17 +41,29 @@ jobs:
       - name: 🧮 Compute checksum of lockfile
         run: sha256sum uv.lock > uv.lock.sha256
 
-      - name: 📦 Create Pull Request
+      - name: 📝 Compose PR body with lock diff (first 20 lines)
+        run: |
+          {
+            echo "This automated ritual refreshes \`uv.lock\` based on \`pyproject.toml\`."
+            echo
+            echo "- Command: \`uv lock --upgrade\`"
+            echo "- Includes: \`uv.lock\` and \`uv.lock.sha256\`"
+            echo "- Safety: CI verifies lock freshness via \`uv lock --check\`"
+            echo
+            echo "#### Diff Preview (first 20 lines)"
+            echo "```diff"
+            git diff --unified=3 -- uv.lock | sed -n '1,20p' || true
+            echo "```"
+          } > PR_BODY.md
+
+      - name: 🤝 Open PR with renewed lock (if token available)
+        if: ${{ secrets.GH_PR_TOKEN != '' }}
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.GH_PR_TOKEN }}
           commit-message: "🧬 renew: update uv.lock to latest constraints"
-          title: "🧬 Renew uv.lock — weekly dependency refresh"
-          body: |
-            This automated ritual refreshes `uv.lock` based on `pyproject.toml`.
-
-            - Command: `uv lock --upgrade`
-            - Includes: `uv.lock` and `uv.lock.sha256`
-            - Safety: CI verifies lock freshness via `uv lock --check`
+          title: "🧬 Renew uv.lock — dependency refresh"
+          body-path: PR_BODY.md
 
           branch: chore/renew-uv-lock
           add-paths: |
@@ -58,4 +72,19 @@ jobs:
           signoff: true
           committer: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
           author: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
+          labels: |
+            dependencies
+            uv-lock
+          assignees: |
+            hsmalley
+          reviewers: |
+            hsmalley
+          milestone: ${{ vars.UV_LOCK_MILESTONE }}
           delete-branch: true
+
+      - name: 📝 PR permission missing — leave a captain’s note
+        if: ${{ secrets.GH_PR_TOKEN == '' }}
+        run: |
+          echo "### 🔒 Cannot open PR from Actions" >> $GITHUB_STEP_SUMMARY
+          echo "This repository disallows Actions-created PRs or lacks a PAT." >> $GITHUB_STEP_SUMMARY
+          echo "Add a classic Personal Access Token (repo scope) named \`GH_PR_TOKEN\` to repository secrets, or enable the repository setting: \"Allow GitHub Actions to create and approve pull requests\"." >> $GITHUB_STEP_SUMMARY
