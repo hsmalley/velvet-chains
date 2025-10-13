@@ -5,14 +5,23 @@ name: 🏴‍☠️ Voidlight Rituals
 on:
   push:
     branches: [main]
-    tags:
-      - v* # Run on tags starting with 'v'
+    paths:
+      - "**.py"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/voidlight-ritual.yml"
   pull_request:
     branches: [main]
+    paths:
+      - "**.py"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/voidlight-ritual.yml"
 jobs:
   dco-check:
     name: 🧾 DCO Oath Verification
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: 📦 Checkout full history for commit range
         uses: actions/checkout@v5
@@ -65,6 +74,7 @@ jobs:
   rust-check:
     name: ⚔️ Rust Engine Sanctification
     runs-on: ubuntu-latest
+    if: ${{ hashFiles('voidlight_engine/Cargo.toml') != '' }}
     steps:
       - name: 📦 Retrieve sacred codebase from digital depths
         uses: actions/checkout@v5
@@ -82,7 +92,7 @@ jobs:
         run: cargo test --manifest-path voidlight_engine/Cargo.toml --no-run
   release-artifacts:
     name: 🏆 Forge Corsair Armaments for Distribution
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') && hashFiles('voidlight_engine/Cargo.toml') != ''
     strategy:
       matrix:
         include:
@@ -133,6 +143,14 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
+      - name: 🔒 Verify uv.lock freshness (advice if stale)
+        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        run: |
+          set -e
+          if ! uv lock --check; then
+            echo "❌ uv.lock is stale. Please run 'uv lock' locally and commit the updated lockfile." >&2
+            exit 1
+          fi
       - name: ⚓ Assemble packaging arsenal
         run: uv pip install build twine
       - name: 🎭 Craft distributable Python package
