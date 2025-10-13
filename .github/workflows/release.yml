@@ -64,9 +64,7 @@ jobs:
 
       - name: ⚔️ Forge the Spectacle — Build
         if: ${{ steps.site.outputs.present == 'true' }}
-        run: |
-          npm run build
-          npm run export
+        run: npm run build
 
       - name: 📦 Package Site Artifact
         if: ${{ steps.site.outputs.present == 'true' }}
