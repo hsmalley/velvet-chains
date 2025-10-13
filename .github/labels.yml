@@ -1,34 +1,33 @@
-labels:
-  - name: bug
-    color: D11A2A
-    description: "🌑 Voidlight misalignment — a defect lurks"
-  - name: enhancement
-    color: 10B981
-    description: "✨ Ritual enhancement — improve or extend spectacle"
-  - name: release
-    color: F59E0B
-    description: "🎉 Benediction — tag & ship a version"
-  - name: needs-triage
-    color: 8B5CF6
-    description: "🧭 Awaiting corsair triage"
-  - name: docs
-    color: 0EA5E9
-    description: "📜 Lore & documentation"
-  - name: site
-    color: EC4899
-    description: "🌐 Next.js site / pages / styles"
-  - name: ci
-    color: 6366F1
-    description: "⚙️ Ritual automation / CI"
-  - name: workflows
-    color: 4F46E5
-    description: "🕯️ GitHub workflows & actions"
-  - name: python
-    color: 22C55E
-    description: "🐍 Choreographer — Python domain"
-  - name: rust
-    color: F97316
-    description: "⚔️ Voidlight engine — Rust domain"
-  - name: automerge:docs
-    color: 34D399
-    description: "🤖 Benediction — auto-merge docs-only PRs when checks pass"
+- name: bug
+  color: D11A2A
+  description: "🌑 Voidlight misalignment — a defect lurks"
+- name: enhancement
+  color: 10B981
+  description: "✨ Ritual enhancement — improve or extend spectacle"
+- name: release
+  color: F59E0B
+  description: "🎉 Benediction — tag & ship a version"
+- name: needs-triage
+  color: 8B5CF6
+  description: "🧭 Awaiting corsair triage"
+- name: docs
+  color: 0EA5E9
+  description: "📜 Lore & documentation"
+- name: site
+  color: EC4899
+  description: "🌐 Next.js site / pages / styles"
+- name: ci
+  color: 6366F1
+  description: "⚙️ Ritual automation / CI"
+- name: workflows
+  color: 4F46E5
+  description: "🕯️ GitHub workflows & actions"
+- name: python
+  color: 22C55E
+  description: "🐍 Choreographer — Python domain"
+- name: rust
+  color: F97316
+  description: "⚔️ Voidlight engine — Rust domain"
+- name: automerge:docs
+  color: 34D399
+  description: "🤖 Benediction — auto-merge docs-only PRs when checks pass"
