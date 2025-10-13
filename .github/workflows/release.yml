@@ -101,7 +101,7 @@ jobs:
             os: windows-latest
             archive: zip
     steps:
-      - name: 📦 Checkout
+      - name: 📦 Hoist the Colors — Checkout
         uses: actions/checkout@v5
       - name: 🔎 Detect Rust Engine
         id: rust
@@ -155,7 +155,7 @@ jobs:
     name: 🐍 Build Python Package
     runs-on: ubuntu-latest
     steps:
-      - name: 📦 Checkout
+      - name: 📦 Hoist the Colors — Checkout
         uses: actions/checkout@v5
       - name: 🔎 Detect Python package metadata
         id: py
@@ -208,7 +208,7 @@ jobs:
           else
             echo "name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
           fi
-      - name: 📥 Retrieve all artifacts
+      - name: 📥 Summon all Relics from the Vault
         uses: actions/download-artifact@v4
         with:
           pattern: "*"
@@ -225,7 +225,7 @@ jobs:
             echo "archive=" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: 🧮 Compute missing checksums (Python dists)
+      - name: 🔮 Scry Missing Checksums (Python dists)
         run: |
           shopt -s nullglob
           for f in releases/*.whl releases/*tar.gz; do
@@ -235,7 +235,7 @@ jobs:
             fi
           done
 
-      - name: 🧾 Generate Assets section
+      - name: 🧾 Inscribe the Assets Ledger
         run: |
           {
             echo "## Assets"
@@ -259,7 +259,7 @@ jobs:
             echo
           } > releases/RELEASE_BODY.md
 
-      - name: 📦 Assemble upload file list
+      - name: 🧰 Muster the Cargo Manifest
         run: |
           set -euo pipefail
           : > filelist.txt
