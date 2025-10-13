@@ -44,6 +44,19 @@ jobs:
       - name: 🧮 Compute checksum of lockfile
         run: sha256sum uv.lock > uv.lock.sha256
 
+      - name: 🩸 Detect lockfile alterations
+        id: changes
+        run: |
+          if git diff --quiet -- uv.lock; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "### 💤 No Renewal Needed" >> "$GITHUB_STEP_SUMMARY"
+            echo "uv.lock is unchanged after \`uv lock --upgrade\`. No PR will be opened." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "### 🔮 Lockfile Renewed" >> "$GITHUB_STEP_SUMMARY"
+            echo "uv.lock has been updated and will be proposed via PR." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: 📝 Compose PR body with lock diff (first 20 lines)
         run: |
           {
@@ -60,8 +73,9 @@ jobs:
           } > PR_BODY.md
 
       - name: 🤝 Open PR with renewed lock
-        if: ${{ env.GH_PR_TOKEN != '' }}
+        if: ${{ env.GH_PR_TOKEN != '' && steps.changes.outputs.changed == 'true' }}
         uses: peter-evans/create-pull-request@v6
+        id: cpr
         with:
           token: ${{ env.GH_PR_TOKEN }}
           commit-message: "🧬 renew: update uv.lock to latest constraints"
@@ -85,6 +99,21 @@ jobs:
           # Optional milestone; if empty, action ignores.
           milestone: ${{ env.UV_LOCK_MILESTONE }}
           delete-branch: true
+
+      - name: 📜 Chronicle renewal PR
+        if:
+          ${{ steps.changes.outputs.changed == 'true' && steps.cpr.outputs.pull-request-url != '' }}
+        run: |
+          {
+            echo "### 📜 Lock Renewal PR Opened";
+            echo "- PR: ${{ steps.cpr.outputs.pull-request-url }}";
+            echo "- Number: ${{ steps.cpr.outputs.pull-request-number }}";
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 💤 No changes — ritual concluded
+        if: ${{ steps.changes.outputs.changed != 'true' }}
+        run: |
+          echo "No diff detected in uv.lock. Skipping PR creation." >> "$GITHUB_STEP_SUMMARY"
 
       - name: 📝 PR permission missing — leave a captain’s note
         if: ${{ env.GH_PR_TOKEN == '' }}
