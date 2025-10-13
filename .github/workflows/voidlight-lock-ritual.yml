@@ -41,9 +41,6 @@ jobs:
       - name: 🧵 Refresh lockfile
         run: uv lock --upgrade
 
-      - name: 🧮 Compute checksum of lockfile
-        run: sha256sum uv.lock > uv.lock.sha256
-
       - name: 🩸 Detect lockfile alterations
         id: changes
         run: |
@@ -56,6 +53,10 @@ jobs:
             echo "### 🔮 Lockfile Renewed" >> "$GITHUB_STEP_SUMMARY"
             echo "uv.lock has been updated and will be proposed via PR." >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: 🧮 Compute checksum of lockfile (only when renewed)
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        run: sha256sum uv.lock > uv.lock.sha256
 
       - name: 📝 Compose PR body with lock diff (first 20 lines)
         run: |
