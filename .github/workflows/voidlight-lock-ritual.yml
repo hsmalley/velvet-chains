@@ -26,6 +26,9 @@ jobs:
   upgrade-uv-lock:
     name: "🔮 Reweave Dependency Sigils"
     runs-on: ubuntu-latest
+    env:
+      GH_PR_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+      UV_LOCK_MILESTONE: ${{ vars.UV_LOCK_MILESTONE }}
     steps:
       - name: ⚓ Checkout
         uses: actions/checkout@v5
@@ -56,11 +59,11 @@ jobs:
             echo "```"
           } > PR_BODY.md
 
-      - name: 🤝 Open PR with renewed lock (if token available)
-        if: ${{ secrets.GH_PR_TOKEN != '' }}
+      - name: 🤝 Open PR with renewed lock (with milestone)
+        if: ${{ env.GH_PR_TOKEN != '' && env.UV_LOCK_MILESTONE != '' }}
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GH_PR_TOKEN }}
+          token: ${{ env.GH_PR_TOKEN }}
           commit-message: "🧬 renew: update uv.lock to latest constraints"
           title: "🧬 Renew uv.lock — dependency refresh"
           body-path: PR_BODY.md
@@ -79,11 +82,36 @@ jobs:
             hsmalley
           reviewers: |
             hsmalley
-          milestone: ${{ vars.UV_LOCK_MILESTONE }}
+          milestone: ${{ env.UV_LOCK_MILESTONE }}
+          delete-branch: true
+
+      - name: 🤝 Open PR with renewed lock (no milestone)
+        if: ${{ env.GH_PR_TOKEN != '' && env.UV_LOCK_MILESTONE == '' }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ env.GH_PR_TOKEN }}
+          commit-message: "🧬 renew: update uv.lock to latest constraints"
+          title: "🧬 Renew uv.lock — dependency refresh"
+          body-path: PR_BODY.md
+
+          branch: chore/renew-uv-lock
+          add-paths: |
+            uv.lock
+            uv.lock.sha256
+          signoff: true
+          committer: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
+          author: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
+          labels: |
+            dependencies
+            uv-lock
+          assignees: |
+            hsmalley
+          reviewers: |
+            hsmalley
           delete-branch: true
 
       - name: 📝 PR permission missing — leave a captain’s note
-        if: ${{ secrets.GH_PR_TOKEN == '' }}
+        if: ${{ env.GH_PR_TOKEN == '' }}
         run: |
           echo "### 🔒 Cannot open PR from Actions" >> $GITHUB_STEP_SUMMARY
           echo "This repository disallows Actions-created PRs or lacks a PAT." >> $GITHUB_STEP_SUMMARY
