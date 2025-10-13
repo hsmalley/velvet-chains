@@ -5,8 +5,36 @@ name: 🌌 Deploy Corsair Documentation Spectacular
 on:
   push:
     branches: [main]
+    paths:
+      - "app/**"
+      - "pages/**"
+      - "components/**"
+      - "styles/**"
+      - "public/**"
+      - "next.config.js"
+      - "package.json"
+      - "package-lock.json"
+      - "_LORE_/**"
+      - "BRIG_BRIEFING.mdx"
+      - "CAPTAINS_LOG.md"
+      - "VELVET-ENGINE-OPERATIONS-MANUAL.md"
+      - ".github/workflows/deploy.yml"
   pull_request:
     branches: [main]
+    paths:
+      - "app/**"
+      - "pages/**"
+      - "components/**"
+      - "styles/**"
+      - "public/**"
+      - "next.config.js"
+      - "package.json"
+      - "package-lock.json"
+      - "_LORE_/**"
+      - "BRIG_BRIEFING.mdx"
+      - "CAPTAINS_LOG.md"
+      - "VELVET-ENGINE-OPERATIONS-MANUAL.md"
+      - ".github/workflows/deploy.yml"
 permissions:
   contents: read
   pages: write
@@ -18,22 +46,30 @@ jobs:
   build:
     name: 🎭 Forge Theatrical Documentation Spectacle
     runs-on: ubuntu-latest
+    outputs:
+      pages_ready: ${{ steps.site.outputs.present }}
     steps:
       - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
         uses: actions/checkout@v5
-      - name: 🔎 Detect Next.js site presence
+      - name: 🔮 Scry for Next.js Portal (app/pages)
         id: site
         run: |
           if [ -d app ] || [ -d pages ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "No Next.js app/pages directory present; skipping site build." >&2
+            echo "No Next.js portal (app/ or pages/) detected; the void remains un-summoned. Skipping site build." >&2
           fi
-      - name: ✨ Invoke uv's Cosmic Power (for lock checks)
+      - name: 💤 No portal detected — course hold
+        if: ${{ steps.site.outputs.present != 'true' }}
+        run: |
+          echo "### 💤 Pages Deploy Skipped — No Portal" >> $GITHUB_STEP_SUMMARY
+          echo "The Obsidian Promise found no Next.js portal (no 'app/' or 'pages/' directory)." >> $GITHUB_STEP_SUMMARY
+          echo "No artifact was forged; the deployment ritual will be courteously skipped." >> $GITHUB_STEP_SUMMARY
+      - name: ✨ Invoke uv's Cosmic Power (lock augury)
         if: ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' }}
         uses: astral-sh/setup-uv@v7
-      - name: 🔒 Verify uv.lock is current (optional)
+      - name: 🔒 Verify Voidlight Lock (uv.lock)
         if:
           ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' &&
           hashFiles('uv.lock') != '' }}
@@ -74,8 +110,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && needs.build.outputs.pages_ready == 'true'
     steps:
       - name: 🚢 Launch into the Void - Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  no-deploy-note:
+    name: 💤 No Pages Artifact — Skipping Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.build.outputs.pages_ready != 'true'
+    steps:
+      - name: 📝 Record skip reason
+        run: |
+          echo "### 💤 Pages Deploy Skipped" >> $GITHUB_STEP_SUMMARY
+          echo "No Next.js site was found (no 'app/' or 'pages/' directory)." >> $GITHUB_STEP_SUMMARY
+          echo "The build step intentionally skipped upload; no 'github-pages' artifact exists." >> $GITHUB_STEP_SUMMARY
