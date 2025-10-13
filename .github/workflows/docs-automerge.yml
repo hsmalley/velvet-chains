@@ -1,0 +1,82 @@
+---
+# 🎉 Velvet Chains — Docs-only Auto-Benediction (Auto-Merge)
+name: "🎉 Auto‑Benedict Docs‑Only PRs"
+
+on:
+  pull_request_target:
+    types: [opened, reopened, ready_for_review, labeled, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  judge:
+    name: "⚖️ Judge Eligibility"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "🔎 Divine Changed Files"
+        id: inspect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pr = context.payload.pull_request;
+            if (!pr || pr.draft) {
+              core.setOutput('docs_only', 'false');
+              core.setOutput('why', pr ? 'draft' : 'no-pr');
+              return;
+            }
+            const { data: files } = await github.rest.pulls.listFiles({ owner, repo, pull_number: pr.number, per_page: 300 });
+            const allowedRoot = new Set(['README.md','README.mdx','BRIG_BRIEFING.mdx','CAPTAINS_LOG.md','VELVET-ENGINE-OPERATIONS-MANUAL.md','CHANGELOG.md']);
+            const docExt = /\.(md|mdx)$/i;
+            const assetExt = /\.(png|jpe?g|gif|webp|svg|ico|avif|txt|json|xml|woff2?|ttf|otf|eot|mp4|webm)$/i;
+            const isAllowed = (p) => {
+              if (allowedRoot.has(p)) return true;
+              if (docExt.test(p)) return true;
+              if (p.startsWith('docs/')) return true;
+              if (p.startsWith('pages/releases/') && p.toLowerCase().endsWith('.mdx')) return true;
+              if (p.startsWith('public/') && assetExt.test(p)) return true;
+              return false;
+            };
+            const changed = files.map(f => f.filename);
+            const forbidden = changed.filter(p => !isAllowed(p));
+            core.setOutput('docs_only', forbidden.length === 0 ? 'true' : 'false');
+            if (forbidden.length) core.setOutput('forbidden', forbidden.join('\n'));
+      - name: "🏷️ Verify Labels (docs + automerge:docs)"
+        if: steps.inspect.outputs.docs_only == 'true'
+        id: labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const ok = labels.includes('docs') && labels.includes('automerge:docs');
+            core.setOutput('ok', ok ? 'true' : 'false');
+      - name: "📣 Chronicle Eligibility"
+        if: steps.inspect.outputs.docs_only != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const why = core.getInput('why') || 'code changes detected';
+            const forbidden = `${{ steps.inspect.outputs.forbidden || '' }}`;
+            core.info('Not eligible for auto‑merge.');
+            if (forbidden) core.warning(`Non-docs files: \n${forbidden}`);
+      - name: "🔓 Enable Native Auto‑Merge (squash)"
+        if: steps.inspect.outputs.docs_only == 'true' && steps.labels.outputs.ok == 'true'
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ github.event.pull_request.number }}
+          merge-method: squash
+      - name: "🤖 Fallback: Merge Immediately if Checks Green"
+        if: steps.inspect.outputs.docs_only == 'true' && steps.labels.outputs.ok == 'true'
+        uses: peter-evans/merge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: pull-request-title
+          method: squash
+          required_labels: docs,automerge:docs
+          required_approving_review_count: 1
+          wait_for_status_checks_timeout: 10
+          delete_branch: true

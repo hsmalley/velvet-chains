@@ -29,3 +29,6 @@ labels:
   - name: rust
     color: F97316
     description: "⚔️ Voidlight engine — Rust domain"
+  - name: automerge:docs
+    color: 34D399
+    description: "🤖 Benediction — auto-merge docs-only PRs when checks pass"

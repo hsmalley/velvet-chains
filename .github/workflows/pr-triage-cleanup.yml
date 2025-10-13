@@ -1,0 +1,58 @@
+---
+# 🧭 Velvet Chains — Remove 'needs-triage' when reviewed or assigned
+name: "🧭 Retire Triage Seal Upon Review"
+
+on:
+  pull_request_target:
+    types:
+      [
+        assigned,
+        review_requested,
+        labeled,
+        unlabeled,
+        reopened,
+        edited,
+        ready_for_review,
+        synchronize,
+      ]
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  cleanse:
+    name: "🕯️ Lift the Triage Veil"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "🔎 Inspect PR State"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prNumber = (context.payload.pull_request && context.payload.pull_request.number) || (context.payload.review && context.payload.pull_request.number);
+            if (!prNumber) {
+              core.info('No PR context. Skipping.');
+              return;
+            }
+            const pr = (await github.rest.pulls.get({ owner, repo, pull_number: prNumber })).data;
+            const hasNeedsTriage = pr.labels.some(l => l.name === 'needs-triage');
+            if (!hasNeedsTriage) {
+              core.info("'needs-triage' absent; nothing to do.");
+              return;
+            }
+            const { data: reviews } = await github.rest.pulls.listReviews({ owner, repo, pull_number: prNumber });
+            const anyReview = reviews && reviews.length > 0;
+            const hasAssignee = pr.assignees && pr.assignees.length > 0;
+            const hasRequested = pr.requested_reviewers && pr.requested_reviewers.length > 0;
+            const hasAreaLabel = pr.labels.some(l => ['bug','enhancement','release','docs','site','ci','workflows','python','rust'].includes(l.name));
+            const shouldRemove = anyReview || (hasAreaLabel && (hasAssignee || hasRequested));
+            if (shouldRemove) {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number: prNumber, name: 'needs-triage' });
+              core.notice("Removed 'needs-triage' — PR is reviewed or under stewardship.");
+            } else {
+              core.info('Triage remains until review/assignment.');
+            }
