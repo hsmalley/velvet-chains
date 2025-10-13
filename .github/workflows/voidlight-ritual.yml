@@ -10,6 +10,37 @@ on:
   pull_request:
     branches: [main]
 jobs:
+  dco-check:
+    name: 🧾 DCO Oath Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout full history for commit range
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: 🔍 Inspect commits for Signed-off-by
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="${{ github.event.pull_request.base.sha }}..${{ github.sha }}"
+          else
+            # On push, check commits pushed in this ref (last 50 as a guard)
+            RANGE="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          echo "Checking DCO on range: $RANGE"
+          FAILED=0
+          while read -r c; do
+            if ! git log -1 --format=%B "$c" | grep -i -q '^Signed-off-by: .*<.*>$'; then
+              echo "❌ Commit $c is missing a Signed-off-by trailer" >&2
+              FAILED=1
+            fi
+          done < <(git rev-list "$RANGE")
+          if [ "$FAILED" -ne 0 ]; then
+            echo "\nAdd sign-offs locally with: git commit -s --amend --no-edit && git push --force-with-lease" >&2
+            exit 1
+          fi
+          echo "✅ All commits bear the DCO vow."
   lint-and-test:
     name: 🐍 Python Choreographer Ceremonies
     runs-on: ubuntu-latest
@@ -20,6 +51,9 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
+      - name: 🔒 Verify uv.lock is up to date
+        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        run: uv lock --check
       - name: ⚓ Provision corsair development arsenal
         run: uv pip install ruff
       - name: ✨ Polish Python formatting until it gleams

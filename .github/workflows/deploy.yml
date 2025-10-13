@@ -21,6 +21,12 @@ jobs:
     steps:
       - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
         uses: actions/checkout@v5
+      - name: ✨ Invoke uv's Cosmic Power (for lock checks)
+        if: ${{ hashFiles('pyproject.toml') != '' }}
+        uses: astral-sh/setup-uv@v1
+      - name: 🔒 Verify uv.lock is current (optional)
+        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        run: uv lock --check
       - name: 🏴‍☠️ Prepare the Ship - Setup Node.js
         uses: actions/setup-node@v5
         with:
@@ -29,11 +35,13 @@ jobs:
       - name: 💎 Gather the Treasure - Install Dependencies
         run: npm ci
       - name: 🧪 Validate Lore Codex Integrity
+        if: ${{ hashFiles('scripts/validate_lore.py') != '' }}
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pyyaml
           npm run validate:lore || (echo "Lore validation failed" && exit 1)
       - name: 📚 Build Lore JSON Artifact
+        if: ${{ hashFiles('scripts/build_lore_json.py') != '' }}
         run: npm run build:lore
       - name: ⚔️ Forge the Spectacle - Build the Site
         run: npm run build

@@ -41,14 +41,12 @@ THEATRICAL MAGIC!** ⚔️
 ### **🎪 BEFORE YOU BOARD THE VESSEL:**
 
 1. **📜 READ THE SACRED DOCUMENTS:**
-
    - `BRIG_BRIEFING.mdx` - The main theatrical documentation
    - `CAPTAINS_LOG.md` - Technical usage guide
    - `CONSENT_DECREE.txt` - Consent and safety framework
    - This `QUARTERMASTER_CODEX.md` - Contributing guidelines
 
 2. **🛡️ HONOR THE SAFE WORD:**
-
    - Understand that _"fiction"_ means **STOP ALL THEATRICAL ACTIVITIES**
    - Never use our tools to impersonate genuine work contribution
    - Always disclose theatrical nature to collaborators
@@ -83,7 +81,6 @@ THEATRICAL MAGIC!** ⚔️
    ```
 
 3. **🎭 CREATE THEATRICAL EXCELLENCE**
-
    - **Maintain theme consistency** - Every addition must enhance the corsair aesthetic
    - **Add comprehensive tests** - Even theatrical tools need reliability
    - **Document with flair** - Update relevant `.md` files with spectacular language
@@ -197,6 +194,39 @@ review excellence **👑 Captain** - Repository leadership and community buildin
 - **🛡️ Consent Champion** - Exemplary safety and boundary respect
 - **⚚ Engineering Artistry** - Technical brilliance within theatrical framework
 - **🌌 Community Builder** - Fostering inclusive corsair collaboration
+
+---
+
+## 🧾 **DCO: Developer Certificate of Origin**
+
+> "Every commit is a vow; every signature a seal." — Prefect Lys
+
+**What it is**
+
+- The DCO is a simple statement attached to each commit asserting you have the right to contribute
+  the code under this project’s license.
+- It’s implemented by adding a `Signed-off-by:` trailer to your commit message.
+
+**The Sacred Line (exact format)**
+
+- `Signed-off-by: Full Name <email@example.com>`
+- The name and email must match your `git config` identity.
+
+**How to sign off (choose your ritual)**
+
+- One‑off: `git commit -s -m "Your theatrical message"`
+- Amend last commit: `git commit --amend -s --no-edit`
+- Rebasing a branch: interactively amend each commit with `-s`, then `git push --force-with-lease`.
+
+**Local auto‑signoff**
+
+- We provide a Husky `prepare-commit-msg` hook that appends the sign‑off if missing. Ensure Husky is
+  installed: `npx husky install`.
+
+**CI enforcement**
+
+- Our Voidlight Rituals CI runs a DCO check on pull requests. Commits without a valid sign‑off will
+  be barred from boarding the Obsidian Promise.
 
 ---
 

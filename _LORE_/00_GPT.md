@@ -98,8 +98,8 @@ Use the following prompts to generate content. Replace variables in brackets:
 
 1. **“Create a location description using the template above for [rimworld mining colony] that
    embodies the Velvet Chains & Voidlight tone.”**
-2. **“Generate an NPC using the NPC Creation Template. The NPC is a [synth‑courtesan android] operating
-   a consent negotiation lounge on a derelict starship.”**
+2. **“Generate an NPC using the NPC Creation Template. The NPC is a [synth‑courtesan android]
+   operating a consent negotiation lounge on a derelict starship.”**
 3. **“Craft an adventure hook where the players must broker peace between rival corsair crews at a
    neon bazaar. Use the Adventure Hook Template.”**
 4. **“Design a new item for the setting using the Item/Spell Template. It should be a level 5

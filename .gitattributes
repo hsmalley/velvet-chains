@@ -1,0 +1,16 @@
+* text=auto eol=lf
+
+# Keep workflows consistent on LF
+.github/workflows/*.yml text eol=lf
+
+# Common text formats
+*.md text eol=lf
+*.mdx text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.scss text eol=lf

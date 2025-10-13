@@ -1,0 +1,61 @@
+# 🏴‍☠️ Velvet Chains: Voidlight Lock Renewal Ritual
+name: "🧬 Voidlight Lock Renewal — Concord Rite"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/voidlight-lock-ritual.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/voidlight-lock-ritual.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upgrade-uv-lock:
+    name: "🔮 Reweave Dependency Sigils"
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚓ Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+
+      - name: ✨ Setup uv
+        uses: astral-sh/setup-uv@v1
+
+      - name: 🧵 Refresh lockfile
+        run: uv lock --upgrade
+
+      - name: 🧮 Compute checksum of lockfile
+        run: sha256sum uv.lock > uv.lock.sha256
+
+      - name: 📦 Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "🧬 renew: update uv.lock to latest constraints"
+          title: "🧬 Renew uv.lock — weekly dependency refresh"
+          body: |
+            This automated ritual refreshes `uv.lock` based on `pyproject.toml`.
+
+            - Command: `uv lock --upgrade`
+            - Includes: `uv.lock` and `uv.lock.sha256`
+            - Safety: CI verifies lock freshness via `uv lock --check`
+
+          branch: chore/renew-uv-lock
+          add-paths: |
+            uv.lock
+            uv.lock.sha256
+          signoff: true
+          committer: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
+          author: "Obsidian Promise Bot <github-actions[bot]@users.noreply.github.com>"
+          delete-branch: true

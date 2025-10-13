@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+# 🏴‍☠️ Velvet Chains — DCO Sign-off Enforcer
+# Auto-appends a Signed-off-by trailer if missing. Honors consent and identity.
+. "$(dirname "$0")/_/husky.sh" 2>/dev/null || true
+
+MSG_FILE="$1"
+COMMIT_SOURCE="$2"
+
+# Skip merge, squash, or commit-msg templates triggered by tools
+case "$COMMIT_SOURCE" in
+  merge|squash) exit 0 ;;
+esac
+
+AUTHOR_NAME=$(git config user.name)
+AUTHOR_EMAIL=$(git config user.email)
+[ -z "$AUTHOR_NAME" ] && exit 0
+[ -z "$AUTHOR_EMAIL" ] && exit 0
+
+SIGNOFF_LINE="Signed-off-by: $AUTHOR_NAME <$AUTHOR_EMAIL>"
+
+# If message already contains a sign-off (any case), respect it
+if grep -i -q "^Signed-off-by: .*<.*>$" "$MSG_FILE"; then
+  exit 0
+fi
+
+# Append sign-off with a little corsair flourish
+{
+  printf "\n\n# ✍️ Auto-added by Obsidian Promise: DCO consent attested\n"
+  printf "%s\n" "$SIGNOFF_LINE"
+} >> "$MSG_FILE"
+
+exit 0

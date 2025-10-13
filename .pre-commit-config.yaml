@@ -95,7 +95,7 @@ repos:
       - id: prettier
         name: 💄 Format with Prettier
         additional_dependencies:
-          - prettier@3.3.3
+          - prettier@3.6.2
         files: \.(js|jsx|ts|tsx|json|md|mdx|css|scss|yaml|yml)$
         args: ["--write"]
   # 🔎 ESLint via Next (local hook)

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-if ! command -v git-voidlight >/dev/null 2>&1; then
-    echo '[voidlight] git-voidlight not found on PATH. Install with "cargo install voidlight".' >&2
-    exit 0
-fi
-
-git-voidlight --hook "$@"
