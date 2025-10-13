@@ -3,6 +3,7 @@
 ![VELVET CHAINS & VOIDLIGHT](_LORE_/VELVET%20CHAINS%20and%20VOIDLIGHT.webp "THE CAPTAIN'S LEGENDARY LOG ")
 
 ![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)
+![GitHub Release (latest SemVer)](https://img.shields.io/github/v/release/hsmalley/velvet-chains?include_prereleases&sort=semver)
 
 **WELCOME TO THE COSMIC BRIG, MAGNIFICENT CORSAIR!** ⚓✨
 

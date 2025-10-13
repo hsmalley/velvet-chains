@@ -10,6 +10,7 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "proseWrap": "always",
+  "endOfLine": "lf",
   "plugins": [],
   "overrides": [
     { "files": "*.md", "options": { "proseWrap": "always" } },

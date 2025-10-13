@@ -1,0 +1,233 @@
+# 🏴‍☠️ Velvet Chains Armada Release
+# Tags → Build static site → Cut GitHub Release with artifacts
+name: "✨ Armada Release: Velvet Chains"
+
+on:
+  push:
+    tags:
+      - "v*" # Release on version tags like v1.2.3
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Optional tag to release (e.g. v1.2.3)"
+        required: false
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: release-${{ github.ref_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  build-site:
+    name: 🎭 Forge Static Site Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚓ Hoist the Colors — Checkout
+        uses: actions/checkout@v5
+
+      - name: 🏴‍☠️ Prepare the Ship — Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: 💎 Gather the Treasure — Install Dependencies
+        run: npm ci
+
+      - name: 🧪 Validate Lore Codex (conditional)
+        if: ${{ hashFiles('scripts/validate_lore.py') != '' }}
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyyaml
+          npm run validate:lore
+
+      - name: 📚 Build Lore JSON (conditional)
+        if: ${{ hashFiles('scripts/build_lore_json.py') != '' }}
+        run: npm run build:lore
+
+      - name: ⚔️ Forge the Spectacle — Build
+        run: |
+          npm run build
+          npm run export
+
+      - name: 📦 Package Site Artifact
+        run: |
+          VERSION="${GITHUB_REF_NAME:-manual}"
+          ARCHIVE="velvet-chains-site-${VERSION}.tgz"
+          tar -czf "$ARCHIVE" out
+          echo "$ARCHIVE" > archive_name.txt
+          sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
+
+      - name: 📜 Upload Artifact for Release
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-package
+          path: |
+            *.tgz
+            *.tgz.sha256
+            archive_name.txt
+
+  rust-binaries:
+    name: ⚔️ Forge Rust Binaries
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            archive: tar.gz
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            archive: tar.gz
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            archive: zip
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v5
+      - name: 🛠️ Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: 🔥 Build release binary
+        run:
+          cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{
+          matrix.target }}
+      - name: 📦 Package binary (unix)
+        if: ${{ matrix.archive == 'tar.gz' }}
+        run: |
+          NAME="git-voidlight-${{ matrix.target }}"
+          cp "voidlight_engine/target/${{ matrix.target }}/release/git-voidlight" "${NAME}"
+          tar -czf "${NAME}.tar.gz" "${NAME}"
+          sha256sum "${NAME}.tar.gz" > "${NAME}.tar.gz.sha256"
+      - name: 📦 Package binary (windows)
+        if: ${{ matrix.archive == 'zip' }}
+        shell: bash
+        run: |
+          NAME="git-voidlight-${{ matrix.target }}.exe"
+          cp "voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.exe" "$NAME"
+          zip "${NAME%.exe}.zip" "$NAME"
+          sha256sum "${NAME%.exe}.zip" > "${NAME%.exe}.zip.sha256"
+      - name: 🚀 Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-${{ matrix.target }}
+          path: |
+            git-voidlight-${{ matrix.target }}.tar.gz
+            git-voidlight-${{ matrix.target }}.tar.gz.sha256
+            git-voidlight-${{ matrix.target }}.zip
+            git-voidlight-${{ matrix.target }}.zip.sha256
+
+  python-package:
+    name: 🐍 Build Python Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v5
+      - name: 🔥 Setup Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: ✨ Setup uv
+        uses: astral-sh/setup-uv@v1
+      - name: 🔒 Verify uv.lock is up to date
+        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        run: uv lock --check
+      - name: 🧰 Install build tooling
+        run: uv pip install build twine
+      - name: 🎭 Build dist
+        run: uv run python -m build
+      - name: 🚀 Upload python dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package
+          path: dist/*
+
+  github-release:
+    name: 🌌 Unfurl Cosmic Release Scroll
+    needs: [build-site, rust-binaries, python-package]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Retrieve all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*"
+          path: releases
+          merge-multiple: true
+
+      - name: 🗂️ Resolve Archive Name
+        id: meta
+        run: |
+          NAME=$(cat releases/archive_name.txt)
+          echo "archive=$NAME" >> "$GITHUB_OUTPUT"
+
+      - name: 🧮 Compute missing checksums (Python dists)
+        run: |
+          shopt -s nullglob
+          for f in releases/*.whl releases/*tar.gz; do
+            [ -e "$f" ] || continue
+            if [ ! -f "$f.sha256" ]; then
+              sha256sum "$f" > "$f.sha256"
+            fi
+          done
+
+      - name: 🧾 Generate Assets section
+        run: |
+          {
+            echo "## Assets"
+            echo
+            echo "Filename | Size | SHA-256"
+            echo "--- | ---: | ---"
+            shopt -s nullglob
+            for f in releases/*; do
+              case "$f" in
+                *.sha256|*/archive_name.txt) continue;;
+              esac
+              SIZE_BYTES=$(stat -c%s "$f")
+              SIZE_MB=$(awk -v s="$SIZE_BYTES" 'BEGIN{printf "%.2f MB", s/1024/1024}')
+              if [ -f "$f.sha256" ]; then
+                SUM=$(cut -d' ' -f1 < "$f.sha256")
+              else
+                SUM="(no checksum)"
+              fi
+              echo "$(basename "$f") | $SIZE_MB | \`$SUM\`"
+            done | sort
+            echo
+          } > releases/RELEASE_BODY.md
+
+      - name: 📦 Assemble upload file list
+        run: |
+          set -euo pipefail
+          ARCHIVE="${{ steps.meta.outputs.archive }}"
+          {
+            echo "releases/${ARCHIVE}"
+            echo "releases/${ARCHIVE}.sha256"
+            ls releases/git-voidlight-*.tar.gz releases/git-voidlight-*.tar.gz.sha256 2>/dev/null || true
+            ls releases/git-voidlight-*.zip releases/git-voidlight-*.zip.sha256 2>/dev/null || true
+            ls releases/*.whl 2>/dev/null | sed 's#^#/#' >/dev/null || true
+            ls releases/*.whl 2>/dev/null || true
+            ls releases/*-*.tar.gz 2>/dev/null | grep -v 'git-voidlight-' || true
+          } | awk 'NF' | sed 's#^#/#' >/dev/null || true
+          FILES=$(printf "%s\n" "releases/${ARCHIVE}" "releases/${ARCHIVE}.sha256" \
+            $(ls releases/git-voidlight-*.tar.gz 2>/dev/null || true) \
+            $(ls releases/git-voidlight-*.tar.gz.sha256 2>/dev/null || true) \
+            $(ls releases/git-voidlight-*.zip 2>/dev/null || true) \
+            $(ls releases/git-voidlight-*.zip.sha256 2>/dev/null || true) \
+            $(ls releases/*.whl 2>/dev/null || true) \
+            $(ls releases/*-*.tar.gz 2>/dev/null | grep -v 'git-voidlight-' || true))
+          # Export multi-line list to env for gh-release
+          echo "FILES<<EOF" >> $GITHUB_ENV
+          echo "$FILES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: 🌌 Publish Release to the Void
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.FILES }}
+          body_path: releases/RELEASE_BODY.md
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}

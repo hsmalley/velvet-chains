@@ -25,11 +25,9 @@ planned_commits_preview_*.json
 .generated_commits.txt
 hooks/__pycache__/
 voidlight_engine/target/
-rust_snark/target/
 dist/
 build/
 *.egg-info/
-uv.lock
 
 # Ruff cache
 .ruff_cache/
@@ -127,3 +125,10 @@ coverage/
 # Lockfile backups cast overboard
 package-lock.backup*.json
 yarn.lock.backup*
+
+# Release packaging byproducts (local runs)
+*.tgz
+*.tgz.sha256
+*.zip
+*.zip.sha256
+releases/
