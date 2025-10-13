@@ -56,20 +56,29 @@ jobs:
       - name: "📣 Chronicle Eligibility"
         if: steps.inspect.outputs.docs_only != 'true'
         uses: actions/github-script@v7
+        env:
+          WHY: ${{ steps.inspect.outputs.why }}
+          FORBIDDEN: ${{ steps.inspect.outputs.forbidden }}
         with:
           script: |
-            const why = core.getInput('why') || 'code changes detected';
-            const forbidden = `${{ steps.inspect.outputs.forbidden || '' }}`;
-            core.info('Not eligible for auto‑merge.');
-            if (forbidden) core.warning(`Non-docs files: \n${forbidden}`);
-      - name: "🔓 Enable Native Auto‑Merge (squash)"
+            const why = process.env.WHY || 'code changes detected';
+            const forbidden = process.env.FORBIDDEN || '';
+            core.summary.addHeading('❌ Auto‑Benediction Withheld', 3)
+              .addRaw(`Reason: ${why}`)
+              .addBreak();
+            if (forbidden) {
+              core.summary.addHeading('Non‑docs files detected', 4)
+                .addCodeBlock(forbidden, 'text');
+            }
+            await core.summary.write();
+      - name: "🔓 Unlock Cosmic Auto‑Benediction (squash)"
         if: steps.inspect.outputs.docs_only == 'true' && steps.labels.outputs.ok == 'true'
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: squash
-      - name: "🤖 Fallback: Merge Immediately if Checks Green"
+      - name: "🤖 Fallback: Bless and Merge when Oracles Green"
         if: steps.inspect.outputs.docs_only == 'true' && steps.labels.outputs.ok == 'true'
         uses: peter-evans/merge@v3
         with:
