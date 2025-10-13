@@ -21,31 +21,49 @@ jobs:
     steps:
       - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
         uses: actions/checkout@v5
+      - name: 🔎 Detect Next.js site presence
+        id: site
+        run: |
+          if [ -d app ] || [ -d pages ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Next.js app/pages directory present; skipping site build." >&2
+          fi
       - name: ✨ Invoke uv's Cosmic Power (for lock checks)
-        if: ${{ hashFiles('pyproject.toml') != '' }}
+        if: ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' }}
         uses: astral-sh/setup-uv@v7
       - name: 🔒 Verify uv.lock is current (optional)
-        if: ${{ hashFiles('pyproject.toml') != '' && hashFiles('uv.lock') != '' }}
+        if:
+          ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' &&
+          hashFiles('uv.lock') != '' }}
         run: uv lock --check
       - name: 🏴‍☠️ Prepare the Ship - Setup Node.js
+        if: ${{ steps.site.outputs.present == 'true' }}
         uses: actions/setup-node@v5
         with:
           node-version: "20"
           cache: npm
       - name: 💎 Gather the Treasure - Install Dependencies
+        if: ${{ steps.site.outputs.present == 'true' }}
         run: npm ci
       - name: 🧪 Validate Lore Codex Integrity
-        if: ${{ hashFiles('scripts/validate_lore.py') != '' }}
+        if:
+          ${{ steps.site.outputs.present == 'true' && hashFiles('scripts/validate_lore.py') != '' }}
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pyyaml
           npm run validate:lore || (echo "Lore validation failed" && exit 1)
       - name: 📚 Build Lore JSON Artifact
-        if: ${{ hashFiles('scripts/build_lore_json.py') != '' }}
+        if:
+          ${{ steps.site.outputs.present == 'true' && hashFiles('scripts/build_lore_json.py') != ''
+          }}
         run: npm run build:lore
       - name: ⚔️ Forge the Spectacle - Build the Site
+        if: ${{ steps.site.outputs.present == 'true' }}
         run: npm run build
       - name: 📜 Archive the Bounty - Upload Pages Artifact
+        if: ${{ steps.site.outputs.present == 'true' }}
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./out

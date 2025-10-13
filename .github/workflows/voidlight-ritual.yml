@@ -74,25 +74,37 @@ jobs:
   rust-check:
     name: ⚔️ Rust Engine Sanctification
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('voidlight_engine/Cargo.toml') != '' }}
     steps:
       - name: 📦 Retrieve sacred codebase from digital depths
         uses: actions/checkout@v5
+      - name: 🔎 Detect Rust engine presence
+        id: detect-rust
+        run: |
+          if [ -f voidlight_engine/Cargo.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Rust engine found (voidlight_engine/Cargo.toml missing). Skipping Rust checks." >&2
+          fi
       - name: 🔨 Anoint Rust toolchain with power
         uses: dtolnay/rust-toolchain@stable
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
       - name: 💎 Hammer Rust into perfect aesthetic form
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
         run: |
           rustup component add rustfmt
           cargo fmt --manifest-path voidlight_engine/Cargo.toml --all -- --check
       - name: 🖤 Submit engine to clippy's merciless judgment
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
         run: |
           rustup component add clippy
           cargo clippy --manifest-path voidlight_engine/Cargo.toml --all-targets -- -D warnings
       - name: 🧨 Verify binary forges without exploding
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
         run: cargo test --manifest-path voidlight_engine/Cargo.toml --no-run
   release-artifacts:
     name: 🏆 Forge Corsair Armaments for Distribution
-    if: startsWith(github.ref, 'refs/tags/v') && hashFiles('voidlight_engine/Cargo.toml') != ''
+    if: startsWith(github.ref, 'refs/tags/v')
     strategy:
       matrix:
         include:
@@ -109,11 +121,22 @@ jobs:
     steps:
       - name: 📦 Acquire sacred source code
         uses: actions/checkout@v5
+      - name: 🔎 Detect Rust engine presence
+        id: detect-rust
+        run: |
+          if [ -f voidlight_engine/Cargo.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Rust engine found (voidlight_engine/Cargo.toml missing). Skipping artifact build." >&2
+          fi
       - name: ⚔️ Consecrate Rust forge for ${{ matrix.platform }}
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
       - name: 🔥 Forge release-grade voidlight binary
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
         run:
           cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{
           matrix.target }}
@@ -124,8 +147,10 @@ jobs:
           path: |
             voidlight_engine/target/${{ matrix.target }}/release/git-voidlight*
             !voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.d
+        if: ${{ steps.detect-rust.outputs.present == 'true' }}
       - name: 🌌 Launch Voidlight into the Cosmic Registry
-        if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Only publish once
+        if: ${{ steps.detect-rust.outputs.present == 'true' && matrix.target ==
+          'x86_64-unknown-linux-gnu' }} # Only publish once
         run: cargo publish --manifest-path voidlight_engine/Cargo.toml
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
