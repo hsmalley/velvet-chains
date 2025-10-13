@@ -134,12 +134,14 @@ jobs:
           sha256sum "${NAME}.tar.gz" > "${NAME}.tar.gz.sha256"
       - name: 📦 Package binary (windows)
         if: ${{ steps.rust.outputs.present == 'true' && matrix.archive == 'zip' }}
-        shell: bash
+        shell: pwsh
         run: |
-          NAME="git-voidlight-${{ matrix.target }}.exe"
-          cp "voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.exe" "$NAME"
-          zip "${NAME%.exe}.zip" "$NAME"
-          sha256sum "${NAME%.exe}.zip" > "${NAME%.exe}.zip.sha256"
+          $ErrorActionPreference = 'Stop'
+          $name = "git-voidlight-${{ matrix.target }}.exe"
+          Copy-Item "voidlight_engine/target/${{ matrix.target }}/release/git-voidlight.exe" $name -Force
+          $zip = $name -replace '\.exe$',''
+          Compress-Archive -Path $name -DestinationPath "$zip.zip" -Force
+          (Get-FileHash "$zip.zip" -Algorithm SHA256).Hash | Out-File -FilePath "$zip.zip.sha256" -Encoding ascii
       - name: 🚀 Upload binary artifact
         uses: actions/upload-artifact@v4
         with:
