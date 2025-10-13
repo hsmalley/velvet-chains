@@ -132,3 +132,6 @@ yarn.lock.backup*
 *.zip
 *.zip.sha256
 releases/
+# Allow site releases pages under Next.js pages/ (MDX release notes)
+!pages/releases/
+!pages/releases/**
