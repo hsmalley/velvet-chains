@@ -1,0 +1,24 @@
+# 🏴‍☠️ Velvet Chains — CODEOWNERS
+# When these chambers are touched, the named corsairs are summoned for review.
+# Adjust to your crew as it grows; for now, the Captain stands watch.
+
+# Site / Docs — Next.js portal
+pages/** @hsmalley
+styles/** @hsmalley
+public/** @hsmalley
+next.config.js @hsmalley
+
+# Voidlight Engine — Rust reliquary
+voidlight_engine/** @hsmalley
+
+# Choreographer — Python rites and scripts
+scripts/** @hsmalley
+**/*.py @hsmalley
+pyproject.toml @hsmalley
+uv.lock @hsmalley
+
+# Ritual Automation — Workflows and governance
+.github/** @hsmalley
+
+# Fallback — everything else
+* @hsmalley

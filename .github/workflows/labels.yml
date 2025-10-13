@@ -1,0 +1,27 @@
+---
+# 🏷️ Velvet Chains — Label Codex Sync
+name: "🏷️ Sync Corsair Labels"
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - .github/labels.yml
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync:
+    name: "📚 Harmonize Label Codex"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📦 Hoist the Colors — Checkout"
+        uses: actions/checkout@v5
+      - name: "🏷️ Sync Labels"
+        uses: crazy-max/ghaction-github-labeler@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: .github/labels.yml
+          sync-labels: true

@@ -1,0 +1,43 @@
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          [
+            "README.md",
+            "README.mdx",
+            "docs/**",
+            "BRIG_BRIEFING.mdx",
+            "CAPTAINS_LOG.md",
+            "VELVET-ENGINE-OPERATIONS-MANUAL.md",
+          ]
+
+site:
+  - changed-files:
+      - any-glob-to-any-file: ["pages/**", "styles/**", "public/**", "next.config.js"]
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/**"]
+
+workflows:
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/**"]
+
+python:
+  - changed-files:
+      - any-glob-to-any-file:
+          [
+            "**/*.py",
+            "pyproject.toml",
+            "uv.lock",
+            "scripts/**",
+            "voidlight_*/*.py",
+            "voidlight_*.py",
+          ]
+
+rust:
+  - changed-files:
+      - any-glob-to-any-file: ["voidlight_engine/**"]
+
+release:
+  - changed-files:
+      - any-glob-to-any-file: ["RELEASE_*", "pages/releases/**", ".github/workflows/release.yml"]
