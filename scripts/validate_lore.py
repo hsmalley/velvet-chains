@@ -16,9 +16,10 @@ Exit codes:
 
 Captain Velvet decrees: Honor consent & structure! ⚔️
 """
+
 from __future__ import annotations
+
 import re
-import sys
 from pathlib import Path
 
 # Optional dependency: PyYAML
@@ -55,7 +56,9 @@ def main() -> int:
             continue
         idx = int(m.group(1))
         if idx in indices:
-            errors.append(f"Duplicate index {idx:02d} between {indices[idx].name} and {path.name}")
+            errors.append(
+                f"Duplicate index {idx:02d} between {indices[idx].name} and {path.name}"
+            )
         else:
             indices[idx] = path
         raw = path.read_text(encoding="utf-8")
@@ -80,7 +83,12 @@ def main() -> int:
                 else:
                     errors.append(
                         f"Frontmatter must be a mapping (key: value) in {path.name}; got {type(meta_loaded).__name__}. Example:\n"
-                        "---\n" "title: Example Title\n" "order: 10\n" "tags: [setting]\n" "draft: false\n" "---"
+                        "---\n"
+                        "title: Example Title\n"
+                        "order: 10\n"
+                        "tags: [setting]\n"
+                        "draft: false\n"
+                        "---"
                     )
                     continue
                 unknown = set(meta.keys()) - ALLOWED_KEYS
@@ -88,24 +96,28 @@ def main() -> int:
                     errors.append(
                         f"Unknown frontmatter keys in {path.name}: {', '.join(sorted(unknown))}"
                     )
-                if 'order' in meta and not isinstance(meta['order'], int):
+                if "order" in meta and not isinstance(meta["order"], int):
                     errors.append(f"order must be integer in {path.name}")
-                if 'tags' in meta:
-                    if not isinstance(meta['tags'], list) or not all(
-                        isinstance(t, str) for t in meta['tags']
+                if "tags" in meta:
+                    if not isinstance(meta["tags"], list) or not all(
+                        isinstance(t, str) for t in meta["tags"]
                     ):
                         errors.append(f"tags must be list of strings in {path.name}")
-                if 'draft' in meta and not isinstance(meta['draft'], bool):
+                if "draft" in meta and not isinstance(meta["draft"], bool):
                     errors.append(f"draft must be boolean in {path.name}")
         else:
-            warnings.append(f"Missing frontmatter in {path.name} (legacy mode) – future versions will require it.")
+            warnings.append(
+                f"Missing frontmatter in {path.name} (legacy mode) – future versions will require it."
+            )
         # Title check
-        has_heading = any(line.startswith('#') for line in body.splitlines())
-        if not has_heading and 'title' not in meta:
+        has_heading = any(line.startswith("#") for line in body.splitlines())
+        if not has_heading and "title" not in meta:
             warnings.append(f"No heading or title in {path.name}")
         # Safe word check
-        if 'fiction' not in body.lower():
-            warnings.append(f"Safe word 'fiction' not referenced in body of {path.name}")
+        if "fiction" not in body.lower():
+            warnings.append(
+                f"Safe word 'fiction' not referenced in body of {path.name}"
+            )
     # Report
     if warnings:
         print("⚠️ Warnings:")
@@ -120,5 +132,5 @@ def main() -> int:
     return 0
 
 
-if __name__ == '__main__':  # Quartermaster Siren audits the lore manifests
+if __name__ == "__main__":  # Quartermaster Siren audits the lore manifests
     raise SystemExit(main())

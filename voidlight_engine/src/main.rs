@@ -224,7 +224,7 @@ fn build_story(seed: Option<u64>) -> String {
         Some(value) => StdRng::seed_from_u64(value),
         None => {
             let mut thread_rng = rand::rng();
-            StdRng::from_rng(&mut thread_rng)
+            StdRng::try_from_rng(&mut thread_rng).expect("failed to seed RNG")
         }
     };
 
