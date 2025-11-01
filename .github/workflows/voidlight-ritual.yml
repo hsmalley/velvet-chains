@@ -141,7 +141,7 @@ jobs:
           cargo build --release --manifest-path voidlight_engine/Cargo.toml --target ${{
           matrix.target }}
       - name: 🎁 Package corsair weaponry for deployment
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: voidlight-${{ matrix.target }}
           path: |
@@ -183,7 +183,7 @@ jobs:
       - name: 🛡️ Verify package meets corsair standards
         run: uv run twine check dist/*
       - name: 🏴‍☠️ Prepare package for treasure distribution
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: python-package
           path: dist/
