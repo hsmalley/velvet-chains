@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: "🔎 Divine Changed Files"
         id: inspect
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const owner = context.repo.owner;
@@ -47,7 +47,7 @@ jobs:
       - name: "🏷️ Verify Labels (docs + automerge:docs)"
         if: steps.inspect.outputs.docs_only == 'true'
         id: labels
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const labels = context.payload.pull_request.labels.map(l => l.name);
@@ -55,7 +55,7 @@ jobs:
             core.setOutput('ok', ok ? 'true' : 'false');
       - name: "📣 Chronicle Eligibility"
         if: steps.inspect.outputs.docs_only != 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           WHY: ${{ steps.inspect.outputs.why }}
           FORBIDDEN: ${{ steps.inspect.outputs.forbidden }}
