@@ -77,7 +77,7 @@ jobs:
 
       - name: 📜 Upload Artifact for Release
         if: ${{ steps.site.outputs.present == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: site-package
           path: |
@@ -141,7 +141,7 @@ jobs:
           Compress-Archive -Path $name -DestinationPath "$zip.zip" -Force
           (Get-FileHash "$zip.zip" -Algorithm SHA256).Hash | Out-File -FilePath "$zip.zip.sha256" -Encoding ascii
       - name: 🚀 Upload binary artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: rust-${{ matrix.target }}
           path: |
@@ -185,7 +185,7 @@ jobs:
         if: ${{ steps.py.outputs.present == 'true' }}
         run: uv run python -m build
       - name: 🚀 Upload python dist artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: python-package
           path: dist/*
