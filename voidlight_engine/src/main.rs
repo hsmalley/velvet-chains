@@ -1,4 +1,7 @@
-use clap::{ArgAction, Parser, Subcommand};
+use clap::{
+    builder::PathBufValueParser, error::ErrorKind as ClapErrorKind, Arg, ArgAction,
+    Command as ClapCommand, Error as ClapError,
+};
 use rand::prelude::*;
 use rand::rngs::StdRng;
 use rand::SeedableRng;
@@ -246,69 +249,199 @@ fn append_to_message(path: &Path, story: &str) -> io::Result<()> {
     Ok(())
 }
 
-#[derive(Parser, Debug)]
-#[command(author, version, about = "Space-pirate snark cannon for commits", long_about = None)]
+#[derive(Debug)]
 struct Cli {
     /// Path to the commit message file when Git drags us on stage (hook mode)
-    #[arg(long)]
     hook: Option<PathBuf>,
 
     /// Optional source parameter passed by Git hooks (merge/squash/etc.)
-    #[arg(long)]
     source: Option<String>,
 
     /// Base commit message when using --commit
-    #[arg(short, long)]
     message: Option<String>,
 
     /// Run `git commit` with the generated flourish
-    #[arg(long, action = ArgAction::SetTrue)]
     commit: bool,
 
     /// Stage modified and deleted paths before committing
-    #[arg(long, action = ArgAction::SetTrue)]
     all: bool,
 
     /// Bypass pre-commit and commit-msg hooks
-    #[arg(long = "no-verify", action = ArgAction::SetTrue)]
     no_verify: bool,
 
     /// Add Signed-off-by trailer when committing
-    #[arg(long, action = ArgAction::SetTrue)]
     signoff: bool,
 
     /// Amend the previous commit instead of creating a new one
-    #[arg(long, action = ArgAction::SetTrue)]
     amend: bool,
 
     /// Print the git command without executing it
-    #[arg(long, action = ArgAction::SetTrue)]
     dry_run: bool,
 
     /// Optional RNG seed for deterministic output
-    #[arg(long)]
     seed: Option<u64>,
 
     /// Additional arguments passed to `git commit`
-    #[arg(trailing_var_arg = true)]
     extra: Vec<String>,
 
     /// Subcommands for shipboard rituals
-    #[command(subcommand)]
     command: Option<Commands>,
 }
 
-#[derive(Subcommand, Debug, Clone)]
+#[derive(Debug)]
 enum Commands {
     /// Install or update the prepare-commit-msg hook for this repository
     InstallHook {
         /// Optional path to the hook file (defaults to <git-dir>/hooks/prepare-commit-msg)
-        #[arg(value_name = "PATH")]
         path: Option<PathBuf>,
         /// Overwrite any existing hook without prompting
-        #[arg(short, long, action = ArgAction::SetTrue)]
         force: bool,
     },
+}
+
+fn build_cli() -> ClapCommand {
+    ClapCommand::new("git-voidlight")
+        .author(env!("CARGO_PKG_AUTHORS"))
+        .version(env!("CARGO_PKG_VERSION"))
+        .about("Space-pirate snark cannon for commits")
+        .arg(
+            Arg::new("hook")
+                .long("hook")
+                .value_name("PATH")
+                .help("Path to the commit message file when Git drags us on stage (hook mode)")
+                .num_args(1)
+                .value_parser(PathBufValueParser::new()),
+        )
+        .arg(
+            Arg::new("source")
+                .long("source")
+                .value_name("SOURCE")
+                .help("Optional source parameter passed by Git hooks (merge/squash/etc.)")
+                .num_args(1),
+        )
+        .arg(
+            Arg::new("message")
+                .long("message")
+                .short('m')
+                .value_name("MESSAGE")
+                .help("Base commit message when using --commit")
+                .num_args(1),
+        )
+        .arg(
+            Arg::new("commit")
+                .long("commit")
+                .help("Run `git commit` with the generated flourish")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("all")
+                .long("all")
+                .help("Stage modified and deleted paths before committing")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("no-verify")
+                .long("no-verify")
+                .help("Bypass pre-commit and commit-msg hooks")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("signoff")
+                .long("signoff")
+                .help("Add Signed-off-by trailer when committing")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("amend")
+                .long("amend")
+                .help("Amend the previous commit instead of creating a new one")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("dry-run")
+                .long("dry-run")
+                .help("Print the git command without executing it")
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new("seed")
+                .long("seed")
+                .value_name("SEED")
+                .help("Optional RNG seed for deterministic output")
+                .num_args(1),
+        )
+        .arg(
+            Arg::new("extra")
+                .help("Additional arguments passed to `git commit`")
+                .trailing_var_arg(true)
+                .allow_hyphen_values(true)
+                .num_args(0..)
+                .action(ArgAction::Append),
+        )
+        .subcommand(
+            ClapCommand::new("install-hook")
+                .about("Install or update the prepare-commit-msg hook for this repository")
+                .arg(
+                    Arg::new("path")
+                        .value_name("PATH")
+                        .help(
+                            "Optional path to the hook file (defaults to <git-dir>/hooks/prepare-commit-msg)",
+                        )
+                        .num_args(0..=1)
+                        .value_parser(PathBufValueParser::new()),
+                )
+                .arg(
+                    Arg::new("force")
+                        .long("force")
+                        .short('f')
+                        .help("Overwrite any existing hook without prompting")
+                        .action(ArgAction::SetTrue),
+                ),
+        )
+}
+
+fn parse_cli() -> Result<Cli, ClapError> {
+    let matches = build_cli().try_get_matches()?;
+
+    let seed = matches
+        .get_one::<String>("seed")
+        .map(|value| {
+            value.parse::<u64>().map_err(|err| {
+                ClapError::raw(
+                    ClapErrorKind::ValueValidation,
+                    format!("invalid value for '--seed': {err}"),
+                )
+            })
+        })
+        .transpose()?;
+
+    let extra = matches
+        .get_many::<String>("extra")
+        .map(|values| values.cloned().collect::<Vec<_>>())
+        .unwrap_or_default();
+
+    let command = matches.subcommand().map(|(name, sub_matches)| match name {
+        "install-hook" => Commands::InstallHook {
+            path: sub_matches.get_one::<PathBuf>("path").cloned(),
+            force: sub_matches.get_flag("force"),
+        },
+        _ => unreachable!("unsupported subcommand: {name}"),
+    });
+
+    Ok(Cli {
+        hook: matches.get_one::<PathBuf>("hook").cloned(),
+        source: matches.get_one::<String>("source").cloned(),
+        message: matches.get_one::<String>("message").cloned(),
+        commit: matches.get_flag("commit"),
+        all: matches.get_flag("all"),
+        no_verify: matches.get_flag("no-verify"),
+        signoff: matches.get_flag("signoff"),
+        amend: matches.get_flag("amend"),
+        dry_run: matches.get_flag("dry-run"),
+        seed,
+        extra,
+        command,
+    })
 }
 
 fn install_hook(path: Option<PathBuf>, force: bool) -> io::Result<PathBuf> {
@@ -421,9 +554,16 @@ fn main() {
 }
 
 fn run_cli() -> i32 {
-    let cli = Cli::parse();
+    let cli = match parse_cli() {
+        Ok(cli) => cli,
+        Err(err) => {
+            let exit_code = err.exit_code();
+            let _ = err.print();
+            return exit_code;
+        }
+    };
 
-    if let Some(command) = cli.command.clone() {
+    if let Some(command) = cli.command {
         match command {
             Commands::InstallHook { path, force } => match install_hook(path, force) {
                 Ok(path) => {
