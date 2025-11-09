@@ -75,7 +75,7 @@ jobs:
 
       - name: 🤝 Open PR with renewed lock
         if: ${{ env.GH_PR_TOKEN != '' && steps.changes.outputs.changed == 'true' }}
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         id: cpr
         with:
           token: ${{ env.GH_PR_TOKEN }}
