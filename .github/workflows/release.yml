@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⚓ Hoist the Colors — Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔮 Scry for Next.js Portal (app/pages)
         id: site
         run: |
@@ -102,7 +102,7 @@ jobs:
             archive: zip
     steps:
       - name: 📦 Hoist the Colors — Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔎 Detect Rust Engine
         id: rust
         shell: bash
@@ -156,7 +156,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Hoist the Colors — Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔎 Detect Python package metadata
         id: py
         run: |
