@@ -1,0 +1,91 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "dependencyDashboard": true,
+  "timezone": "America/New_York",
+  "rebaseWhen": "behind-base-branch",
+  "platformAutomerge": false,
+  "automerge": true,
+  "automergeType": "pr",
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"],
+    "automerge": true,
+    "automergeType": "pr"
+  },
+  "packageRules": [
+    {
+      "description": "Let most updates soak briefly before Renovate merges them.",
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      "description": "Keep the riskiest major runtime and framework jumps manual.",
+      "matchPackageNames": [
+        "next",
+        "react",
+        "react-dom",
+        "typescript",
+        "eslint",
+        "eslint-config-next",
+        "@types/node",
+        "@types/react",
+        "@types/react-dom",
+        "node",
+        "python"
+      ],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true,
+      "automerge": false
+    },
+    {
+      "description": "Group GitHub Actions updates and let Renovate merge them.",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions updates",
+      "addLabels": ["ci", "workflows"],
+      "automerge": true
+    },
+    {
+      "description": "Group npm dev tooling updates and let Renovate merge them.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "npm devDependencies updates",
+      "addLabels": ["site"],
+      "automerge": true
+    },
+    {
+      "description": "Keep core frontend runtime packages separate from grouped tooling.",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["next", "react", "react-dom"],
+      "groupName": null,
+      "addLabels": ["site"]
+    },
+    {
+      "description": "Group Rust crate updates and let Renovate merge them.",
+      "matchManagers": ["cargo"],
+      "groupName": "rust updates",
+      "addLabels": ["rust"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge Python dependency updates from pyproject metadata.",
+      "matchManagers": ["pep621"],
+      "addLabels": ["python"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge Python runtime tag updates used in CI.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "groupName": "python runtime updates",
+      "addLabels": ["python", "ci"],
+      "automerge": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "automerge": true,
+    "automergeType": "pr"
+  }
+}
