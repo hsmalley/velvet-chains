@@ -50,7 +50,7 @@ jobs:
       pages_ready: ${{ steps.site.outputs.present }}
     steps:
       - name: ⚓ Hoist the Colors - Checkout the Corsair's Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔮 Scry for Next.js Portal (app/pages)
         id: site
         run: |

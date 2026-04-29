@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "📦 Hoist the Colors — Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: "🏷️ Engrave the Corsair Label Codex"
         uses: crazy-max/ghaction-github-labeler@v5
         with:
