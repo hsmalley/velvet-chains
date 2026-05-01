@@ -100,7 +100,7 @@ jobs:
         run: npm run build
       - name: 📜 Archive the Bounty - Upload Pages Artifact
         if: ${{ steps.site.outputs.present == 'true' }}
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
   deploy:
