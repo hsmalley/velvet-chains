@@ -189,6 +189,115 @@ jobs:
           path: dist/*
         if: ${{ steps.py.outputs.present == 'true' }}
 
+  pypi-publish:
+    name: 🐍 Unleash the Choreographer Upon the Moonlit PyPI Salon
+    needs: [python-package]
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚓ Hoist the Colors — Plunder the Full Tag Ledger
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: 🔎 Scry the Python Reliquary
+        id: py
+        run: |
+          if [ -f pyproject.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No pyproject prophecy was found; the Moonlit PyPI Salon shall remain untempted tonight." >&2
+          fi
+
+      - name: 🔖 Invoke the Release Sigil
+        id: tag
+        if: ${{ steps.py.outputs.present == 'true' }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "${{ inputs.tag }}" ]; then
+            TAG_NAME="${{ inputs.tag }}"
+          elif [[ "${GITHUB_REF:-}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF_NAME}"
+          else
+            mapfile -t TAGS < <(git tag --points-at HEAD 'v*')
+
+            if [ "${#TAGS[@]}" -eq 1 ]; then
+              TAG_NAME="${TAGS[0]}"
+            elif [ "${#TAGS[@]}" -gt 1 ]; then
+              echo "⚠️ The moonlit salon hears too many release sigils whispered at once: ${TAGS[*]}" >&2
+              echo "Name the chosen sigil explicitly with workflow_dispatch input 'tag'." >&2
+              exit 1
+            else
+              echo "⚠️ No v* release sigil answered the summoning for this Python rite." >&2
+              echo "Dispatch with the 'tag' input or invoke this rite from a tagged commit." >&2
+              exit 1
+            fi
+          fi
+
+          echo "name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: 📜 Read the Choreographer's Prophecy
+        id: pkg
+        if: ${{ steps.py.outputs.present == 'true' }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import tomllib
+          from pathlib import Path
+
+          pyproject = Path("pyproject.toml")
+          data = tomllib.loads(pyproject.read_text())
+          project = data["project"]
+
+          github_output = Path(os.environ["GITHUB_OUTPUT"])
+          with github_output.open("a", encoding="utf-8") as fh:
+              fh.write(f'name={project["name"]}\n')
+              fh.write(f'version={project["version"]}\n')
+          PY
+
+      - name: 🧭 Judge the Choreographer's Worthiness Before PyPI
+        id: publish
+        if: ${{ steps.py.outputs.present == 'true' }}
+        run: |
+          set -euo pipefail
+          EXPECTED_TAG="v${{ steps.pkg.outputs.version }}"
+          ACTUAL_TAG="${{ steps.tag.outputs.name }}"
+
+          if [ "$EXPECTED_TAG" = "$ACTUAL_TAG" ]; then
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+            echo "The choreographer's true name aligns with the release sigil: $ACTUAL_TAG"
+          else
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "The Moonlit PyPI Salon declines this dance for now: package ${{ steps.pkg.outputs.name }} bears version ${{ steps.pkg.outputs.version }}, but the release sigil is $ACTUAL_TAG."
+          fi
+
+      - name: 📥 Summon the Dist Relics from the Vault
+        if: ${{ steps.py.outputs.present == 'true' && steps.publish.outputs.allowed == 'true' }}
+        uses: actions/download-artifact@v8
+        with:
+          pattern: python-package
+          path: python-dist
+          merge-multiple: true
+
+      - name: 🔐 Demand the PyPI Blood-Sigil
+        if: ${{ steps.py.outputs.present == 'true' && steps.publish.outputs.allowed == 'true' }}
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "${PYPI_API_TOKEN:-}" ]; then
+            echo "PYPI_API_TOKEN is required before ${{ steps.pkg.outputs.name }} ${{ steps.pkg.outputs.version }} may whirl across PyPI." >&2
+            exit 1
+          fi
+
+      - name: 💋 Unleash the Choreographer Upon PyPI
+        if: ${{ steps.py.outputs.present == 'true' && steps.publish.outputs.allowed == 'true' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python-dist
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
   cargo-publish:
     name: 🌋 Hurl the Voidlight Reliquary into the Star-Forged Bazaar
     needs: [rust-binaries]

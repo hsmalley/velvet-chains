@@ -5,7 +5,8 @@ draped in velvet and bound by consent.
 
 ## [Unreleased]
 
-- Teach the release armada to hurl the Rust reliquary into crates.io when the sigils align.
+- Teach the release armada to hurl the Rust reliquary into crates.io and unleash the Python
+  choreographer upon PyPI when the sigils align.
 
 ## [0.2.2] — 2026-05-04
 
