@@ -1,6 +1,6 @@
 [package]
 name = "voidlight"
-version = "0.2.2"
+version = "0.2.4"
 edition = "2021"
 description = "BDSM space-pirate romance engine for git commit flourishes"
 license = "MIT"

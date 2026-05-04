@@ -5,8 +5,40 @@ draped in velvet and bound by consent.
 
 ## [Unreleased]
 
-- Teach the release armada to hurl the Rust reliquary into crates.io and unleash the Python
-  choreographer upon PyPI when the sigils align.
+- Prepare the next velvet release rite beyond v0.2.4.
+
+## [0.2.4] — 2026-05-04
+
+### Added
+
+- A moonlit PyPI salon rite that can publish the Python choreographer when the release sigil and
+  package prophecy align.
+
+### Changed
+
+- Raised both the Rust reliquary and the Python choreographer to the `0.2.4` sigil so the next
+  release number stays ahead of the already-spent `v0.2.3` rite.
+- Renewed the `Cargo.lock` and `uv.lock` sigils for the new version mark.
+
+### Commits since v0.2.3
+
+- 0c9d066 💎 Raise the reliquary and choreographer to the 0.2.2 sigil
+- b4831ac 🐍 Unleash the choreographer upon the moonlit PyPI salon
+
+## [0.2.3] — 2026-05-04
+
+### Added
+
+- A star-forged crates.io rite that can cast the Rust reliquary into the bazaar when the crate
+  version consents to the release sigil.
+
+### Changed
+
+- Elevated the cargo release job and changelog diction to full corsair melodrama.
+
+### Commits since v0.2.2
+
+- e788590 🌋 Hurl the voidlight reliquary into the star-forged bazaar
 
 ## [0.2.2] — 2026-05-04
 
@@ -118,6 +150,8 @@ draped in velvet and bound by consent.
 - a476300 Restoring a few more things... oppsie!
 - e98d1df Wow, I really messed up
 
-[Unreleased]: https://github.com/hsmalley/velvet-chains/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/hsmalley/velvet-chains/compare/v0.2.4...HEAD
+[0.2.4]: https://github.com/hsmalley/velvet-chains/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/hsmalley/velvet-chains/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/hsmalley/velvet-chains/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/hsmalley/velvet-chains/compare/v0.2.0...v0.2.1
