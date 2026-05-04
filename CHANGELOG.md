@@ -23,7 +23,7 @@ draped in velvet and bound by consent.
 
 ### Notes
 
-- Minimum Node >= 20; Next 14.
+- Minimum Node >= 20; Next 16.
 
 ### Commits since v0.2.0
 

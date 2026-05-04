@@ -95,10 +95,10 @@ repos:
       - id: prettier
         name: 💄 Format with Prettier
         additional_dependencies:
-          - prettier@3.6.2
+          - prettier@3.8.3
         files: \.(js|jsx|ts|tsx|json|md|mdx|css|scss|yaml|yml)$
         args: ["--write"]
-  # 🔎 ESLint via Next (local hook)
+  # 🔎 ESLint for the main Next.js docs app
   - repo: local
     hooks:
       - id: next-lint
@@ -116,10 +116,10 @@ repos:
               echo "Skipping Next.js lint: dependencies not installed (node_modules missing)."
               exit 0
             fi
-            if [ -x node_modules/.bin/next ]; then
-              node_modules/.bin/next lint --max-warnings=0
+            if [ -x node_modules/.bin/eslint ]; then
+              node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0
             else
-              echo "Skipping Next.js lint: local next binary not found."
+              echo "Skipping Next.js lint: local eslint binary not found."
             fi
         language: system
         pass_filenames: false
@@ -140,7 +140,7 @@ repos:
         language: system
         pass_filenames: false
         files: ^velvet-chains-ttrpg/
-      # TTRPG pre-push framework check (Next preferred; falls back to Astro)
+      # TTRPG pre-push framework check (ESLint for Next, astro check for Astro)
       - id: ttrpg-framework-check
         name: ✨ Framework Check (TTRPG)
         entry: bash
@@ -162,9 +162,9 @@ repos:
               echo "Dependencies not installed in $(pwd); skipping framework checks."
               exit 0
             fi
-            if grep -q '"next"' package.json && [ -x node_modules/.bin/next ]; then
+            if grep -q '"next"' package.json && [ -x node_modules/.bin/eslint ]; then
               echo "Detected Next.js project; running ESLint..."
-              node_modules/.bin/next lint --max-warnings=0
+              node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0
             elif grep -q '"astro"' package.json && ls astro.config.* >/dev/null 2>&1 && [ -x node_modules/.bin/astro ]; then
               echo "Detected Astro project; running astro check..."
               node_modules/.bin/astro check
