@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Optional tag to release (e.g. v1.2.3)"
+        description: "Optional release tag to unfurl (e.g. v1.2.3)"
         required: false
 
 permissions:
@@ -72,7 +72,6 @@ jobs:
           VERSION="${GITHUB_REF_NAME:-manual}"
           ARCHIVE="velvet-chains-site-${VERSION}.tgz"
           tar -czf "$ARCHIVE" out
-          echo "$ARCHIVE" > archive_name.txt
           sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
 
       - name: 📜 Upload Artifact for Release
@@ -83,7 +82,6 @@ jobs:
           path: |
             *.tgz
             *.tgz.sha256
-            archive_name.txt
 
   rust-binaries:
     name: ⚔️ Forge Rust Binaries
@@ -194,36 +192,47 @@ jobs:
   github-release:
     name: 🌌 Unfurl Cosmic Release Scroll
     needs: [build-site, rust-binaries, python-package]
-    # Ensure we only attempt a GitHub Release when a tag exists or is provided via workflow_dispatch
-    if:
-      startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' &&
-      inputs.tag != '')
+    # Tag pushes release immediately; manual rites may provide a tag or run from a tagged commit.
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
+      - name: ⚓ Hoist the Colors — Checkout Full Tag Ledger
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
       - name: 🔖 Resolve Tag Name
         id: tag
         run: |
+          set -euo pipefail
+
           if [ -n "${{ inputs.tag }}" ]; then
-            echo "name=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+            TAG_NAME="${{ inputs.tag }}"
+          elif [[ "${GITHUB_REF:-}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF_NAME}"
           else
-            echo "name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            mapfile -t TAGS < <(git tag --points-at HEAD 'v*')
+
+            if [ "${#TAGS[@]}" -eq 1 ]; then
+              TAG_NAME="${TAGS[0]}"
+            elif [ "${#TAGS[@]}" -gt 1 ]; then
+              echo "⚠️ The cosmic brig found multiple release sigils on this commit: ${TAGS[*]}" >&2
+              echo "Choose one explicitly with workflow_dispatch input 'tag'." >&2
+              exit 1
+            else
+              echo "⚠️ No v* release tag was found for this run." >&2
+              echo "Dispatch with the 'tag' input or invoke this rite from a tagged commit." >&2
+              exit 1
+            fi
           fi
+
+          echo "name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
       - name: 📥 Summon all Relics from the Vault
         uses: actions/download-artifact@v8
         with:
           pattern: "*"
           path: releases
           merge-multiple: true
-
-      - name: 🗂️ Resolve Archive Name
-        id: meta
-        run: |
-          if [ -f releases/archive_name.txt ]; then
-            NAME=$(cat releases/archive_name.txt)
-            echo "archive=$NAME" >> "$GITHUB_OUTPUT"
-          else
-            echo "archive=" >> "$GITHUB_OUTPUT"
-          fi
 
       - name: 🔮 Scry Missing Checksums (Python dists)
         run: |
@@ -240,13 +249,13 @@ jobs:
           {
             echo "## Assets"
             echo
-            echo "Filename | Size | SHA-256"
-            echo "--- | ---: | ---"
-            shopt -s nullglob
-            for f in releases/*; do
-              case "$f" in
-                *.sha256|*/archive_name.txt) continue;;
-              esac
+             echo "Filename | Size | SHA-256"
+             echo "--- | ---: | ---"
+             shopt -s nullglob
+             for f in releases/*; do
+               case "$f" in
+                 *.sha256) continue;;
+               esac
               SIZE_BYTES=$(stat -c%s "$f")
               SIZE_MB=$(awk -v s="$SIZE_BYTES" 'BEGIN{printf "%.2f MB", s/1024/1024}')
               if [ -f "$f.sha256" ]; then
@@ -259,25 +268,20 @@ jobs:
             echo
           } > releases/RELEASE_BODY.md
 
-      - name: 🧰 Muster the Cargo Manifest
-        run: |
-          set -euo pipefail
-          : > filelist.txt
-          ARCHIVE="${{ steps.meta.outputs.archive }}"
-          if [ -n "$ARCHIVE" ] && [ -f "releases/$ARCHIVE" ]; then
-            echo "releases/$ARCHIVE" >> filelist.txt
-            [ -f "releases/$ARCHIVE.sha256" ] && echo "releases/$ARCHIVE.sha256" >> filelist.txt
-          fi
-          for f in releases/git-voidlight-*.tar.gz releases/git-voidlight-*.tar.gz.sha256 releases/git-voidlight-*.zip releases/git-voidlight-*.zip.sha256 releases/*.whl releases/*-*.tar.gz; do
-            [ -e "$f" ] && echo "$f" >> filelist.txt || true
-          done
-
       - name: 🌌 Publish Release to the Void
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.name }}
           target_commitish: ${{ github.sha }}
-          files: filelist.txt
+          files: |
+            releases/*.tgz
+            releases/*.tgz.sha256
+            releases/git-voidlight-*.tar.gz
+            releases/git-voidlight-*.tar.gz.sha256
+            releases/git-voidlight-*.zip
+            releases/git-voidlight-*.zip.sha256
+            releases/voidlight_choreographer-*.whl
+            releases/voidlight_choreographer-*.tar.gz
           body_path: releases/RELEASE_BODY.md
           generate_release_notes: true
           draft: false
