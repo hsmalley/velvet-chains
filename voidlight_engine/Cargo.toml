@@ -16,5 +16,5 @@ name = "git-voidlight"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4.5", features = ["derive"] }
+clap = { version = "4.6", features = ["derive"] }
 rand = "0.10"
