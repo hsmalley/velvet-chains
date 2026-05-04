@@ -1,5 +1,5 @@
 # 🏴‍☠️ Velvet Chains Armada Release
-# Tags → Build static site → Cut GitHub Release with artifacts
+# Tags → Build static site → Launch the Rust reliquary into crates.io → Cut GitHub Release with artifacts
 name: "✨ Armada Release: Velvet Chains"
 
 on:
@@ -188,6 +188,110 @@ jobs:
           name: python-package
           path: dist/*
         if: ${{ steps.py.outputs.present == 'true' }}
+
+  cargo-publish:
+    name: 🌋 Hurl the Voidlight Reliquary into the Star-Forged Bazaar
+    needs: [rust-binaries]
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚓ Hoist the Colors — Plunder the Full Tag Ledger
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: 🔎 Scry the Engine Reliquary
+        id: rust
+        run: |
+          if [ -f voidlight_engine/Cargo.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No Rust engine reliquary found; the star-bazaar shall receive no offering tonight." >&2
+          fi
+
+      - name: 🛠️ Temper the Iron Heart
+        if: ${{ steps.rust.outputs.present == 'true' }}
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: 🔖 Invoke the Release Sigil
+        id: tag
+        if: ${{ steps.rust.outputs.present == 'true' }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "${{ inputs.tag }}" ]; then
+            TAG_NAME="${{ inputs.tag }}"
+          elif [[ "${GITHUB_REF:-}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF_NAME}"
+          else
+            mapfile -t TAGS < <(git tag --points-at HEAD 'v*')
+
+            if [ "${#TAGS[@]}" -eq 1 ]; then
+              TAG_NAME="${TAGS[0]}"
+            elif [ "${#TAGS[@]}" -gt 1 ]; then
+              echo "⚠️ The void howls with too many release sigils on this commit: ${TAGS[*]}" >&2
+              echo "Name the chosen sigil explicitly with workflow_dispatch input 'tag'." >&2
+              exit 1
+            else
+              echo "⚠️ No v* release sigil answered the summoning for this run." >&2
+              echo "Dispatch with the 'tag' input or invoke this rite from a tagged commit." >&2
+              exit 1
+            fi
+          fi
+
+          echo "name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: 📜 Read the Crate Prophecy
+        id: crate
+        if: ${{ steps.rust.outputs.present == 'true' }}
+        run: |
+          python3 - <<'PY'
+          import tomllib
+          from pathlib import Path
+
+          cargo_toml = Path("voidlight_engine/Cargo.toml")
+          data = tomllib.loads(cargo_toml.read_text())
+          package = data["package"]
+
+          github_output = Path(__import__("os").environ["GITHUB_OUTPUT"])
+          with github_output.open("a", encoding="utf-8") as fh:
+              fh.write(f'name={package["name"]}\n')
+              fh.write(f'version={package["version"]}\n')
+          PY
+
+      - name: 🧭 Judge the Crate's Worthiness Before the Bazaar
+        id: publish
+        if: ${{ steps.rust.outputs.present == 'true' }}
+        run: |
+          set -euo pipefail
+          EXPECTED_TAG="v${{ steps.crate.outputs.version }}"
+          ACTUAL_TAG="${{ steps.tag.outputs.name }}"
+
+          if [ "$EXPECTED_TAG" = "$ACTUAL_TAG" ]; then
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+            echo "The reliquary's true name aligns with the release sigil: $ACTUAL_TAG"
+          else
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "The star-bazaar rejects this offering for now: crate ${{ steps.crate.outputs.name }} bears version ${{ steps.crate.outputs.version }}, but the release sigil is $ACTUAL_TAG."
+          fi
+
+      - name: 🔐 Demand the crates.io Blood-Sigil
+        if: ${{ steps.rust.outputs.present == 'true' && steps.publish.outputs.allowed == 'true' }}
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: |
+          if [ -z "${CARGO_REGISTRY_TOKEN:-}" ]; then
+            echo "CARGO_REGISTRY_TOKEN is required before ${{ steps.crate.outputs.name }} ${{ steps.crate.outputs.version }} may be hurled into crates.io." >&2
+            exit 1
+          fi
+
+      - name: 🚀 Hurl the Voidlight Reliquary into crates.io
+        if: ${{ steps.rust.outputs.present == 'true' && steps.publish.outputs.allowed == 'true' }}
+        working-directory: voidlight_engine
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: cargo publish --locked --token "$CARGO_REGISTRY_TOKEN"
 
   github-release:
     name: 🌌 Unfurl Cosmic Release Scroll
