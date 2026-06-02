@@ -20,7 +20,7 @@ jobs:
       - name: "📦 Hoist the Colors — Checkout"
         uses: actions/checkout@v5
       - name: "🏷️ Engrave the Corsair Label Codex"
-        uses: crazy-max/ghaction-github-labeler@v5
+        uses: crazy-max/ghaction-github-labeler@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/labels.yml
