@@ -26,7 +26,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: 📦 Checkout full history for commit range
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: 🔍 Inspect commits for Signed-off-by
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Summon repository from the void
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: ✨ Invoke uv's Cosmic Power
         uses: astral-sh/setup-uv@v7
       - name: 🐍 Weave Python's Choreography Space
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Retrieve sacred codebase from digital depths
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: 🔎 Detect Rust engine presence
         id: detect-rust
         run: |
@@ -122,7 +122,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: 📦 Acquire sacred source code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: 🔎 Detect Rust engine presence
         id: detect-rust
         run: |
@@ -161,7 +161,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Retrieve Python sorcery from repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: 🔥 Establish Python 3.12 ritual environment
         uses: actions/setup-python@v6
         with:

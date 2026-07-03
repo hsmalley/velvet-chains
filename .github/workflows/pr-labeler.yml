@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "📜 Fetch Configuration Scroll"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: "🏷️ Apply Labels by Chamber"
         uses: actions/labeler@v5
         with:
