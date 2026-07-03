@@ -53,19 +53,9 @@ function renderMarkdown(md: string): string {
 let CACHE: LoreFileMeta[] | null = null
 
 function splitFrontmatter(text: string): { frontmatter: string | null; body: string } {
-  if (!text.startsWith('---\n')) {
-    return { frontmatter: null, body: text }
-  }
-
-  const closeIndex = text.indexOf('\n---\n', 4)
-  if (closeIndex === -1) {
-    return { frontmatter: null, body: text }
-  }
-
-  return {
-    frontmatter: text.slice(4, closeIndex),
-    body: text.slice(closeIndex + 5),
-  }
+  const match = text.match(/^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/)
+  if (!match) return { frontmatter: null, body: text }
+  return { frontmatter: match[1], body: match[2] }
 }
 
 function parseFrontmatter(raw: string, filename: string): FrontmatterData {
