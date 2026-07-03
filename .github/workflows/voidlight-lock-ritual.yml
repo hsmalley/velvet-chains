@@ -31,7 +31,7 @@ jobs:
       UV_LOCK_MILESTONE: ${{ vars.UV_LOCK_MILESTONE }}
     steps:
       - name: ⚓ Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.ref }}
 
