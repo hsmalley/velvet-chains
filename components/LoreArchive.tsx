@@ -11,7 +11,7 @@ try {
 } catch {
   /* ignore in client bundle */
 }
-import matter from 'gray-matter'
+import { load as loadYaml } from 'js-yaml'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
@@ -33,6 +33,13 @@ const LORE_DIR =
   typeof window === 'undefined' && path ? path.join(process.cwd(), '_LORE_') : '_LORE_'
 const FILE_PATTERN = /^(\d+)[-_].*\.(md|MD|mdx)$/
 
+interface FrontmatterData {
+  title?: unknown
+  order?: unknown
+  tags?: unknown
+  draft?: unknown
+}
+
 function renderMarkdown(md: string): string {
   const file = unified()
     .use(remarkParse)
@@ -44,6 +51,37 @@ function renderMarkdown(md: string): string {
 }
 
 let CACHE: LoreFileMeta[] | null = null
+
+function splitFrontmatter(text: string): { frontmatter: string | null; body: string } {
+  if (!text.startsWith('---\n')) {
+    return { frontmatter: null, body: text }
+  }
+
+  const closeIndex = text.indexOf('\n---\n', 4)
+  if (closeIndex === -1) {
+    return { frontmatter: null, body: text }
+  }
+
+  return {
+    frontmatter: text.slice(4, closeIndex),
+    body: text.slice(closeIndex + 5),
+  }
+}
+
+function parseFrontmatter(raw: string, filename: string): FrontmatterData {
+  try {
+    const loaded = loadYaml(raw)
+    if (!loaded || typeof loaded !== 'object' || Array.isArray(loaded)) {
+      console.warn(`LoreArchive: frontmatter in ${filename} must be a mapping; ignoring metadata`)
+      return {}
+    }
+    return loaded as FrontmatterData
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    console.warn(`LoreArchive: failed to parse frontmatter in ${filename}: ${message}`)
+    return {}
+  }
+}
 
 function slugify(title: string): string {
   return title
@@ -73,19 +111,20 @@ function loadLoreFiles(): LoreFileMeta[] {
     const index = parseInt(match[1], 10)
     const fullPath = path.join(LORE_DIR, ent.name)
     const raw = fs.readFileSync(fullPath, 'utf-8')
-    const parsed = matter(raw)
-    const body = parsed.content.trim()
+    const { frontmatter, body: rawBody } = splitFrontmatter(raw)
+    const body = rawBody.trim()
+    const data: FrontmatterData = frontmatter ? parseFrontmatter(frontmatter, ent.name) : {}
     const firstHeading = body
       .split(/\r?\n/)
       .find((l: string) => l.trim().startsWith('#'))
       ?.replace(/^#+\s*/, '')
       .trim()
-    const metaTitle = (parsed.data.title as string) || firstHeading || ent.name
-    const order = typeof parsed.data.order === 'number' ? parsed.data.order : undefined
-    const draft = parsed.data.draft === true
+    const metaTitle = typeof data.title === 'string' ? data.title : firstHeading || ent.name
+    const order = typeof data.order === 'number' ? data.order : undefined
+    const draft = data.draft === true
     let tags: string[] | undefined
-    if (Array.isArray(parsed.data.tags)) {
-      tags = (parsed.data.tags as any[]).map((t: any) => String(t))
+    if (Array.isArray(data.tags)) {
+      tags = data.tags.map((t: any) => String(t))
     }
     if (draft) continue
     const html = renderMarkdown(body)
