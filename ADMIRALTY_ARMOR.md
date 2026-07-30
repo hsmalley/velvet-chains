@@ -178,6 +178,15 @@ git secrets --scan --all  # If you have git-secrets installed
 
 ## 📋 **ACKNOWLEDGED SECURITY CONSIDERATIONS**
 
+### **📋 Known Dependency Advisories (Awaiting Upstream Fixes)**
+
+- **GHSA-mh99-v99m-4gvg** (`brace-expansion` DoS via unbounded expansion): Affects
+  `brace-expansion <=5.0.7` bundled transitively inside `eslint` ≤9.x and `eslint-plugin-*` packages
+  (all **dev-only dependencies**). The vulnerable code path (processing unbounded untrusted glob
+  patterns) is never triggered in normal linting workflows; all glob patterns come from our own
+  trusted config files. The upstream fix requires ESLint 10, which is currently incompatible with
+  `eslint-config-next` 16.x. This will be resolved when Next.js releases ESLint 10 support.
+
 ### **🎪 Intentional Design Limitations (Features, Not Bugs)**
 
 - **⚰️ Git History Modification**: This tool intentionally rewrites history - wield responsibly with
