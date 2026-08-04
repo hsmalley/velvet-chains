@@ -163,7 +163,7 @@ jobs:
       - name: 📦 Retrieve Python sorcery from repository
         uses: actions/checkout@v7
       - name: 🔥 Establish Python 3.12 ritual environment
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: ✨ Invoke uv's Cosmic Power
