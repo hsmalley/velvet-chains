@@ -68,7 +68,7 @@ jobs:
           echo "No artifact was forged; the deployment ritual will be courteously skipped." >> $GITHUB_STEP_SUMMARY
       - name: ✨ Invoke uv's Cosmic Power (lock augury)
         if: ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' }}
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v10.2.0
       - name: 🔒 Verify Voidlight Lock (uv.lock)
         if:
           ${{ steps.site.outputs.present == 'true' && hashFiles('pyproject.toml') != '' &&
@@ -78,7 +78,7 @@ jobs:
         if: ${{ steps.site.outputs.present == 'true' }}
         uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
       - name: 💎 Gather the Treasure - Install Dependencies
         if: ${{ steps.site.outputs.present == 'true' }}
