@@ -10,6 +10,7 @@ draped in velvet and bound by consent.
 ### Changed
 
 - Refreshed the Next.js, React, Rust, npm, and GitHub Actions dependencies and lockfiles.
+- Aligned ESLint and TypeScript with the versions supported by the Next.js lint plugins.
 - Raised the Rust reliquary and Python choreographer to the `0.2.5` release sigil.
 - Removed the obsolete TypeScript `baseUrl` setting to restore the docs build.
 
