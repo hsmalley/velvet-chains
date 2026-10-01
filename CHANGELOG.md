@@ -5,7 +5,24 @@ draped in velvet and bound by consent.
 
 ## [Unreleased]
 
-- Prepare the next velvet release rite beyond v0.2.4.
+## [0.2.5] — 2026-10-01
+
+### Changed
+
+- Refreshed the Next.js, React, Rust, npm, and GitHub Actions dependencies and lockfiles.
+- Aligned ESLint and TypeScript with the versions supported by the Next.js lint plugins.
+- Raised the Rust reliquary and Python choreographer to the `0.2.5` release sigil.
+- Removed the obsolete TypeScript `baseUrl` setting to restore the docs build.
+
+### Security
+
+- Patched vulnerable npm dependency chains and updated the affected dependency overrides.
+
+### Commits since v0.2.4
+
+- Updated Next.js, React, Rust crates, npm tooling, and GitHub Actions.
+- Refreshed lockfiles and patched vulnerable dependencies.
+- Fixed the TypeScript configuration blocking the docs build.
 
 ## [0.2.4] — 2026-05-04
 
@@ -150,7 +167,8 @@ draped in velvet and bound by consent.
 - a476300 Restoring a few more things... oppsie!
 - e98d1df Wow, I really messed up
 
-[Unreleased]: https://github.com/hsmalley/velvet-chains/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/hsmalley/velvet-chains/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/hsmalley/velvet-chains/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/hsmalley/velvet-chains/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/hsmalley/velvet-chains/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/hsmalley/velvet-chains/compare/v0.2.1...v0.2.2
