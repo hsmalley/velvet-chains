@@ -169,7 +169,7 @@ jobs:
         with:
           python-version: "3.15"
       - name: ✨ Setup uv
-        uses: astral-sh/setup-uv@v10.3.0
+        uses: astral-sh/setup-uv@v10.3.2
       - name: 🌱 Create uv virtual environment
         if: ${{ steps.py.outputs.present == 'true' }}
         run: uv venv
