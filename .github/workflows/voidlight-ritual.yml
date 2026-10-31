@@ -59,7 +59,7 @@ jobs:
       - name: 📦 Summon repository from the void
         uses: actions/checkout@v7
       - name: ✨ Invoke uv's Cosmic Power
-        uses: astral-sh/setup-uv@v10.3.2
+        uses: astral-sh/setup-uv@v10.3.3
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
       - name: 🔒 Verify uv.lock is up to date
@@ -167,7 +167,7 @@ jobs:
         with:
           python-version: "3.15"
       - name: ✨ Invoke uv's Cosmic Power
-        uses: astral-sh/setup-uv@v10.3.2
+        uses: astral-sh/setup-uv@v10.3.3
       - name: 🐍 Weave Python's Choreography Space
         run: uv venv
       - name: 🔒 Verify uv.lock freshness (advice if stale)
